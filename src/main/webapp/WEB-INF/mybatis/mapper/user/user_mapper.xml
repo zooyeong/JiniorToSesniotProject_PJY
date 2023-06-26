@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="userInfo_mapper">
 
-	<insert id="insert_userInfo" parameterType="UserInfo_Dto">
+	<insert id="insert_userInfo" parameterType="com.kids.dto.UserInfo_Dto">
 		insert into USER_INFO
 		values ( #{id} , #{password}, #{name} ,#{birthday},#{phoneNumber},
 		#{postCode},#{address},#{detailAddress},#{extraAddress},#{gender},
