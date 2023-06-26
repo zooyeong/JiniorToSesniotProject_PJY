@@ -28,7 +28,7 @@
             <AppenderRef ref="File_Appender"/>
         </Logger>
         <!--하단 name에 본인이 사용하는 package명으로 수정할 것-->
-        <Logger name="com.app.controller" level="INFO" additivity="false">
+        <Logger name="com.kids.controller" level="INFO" additivity="false">
             <AppenderRef ref="Console_Appender" />
             <AppenderRef ref="File_Appender"/>
         </Logger>

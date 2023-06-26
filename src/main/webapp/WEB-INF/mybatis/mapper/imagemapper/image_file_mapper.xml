@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="image_file_mapper">
+
+
+      
+       <update id="update_image_file" parameterType="ImageFileDTO">
+        MERGE 
+ 		INTO image_file i
+		USING dual
+  		 ON (i.realid = #{realId})
+ 		WHEN MATCHED THEN
+    	  UPDATE
+         SET i.filename = #{fileName},
+		i.filepath = #{filePath}
+		 WHEN NOT MATCHED THEN
+   		  INSERT (id, filename, filepath, realid)
+      	  VALUES (#{id}, #{fileName}, #{filePath}, #{realId})
+  	</update>
+    
+    
+    
+    <insert id="insert_image_file" parameterType="ImageFileDTO">
+        INSERT INTO IMAGE_FILE (id, filename, filepath, realid)
+        VALUES (#{id}, #{fileName}, #{filePath}, #{realId})
+    </insert>
+
+    <select id="select_all_image_files" resultType="ImageFileDTO">
+        SELECT *
+        FROM IMAGE_FILE
+    </select>
+
+    <select id="get_next_image_file_id" resultType="int">
+        SELECT SEQ_IMAGE_FILE.NEXTVAL
+        FROM DUAL
+    </select>
+</mapper>
