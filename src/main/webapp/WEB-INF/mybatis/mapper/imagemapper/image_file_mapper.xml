@@ -8,21 +8,21 @@
         MERGE 
  		INTO image_file i
 		USING dual
-  		 ON (i.realid = #{realId})
+  		 ON (i.id = #{id})
  		WHEN MATCHED THEN
     	  UPDATE
          SET i.filename = #{fileName},
 		i.filepath = #{filePath}
 		 WHEN NOT MATCHED THEN
-   		  INSERT (id, filename, filepath, realid)
-      	  VALUES (#{id}, #{fileName}, #{filePath}, #{realId})
+   		  INSERT (filename, filepath, id)
+      	  VALUES (#{fileName}, #{filePath}, #{id})
   	</update>
     
     
     
     <insert id="insert_image_file" parameterType="ImageFileDTO">
-        INSERT INTO IMAGE_FILE (id, filename, filepath, realid)
-        VALUES (#{id}, #{fileName}, #{filePath}, #{realId})
+        INSERT INTO IMAGE_FILE (filename, filepath, id)
+        VALUES (#{fileName}, #{filePath}, #{id})
     </insert>
 
     <select id="select_all_image_files" resultType="ImageFileDTO">
@@ -30,8 +30,5 @@
         FROM IMAGE_FILE
     </select>
 
-    <select id="get_next_image_file_id" resultType="int">
-        SELECT SEQ_IMAGE_FILE.NEXTVAL
-        FROM DUAL
-    </select>
+
 </mapper>

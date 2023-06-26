@@ -16,8 +16,7 @@ public class ImageFileServiceImpl implements ImageFileService {
 
     @Override
     public ImageFileDTO saveImageFile(String fileName, String filePath, String sessionId) {
-        int fileId = imageFileDAO.getNextImageFileId();
-        ImageFileDTO imageFile = new ImageFileDTO(fileId, fileName, filePath, sessionId);
+        ImageFileDTO imageFile = new ImageFileDTO(fileName, filePath, sessionId);
         imageFileDAO.insertImageFile(imageFile);
         
         return imageFile;

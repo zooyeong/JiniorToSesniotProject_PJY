@@ -27,8 +27,4 @@ public class ImageFileDAOImpl implements ImageFileDAO {
         return sqlSession.selectList(NAMESPACE + "select_all_image_files");
     }
 
-    @Override
-    public int getNextImageFileId() {
-        return sqlSession.selectOne(NAMESPACE + "get_next_image_file_id");
-    }
 }

@@ -7,5 +7,5 @@ import com.kids.dto.image.ImageFileDTO;
 public interface ImageFileDAO {
     void insertImageFile(ImageFileDTO imageFileDTO);
     List<ImageFileDTO> selectAllImageFiles();
-    int getNextImageFileId();
+  
 }
