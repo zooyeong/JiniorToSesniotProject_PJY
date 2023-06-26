@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kids.dao.senior.SeniorDao;
+import com.kids.dto.image.ImageFileDTO;
 import com.kids.dto.senior.SeniorDetailDto;
 import com.kids.dto.senior.SeniorScheduleDto;
 import com.kids.service.senior.SeniorService;
@@ -66,6 +67,15 @@ public class SeniorServiceImpl implements SeniorService{
 	public int updateSchedule(Map<String, String> map) {
 		// TODO Auto-generated method stub
 		int result = seniorDao.updateSchedule(map);
+		return result;
+	}
+
+	@Override
+	public ImageFileDTO getImgById(String id) {
+		// TODO Auto-generated method stub
+		
+		ImageFileDTO result = seniorDao.selectImgById(id);
+		
 		return result;
 	}
 

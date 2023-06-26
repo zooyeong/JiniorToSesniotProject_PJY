@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kids.dao.senior.SeniorDao;
+import com.kids.dto.image.ImageFileDTO;
 import com.kids.dto.senior.SeniorDetailDto;
 import com.kids.dto.senior.SeniorScheduleDto;
 
@@ -67,6 +68,15 @@ public class SeniorDaoImpl implements SeniorDao{
 	public int updateSchedule(Map<String, String> map) {
 		// TODO Auto-generated method stub
 		int result = sqlSessionTemplate.update("senior_mapper.update_schedule", map);
+		
+		return result;
+	}
+
+	@Override
+	public ImageFileDTO selectImgById(String id) {
+		// TODO Auto-generated method stub
+		
+		ImageFileDTO result = sqlSessionTemplate.selectOne("senior_mapper.select_img_by_id", id);
 		
 		return result;
 	}

@@ -35,9 +35,17 @@
 		where id = #{id}
 	</update>
 	
+	
 	<select id="select_senior_schedule_by_id" resultType="SeniorScheduleDto">
 		select * from senior_enable_schedule
 			where id = #{id}
+	</select>
+	
+	
+	<select id="select_img_by_id" resultType="ImageFileDTO"
+								parameterType="String">
+		select * from IMAGE_FILE
+			where realid = #{value}
 	</select>
 	
 	<update id="update_schedule" parameterType="hashMap">

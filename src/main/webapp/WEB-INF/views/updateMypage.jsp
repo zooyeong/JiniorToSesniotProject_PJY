@@ -15,6 +15,7 @@ input[type="checkbox"]{
 /*  	visibility: hidden; */
 }
 /*체크를 안 했을 때*/
+
 .label::before{
 	display: inline-block;
     content:"";
@@ -28,16 +29,33 @@ input[type="checkbox"]{
 input:checked + .label::before{
 	background-color: yellow;
 } 
+#preview {
+		position:relative;
+		width: 450px;
+		height: 450px;
+		border: 2px solid black;
+		border-radius: 12px;
+		margin-top: 20px;
+		cursor: pointer;
+	}
+	* {
+		text-align: center;
+		}
 </style>
 </head>
 <body>
 	<h1>updateMypage</h1>
 	<h1>시니어 마이페이지 진입</h1>
 	
-	<form action="" method="post">	
+	<form action="" method="post" enctype="multipart/form-data">	
 		<p>${seniorDetail.name}님 만${2023 - fn:substring(seniorDetail.birthday, 0, 4)}세</p>
 		<label>프로필사진</label><br>
-		<input type="file" name="picture"><br>
+		<label for="image">     
+                <img class="profileimage" id="preview" src="${pageContext.request.contextPath}/image/profile/${seniorImg.fileName}" onerror="this.onerror=null;this.src='${pageContext.request.contextPath}/image/profile/noprofile1.png?v=1';">
+        </label>
+        <input type="file" name="file" id="image" style="display: none;" onchange="readURL(this)" required>
+        <br>
+        <input type="hidden" value="<%= session.getAttribute("userId") %>" name="id"><br>
 		
 		<label>기존 비밀번호</label><br>
 		<input type="password" name="password"><br>
@@ -117,6 +135,26 @@ input:checked + .label::before{
 		        });
 		    }
 		};
-	</script>
+		
+        let image = document.getElementById('image');
+        let preview = document.getElementById('preview');
+
+        function readURL(image) {
+            if (image.files && image.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                };
+                reader.readAsDataURL(image.files[0]);
+            } else {
+                preview.src = "";
+            }
+        }
+        
+        // Open file selection dialog when the image is clicked
+        preview.onclick = function() {
+            image.value = null; // Reset the selected file
+        };
+    </script>
 </body>
 </html>

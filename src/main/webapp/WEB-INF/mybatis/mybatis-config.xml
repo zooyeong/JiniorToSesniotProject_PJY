@@ -10,7 +10,7 @@
 		<setting name="jdbcTypeForNull" value="VARCHAR" />
 	</settings>
 	<typeAliases>
- <typeAlias type="com.kids.dto.senior.SeniorDetailDto" alias="SeniorDetailDto"/>
+ 		<typeAlias type="com.kids.dto.senior.SeniorDetailDto" alias="SeniorDetailDto"/>
          <typeAlias type="com.kids.dto.senior.SeniorScheduleDto" alias="SeniorScheduleDto"/>
 		 <typeAlias type="com.kids.dto.image.ImageFileDTO" alias="ImageFileDTO" />
 		<typeAlias type="com.kids.dto.certification.CertificationDTO" alias="CertificationDTO" />
