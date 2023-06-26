@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+						
+<mapper namespace="senior_mapper">
+	
+	<select id="select_senior_detail" resultType="SeniorDetailDto">
+		select * from user_info u
+			inner join snr s on u.id = s.id
+	</select>
+	
+	<select id="select_senior_detail_by_id" resultType="SeniorDetailDto"
+											parameterType="String">
+		select u.id, u.name, u.birthday, u.phone_number,
+				u.adress, u.gender, u.email, s.info, s.area, s.picture
+			from user_info u
+			inner join snr s on u.id = s.id
+			where u.id = #{value}
+	</select>
+	
+	<update id="update_user_info" parameterType="SeniorDetailDto">
+		update user_info set
+			password = NVL(#{password}, password),
+			phone_number = NVL(#{phoneNumber}, phone_number),
+			adress = NVL(#{adress}, adress),
+			email = NVL(#{email}, email)
+		where id = #{id}
+	</update>
+	
+	<update id="update_snr" parameterType="SeniorDetailDto">
+		update snr set 
+			info = NVL(#{info}, info),
+			area = NVL(#{area}, area)
+		where id = #{id}
+	</update>
+	
+	<select id="select_senior_schedule_by_id" resultType="SeniorScheduleDto">
+		select * from senior_enable_schedule
+			where id = #{id}
+	</select>
+	
+	<update id="update_schedule" parameterType="hashMap">
+<!-- 	update set status statusArr[i], workStatus statusArr[i] -->
+<!-- 	where id=? scheduleCode=scheduleCodeArr[i] -->
+		update senior_enable_schedule set
+			status = #{status},
+			work_status = #{workStatus}
+		where id = #{id} and schedule_code = #{scheduleCode}
+	</update>
+
+</mapper>
