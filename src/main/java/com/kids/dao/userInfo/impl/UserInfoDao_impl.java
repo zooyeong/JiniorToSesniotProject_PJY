@@ -1,0 +1,35 @@
+package com.kids.dao.userInfo.impl;
+
+import java.util.List;
+
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import com.kids.dao.UserInfo_Dao;
+import com.kids.dto.UserInfo_Dto;
+
+@Repository
+public class UserInfoDao_impl implements UserInfo_Dao{
+	@Autowired
+	SqlSessionTemplate sqlSessionTemplate;
+
+	@Override
+	public int insertUser(UserInfo_Dto userInfo_dto) {
+		// TODO Auto-generated method stub
+		int result = sqlSessionTemplate.insert("userInfo_mapper.insert_userInfo", userInfo_dto);
+
+
+		return result;
+	}
+
+	@Override
+	public List<UserInfo_Dto> selectUesrList(UserInfo_Dto userInfo_dto) {
+		// TODO Auto-generated method stub
+		return null;
+	
+	}
+
+	
+	
+}

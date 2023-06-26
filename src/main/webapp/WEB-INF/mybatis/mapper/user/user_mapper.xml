@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+
+<mapper namespace="userInfo_mapper">
+
+	<insert id="insert_userInfo" parameterType="UserInfo_Dto">
+		insert into USER_INFO
+		values ( #{id} , #{password}, #{name} ,#{birthday},#{phoneNumber},
+		#{postCode},#{address},#{detailAddress},#{extraAddress},#{gender},
+		#{email},#{userCode},#{regDate})
+	</insert>
+
+</mapper>
