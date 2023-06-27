@@ -8,7 +8,7 @@
 </head>
 <body>
 	<h1>답변하기</h1>
-	<form action="" method="post">
+	<form action="/reply" method="post">
 	 	<label for="id">작성자:</label>
         <input type="text" id="id" name="id">
         <input type="hidden" id="parentNo" name="parentNo" value="${parentNo}">
@@ -22,8 +22,16 @@
         <textarea id="content" name="content" rows="5" cols="50" required></textarea>
         <br><br>
         
+        <button type="submit">완료</button>
+        <button type="button" onclick="cancel()">취소</button>
         <input type="submit" value="Submit">
-        <input type="button" value="Cancel" onclick="location.href='/reply'">
+        <input type="button" value="Cancel" onclick="location.href='/listPage'">
     </form>
+    <script>
+    	function cancel(){
+    		location.href="/listPage";
+    	};
+    	
+    </script>
 </body>
 </html>

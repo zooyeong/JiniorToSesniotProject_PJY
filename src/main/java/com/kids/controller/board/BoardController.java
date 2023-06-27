@@ -166,10 +166,10 @@ public class BoardController {
 	@PostMapping("/reply")
 	public String reply_process(@ModelAttribute BoardDto boardDto) {
 		
+		System.out.println("부모글번호 : " + boardDto.getParentNo());
 		System.out.println(boardDto.toString());
-		
+		boardService.addNewArticle(boardDto);
 		return "redirect:/listPage";
 	}
-		
 	
 }

@@ -6,9 +6,9 @@
 <mapper namespace="board_mapper">
 
 	<insert id="insert_article" parameterType="BoardDto">
-		insert into board (article_no, title, content, id)
+		insert into board (article_no, parent_no, title, content, id)
 		values ( (select NVL(max(article_no), 0) +1 from board),
-				  #{title}, #{content}, #{id} )
+				  #{parentNo}, #{title}, #{content}, #{id} )
 	</insert>
 	
 	<select id="select_article_list" resultType="BoardDto">
@@ -48,9 +48,10 @@
 	</select>
 	
 	<select id="list_page" parameterType="hashMap" resultType="BoardDto">
-		select level, article_no, parent_no, title, content, id , created_at, views
-		from  board start with parent_no = 0 connect by prior article_no = parent_no order siblings by article_no desc
-        offset #{displayArticle} rows fetch first #{articleNum} rows only
+		select * from(
+			select level, article_no, parent_no, title, content, id , created_at, views
+			from  board start with parent_no = 0 connect by prior article_no = parent_no order siblings by article_no desc
+        ) offset #{displayArticle} rows fetch first #{articleNum} rows only
 	</select>
 
 </mapper>
