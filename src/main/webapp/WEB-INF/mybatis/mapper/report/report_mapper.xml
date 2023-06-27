@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+						
+<mapper namespace="report_mapper">
+
+	<select id="select_reported_user_list" resultType="ReportDto">
+		select * from report_users
+	</select>
+	
+	<select id="select_reported_user_list_by_id" resultType="ReportDto"
+										parameterType="ReportDto">
+		select * from report_users
+				 where senior_id = #{seniorId}
+	</select>
+	
+	<!-- 경고 버튼 눌렀을 때, 블랙회원 등록 눌렀을 때 -->
+    <update id="update_report_confirm_status_as_Y" parameterType="ReportDto">
+		UPDATE report_users
+		SET
+		report_confirm_status = 'Y'
+		WHERE
+		senior_id= #{seniorId}
+		AND
+		report_num = #{reportNum}
+    </update>
+    
+    <!-- 경고 버튼 눌렀을 때 -->
+    <update id="update_report_count" parameterType="ReportDto">
+    
+		UPDATE report_users
+		SET
+		report_count = report_count + 1
+		WHERE
+		senior_id = #{seniorId}
+		
+    </update>
+	
+	<!-- 반려 버튼 눌렀을 때 -->
+    <update id="update_report_confirm_status_as_Rejected" parameterType="ReportDto">
+		UPDATE report_users 
+		SET
+		report_confirm_status = 'Rejected'
+		WHERE 
+		senior_id = #{seniorId}							
+		AND 
+		report_num = #{reportNum}
+    </update>
+    
+    <!-- 블랙회원 등록 버튼 눌렀을 때 -->
+    <update id="update_user_code_as_Black" parameterType="ReportDto">
+		UPDATE user_info ui
+		SET ui.user_code = 'BLACK'
+		WHERE ui.id IN (
+			SELECT ru.senior_id
+			FROM report_users ru
+			WHERE ru.report_count = 3
+		)
+	</update>
+
+</mapper>
+						
