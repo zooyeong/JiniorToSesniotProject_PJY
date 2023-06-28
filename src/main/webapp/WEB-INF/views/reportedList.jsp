@@ -44,6 +44,8 @@
 			</c:forEach>
 		</tbody>
 	</table>
+	
+		<button type="button" onclick="location.href='admin'">관리자 페이지로 돌아가기</button>
 
 	<script src="https://code.jquery.com/jquery-3.7.0.js"
 		integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
@@ -57,8 +59,8 @@
 
 			$(".seniorId").click(function() {
 
-				const temp_link = $(this).attr("id");
-				location.href = 'reportedList?seniorId=' + temp_link;
+				const seniorId = $(this).attr("id");
+				location.href = 'reportedList?seniorId=' + seniorId;
 
 			});
 		});

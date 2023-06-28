@@ -17,7 +17,6 @@ public class ReportDto {
 	public String reportDate;  
 	public String reportConfirmStatus;
 	public String reportConfirmStatusPrint;
-	
 	public int reportCount;
 	
 }

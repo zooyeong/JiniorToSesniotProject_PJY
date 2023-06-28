@@ -7,6 +7,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -17,7 +18,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kids.dto.report.ReportDto;
 import com.kids.dto.user.UserDto;
+import com.kids.dto.senior.SeniorDto;
 import com.kids.service.report.ReportService;
+import com.kids.service.senior.SeniorService;
 import com.kids.service.user.UserService;
 
 @Controller
@@ -31,11 +34,15 @@ public class ManagingController {
 	@Autowired
 	ReportService reportService;
 
+	@Autowired
+	SeniorService seniorService;
+	
 	@GetMapping("/admin")
 	public String admin(Model model) {
 		
 		return "admin";
 	}
+	
 	
 	@GetMapping("/reportedList")
 	public String reportedList(Model model,
@@ -70,6 +77,7 @@ public class ManagingController {
 		return "manageBlackUser";
 	}
 	
+	
 	@GetMapping("/rejectReport")
 	public String rejectReport(Model model,
 			@RequestParam(name = "seniorId", required = false) String seniorId, 
@@ -99,6 +107,54 @@ public class ManagingController {
 		
 		return "redirect:/reportedList?seniorId=" + reportDto.getSeniorId();
 	}
+
+	// 모든 인증 제출 리스트
+	@GetMapping("/verifySenior")
+	public String registerSenior(Model model, @RequestParam(name = "id", required = false) String id) {
+		
+		if (id == null) {
+		List<SeniorDto> seniorVeriList = seniorService.getSeniorVerificationList();
+		model.addAttribute("seniorVeriList", seniorVeriList);
+
+		return "seniorSubmitList";
+		
+		} else if (id != null ) {
+			
+			SeniorDto seniorDto = new SeniorDto();
+			seniorDto.setId(id);
+			List<SeniorDto> seniorVeriList = seniorService.getSeniorVerificationListById(seniorDto);
+			model.addAttribute("seniorVeriList", seniorVeriList);
+			
+		}
+		
+		return "authorizeSenior";
+	}
+
+	@GetMapping("/authorizeSenior")
+	public String authorizeSenior(Model model, @RequestParam(name = "id", required = false) String id) {
+
+		if (id == null) {
+
+			SeniorDto seniorDto = new SeniorDto();
+			seniorDto.setId(id);
+			List<SeniorDto> seniorVeriList = seniorService.getSeniorVerificationListById(seniorDto);
+			model.addAttribute("seniorVeriList", seniorVeriList);
+
+		} else if (id != null) {
+
+			SeniorDto seniorDto = new SeniorDto();
+			seniorDto.setId(id);
+			seniorService.setSeniorVerificationStatusAsCertified(seniorDto);
+
+			return "redirect:/verifySenior?id=" + seniorDto.getId();
+		}
+		
+		return "authorizeSenior";
+	}
+}
+	
+		
+
 	
 	
 /*
@@ -120,21 +176,7 @@ public class ManagingController {
 		model.addAttribute("userList", userList);
 
 		return "singleInfo";
-	}
-
-
-	/*
-	 * @GetMapping("/registerSenior") public String registerSenior() {
-	 * 
-	 * return "index"; }
-	 * 
-	 * @PostMapping("registerSenior") public String registerSenior_proc() {
-	 * 
-	 * // 시니어 등록 처리 로직
-	 * 
-	 * return "index"; }
-	 */
-
+	}*/
 
 	/*
 	 * @GetMapping("/matchLogList") public String matchLogList() {
@@ -148,4 +190,4 @@ public class ManagingController {
 	 * return "index"; }
 	 */
 
-}
+

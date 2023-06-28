@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+						
+<mapper namespace="senior_mapper">
+	<!-- 인증 정보 리스트 -->
+	<select id="select_senior_verification_list" resultType="SeniorDto">
+		select * from verification
+	</select>
+	
+	
+	<!-- 인증 정보 리스트 해당 아이디만--> 
+	<select id="select_senior_verification_list_by_id" resultType="SeniorDto"
+										parameterType="SeniorDto">
+		select * from verification
+				 where id = #{id}
+	</select>
+	
+	<!--인증 여부 컬럼 Y로 변경 (승인)-->
+
+	<update id= "update_verification_status_as_Y" parameterType="SeniorDto">
+		UPDATE verification 
+		SET verification_status= 'Y'
+		WHERE id = #{id}
+	</update>
+
+</mapper>
