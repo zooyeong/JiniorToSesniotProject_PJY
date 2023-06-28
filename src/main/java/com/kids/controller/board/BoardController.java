@@ -93,7 +93,7 @@ public class BoardController {
 		
 		boardService.removeArticle(articleNo);
 		
-		return "redirect:/articleList";
+		return "redirect:/listPage";
 	}
 	
 	//페이징 처리 + 게시글 목록
