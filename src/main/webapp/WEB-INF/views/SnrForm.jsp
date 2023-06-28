@@ -8,5 +8,8 @@
 </head>
 <body>
 	<h1>SinForm</h1>
+	
+	<textarea rows="20" cols="150" id="info"></textarea>
+	<input type="text" id="area">
 </body>
 </html>

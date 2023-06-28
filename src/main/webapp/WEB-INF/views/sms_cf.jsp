@@ -15,11 +15,11 @@
 <body>
 	<div id="contents">
 		<form action="/sendSms" method="post">
-			휴대전화 : <input type="text" id="phoneNum" name="phoneNum" />
+			휴대전화 : <input type="text" id="phoneNum" name="phoneNum" placeholder="숫자만 입력해주세요" />
 			<input type="button" id="send" value="전송" /><br>
 			인증번호 : <input type="text" id="authNum"> <input type="button" id="enterBtn" value="확인">
 			<input type="text" name="ckeckAuth" id="ckeckAuth" placeholder="인증번호 대조">
-			<input type="text" name="pass" id="pass" placeholder="인증상태">
+			<input type="text" name="smsPass" id="smsPass" placeholder="인증상태">
 		</form>
 	</div>
 	<script>
@@ -68,10 +68,10 @@
         if (authNum.trim() == sysNum.trim()) {
           alert("인증 성공");
           //성공 이후에 어떻게 할것이냐~~~ 화면 이동? or 어디 요청을 다시? or 인증완료로 기록. 
-          $("#pass").val(0);		  
+          $("#smsPass").val(0);		  
         } else {
           alert("인증 실패");
-          $("#pass").val(1);          
+          $("#smsPass").val(1);          
         }
       }
     }

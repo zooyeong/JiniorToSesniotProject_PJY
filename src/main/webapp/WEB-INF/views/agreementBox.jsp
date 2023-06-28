@@ -51,7 +51,7 @@
 			itaque nam.</p>
 	</div>
 	<div class="first_agree">
-	동의<input type="radio" name="firstAgr" value="0" checked> 비동의<input type="radio" name="firstAgr" value="1" >
+	동의<input type="radio" name="agree_code_01" value="Y" checked> 비동의<input type="radio" name="agree_code_01" value="N" >
 	</div>
 	<div class="agreement">
 		<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta a, obcaecati assumenda eaque ratione sint
@@ -81,7 +81,7 @@
 			itaque nam.</p>
 	</div>	
 	<div class="second_agree">
-	동의<input type="radio" name="secondAgr" value="0" checked> 비동의<input type="radio" name="secondAgr" value="1" >
+	동의<input type="radio" name="agree_code_02" value="Y" checked> 비동의<input type="radio" name="agree_code_02" value="N" >
 	</div>	
 	<div class="agreement">
 		<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta a, obcaecati assumenda eaque ratione sint
@@ -111,7 +111,7 @@
 			itaque nam.</p>
 	</div>
 		<div class="third_agree">
-	동의<input type="radio" name="thirdAgr" value="0" checked> 비동의<input type="radio" name="thirdAgr" value="1" >
+	동의<input type="radio" name="agree_code_03" value="Y" checked> 비동의<input type="radio" name="agree_code_03" value="N" >
 	</div>
 	</div>
 

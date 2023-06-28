@@ -26,9 +26,26 @@ public class UserInfoDao_impl implements UserInfo_Dao{
 	@Override
 	public List<UserInfo_Dto> selectUesrList(UserInfo_Dto userInfo_dto) {
 		// TODO Auto-generated method stub
-		return null;
+//		return null;
+		return sqlSessionTemplate.selectList("userInfo_mapper.select_userList", userInfo_dto);
 	
 	}
+
+	@Override
+	public int idChk(String id) {
+		// TODO Auto-generated method stub
+		UserInfo_Dto userInfo_Dto = new UserInfo_Dto();
+		userInfo_Dto.setId(id);
+		System.out.println("DAO ID  : "+ id);
+		int result = sqlSessionTemplate.selectOne("userInfo_mapper.idChk", userInfo_Dto);
+
+		return result;
+	}
+
+
+
+
+
 
 	
 	
