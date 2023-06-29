@@ -25,7 +25,6 @@ margin-bottom: 5px;
 			<p>${item.name}님 만${2023 - fn:substring(item.birthday, 0, 4)}세</p>
 			<p>${item.info}</p>
 			<p>${item.area}</p>
-			<p>${item.picture}</p>
 		</div>
 	</c:forEach>
 <%-- 	<img src="${sample}" alt="${sample}"> --%>

@@ -18,5 +18,6 @@
 		<typeAlias type="com.kids.dto.matching.MatchingDto" alias="MatchingDto" />
 		<typeAlias type="com.kids.dto.matching.MailDto" alias="MailDto" />
 		<typeAlias type="com.kids.dto.matching.MatchingDetailDto" alias="MatchingDetailDto" />
+		<typeAlias type="com.kids.dto.parents.ParentsDetailDto" alias="ParentsDetailDto" />
     </typeAliases>
 </configuration>

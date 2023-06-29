@@ -12,7 +12,9 @@
 	<p>session id 저장용 sample 페이지</p>
 	
 	<form action="" method="post">
-		<input type="text" name="id" id="id">
+		아이디<input type="text" name="id" id="id"><br>
+		
+		유저코드<input type="text" name="userCode" id="userCode">
 		<button type="submit" onclick="check()">제출</button>
 	</form>
 

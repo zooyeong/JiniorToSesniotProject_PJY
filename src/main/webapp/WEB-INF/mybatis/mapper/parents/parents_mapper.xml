@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+						
+<mapper namespace="parents_mapper">
+
+	<select id="select_parents_detail" resultType="ParentsDetailDto">
+		select * from user_info u
+			inner join par p on u.id = p.id
+	</select>
+	
+	<select id="select_user_by_id" parameterType="String" resultType="ParentsDetailDto">
+		select * from user_info where id = #{value}
+			
+	</select>
+	
+	<select id="select_parents_detail_by_id" resultType="ParentsDetailDto"
+											parameterType="String">
+		select u.id, u.name, u.phone_number,
+				u.adress,u.user_code, u.email, p.personality, p.etc, p.c_name, p.c_age
+				, p.c_gender 
+			from user_info u
+			inner join par p on u.id = p.id
+			where u.id = #{value}
+	</select>
+	
+		<update id="update_user_info" parameterType="ParentsDetailDto">
+		update user_info set
+			password = NVL(#{password}, password),
+			phone_number = NVL(#{phoneNumber}, phone_number),
+			adress = NVL(#{adress}, adress),
+			email = NVL(#{email}, email)
+		where id = #{id}
+	</update>
+	
+	<update id="update_par" parameterType="ParentsDetailDto">
+		update par set 
+			personality = NVL(#{personality}, personality),
+			etc = NVL(#{etc}, etc),
+			c_age = NVL(#{CAge}, c_age)
+		where id = #{id}
+	</update>
+	
+		<select id="select_img_by_id" resultType="ImageFileDTO"
+								parameterType="String">
+		select * from IMAGE_FILE
+			where id = #{value}
+	</select>
+	
+</mapper>

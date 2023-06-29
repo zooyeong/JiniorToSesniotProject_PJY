@@ -8,7 +8,7 @@ public class SeniorDetailDto {
 	String name;
 	String birthday;
 	String phoneNumber;
-	String picture;
+	String userCode;
 	String password;
 	String adress;
 	String email;
