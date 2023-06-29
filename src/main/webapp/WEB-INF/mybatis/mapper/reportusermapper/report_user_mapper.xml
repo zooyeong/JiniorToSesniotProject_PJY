@@ -4,6 +4,9 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kids.mapper.reportUser">
     <insert id="insertReportUser" parameterType="com.kids.dto.report.ReportUserDTO">
+        <selectKey keyProperty="reportNum" resultType="int" order="BEFORE">
+            SELECT report_num_seq.NEXTVAL FROM DUAL
+        </selectKey>
         INSERT INTO REPORT_USERS (REPORT_NUM, PARENT_ID, SENIOR_ID, NAME, REPORTED_REASON, REPORT_DATE,
         REPORT_CONFIRM_STATUS, REPORT_COUNT)
         VALUES (#{reportNum}, #{parentId}, #{seniorId}, #{name}, #{reportedReason}, #{reportDate},

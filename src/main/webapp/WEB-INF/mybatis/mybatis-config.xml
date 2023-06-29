@@ -15,5 +15,6 @@
 		 <typeAlias type="com.kids.dto.image.ImageFileDTO" alias="ImageFileDTO" />
 		<typeAlias type="com.kids.dto.certification.CertificationDTO" alias="CertificationDTO" />
 		<typeAlias type="com.kids.dto.report.ReportUserDTO" alias="ReportUserDTO" />
+		<typeAlias type="com.kids.dto.parents.ParentsDetailDto" alias="ParentsDetailDto" />
     </typeAliases>
 </configuration>

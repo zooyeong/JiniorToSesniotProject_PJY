@@ -9,8 +9,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.kids.dto.image.ImageFileDTO;
 import com.kids.dto.senior.SeniorDetailDto;
 import com.kids.dto.senior.SeniorScheduleDto;
+import com.kids.service.file.ImageFileService;
+import com.kids.service.parents.ParentsService;
 import com.kids.service.senior.SeniorService;
 
 @Controller
@@ -19,6 +22,11 @@ public class SeniorController {
 	@Autowired
 	SeniorService seniorService;
 	
+	@Autowired
+    private ImageFileService imageFileService;
+	
+	@Autowired
+	private ParentsService parentsService;
 	@GetMapping("/seniorDetail")
 	public String seniorDetail(@RequestParam(required=false) String id, Model model) {
 		
@@ -31,9 +39,10 @@ public class SeniorController {
 			
 			SeniorDetailDto seniorDetail = seniorService.getSeniorDetailById(id);
 			List<SeniorScheduleDto> seniorEnableSchedule = seniorService.getSeniorEnableSchedule(id);
+			ImageFileDTO parentsImg = parentsService.getImgById(id);
 			model.addAttribute("seniorDetail", seniorDetail);
 			model.addAttribute("seniorEnableSchedule", seniorEnableSchedule);
-			
+			model.addAttribute("parentsImg", parentsImg);
 			return "seniorDetailIn";
 		}
 	}
@@ -46,4 +55,6 @@ public class SeniorController {
 		
 		return "registerSenior";
 	}
+	
+	
 }

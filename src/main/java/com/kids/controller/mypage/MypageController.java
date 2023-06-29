@@ -22,9 +22,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.kids.dto.image.ImageFileDTO;
+import com.kids.dto.parents.ParentsDetailDto;
 import com.kids.dto.senior.SeniorDetailDto;
 import com.kids.dto.senior.SeniorScheduleDto;
 import com.kids.service.file.ImageFileService;
+import com.kids.service.parents.ParentsService;
 import com.kids.service.senior.SeniorService;
 
 @Controller
@@ -37,18 +39,44 @@ public class MypageController {
 	SeniorService seniorService;
 	
 	@Autowired
+	ParentsService parentsService;
+	
+	@Autowired
     private ImageFileService imageFileService;
 
-    // private String uploadDir = "D:\\Eclipse-workspace-11\\JuniorToSeniorProject\\src\\main\\webapp\\resources\\image\\profile\\";
     private String uploadDir = "C:\\upload\\image\\profile\\";
 	
 	@GetMapping("/sampleSession")
 	public String sampleSession() {
 		return "sampleSession";
 	}
-	
+	@GetMapping("/parMypage")
+	public String parMypage(Model model) {
+		String id = (String)session.getAttribute("userId");
+		ParentsDetailDto parentsDetail = parentsService.getParentsDetailById(id);
+		ImageFileDTO parentsImg = parentsService.getImgById(id);
+		model.addAttribute("parentsDetail", parentsDetail);
+		model.addAttribute("parentsImg", parentsImg);
+		return "parMypage";
+	}
+	@GetMapping("/snrMypage")
+	public String snrMypage(Model model ,HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("userId");
+		
+		ImageFileDTO seniorImg = seniorService.getImgById(id);
+		
+		SeniorDetailDto seniorDetail = seniorService.getSeniorDetailById(id);
+		model.addAttribute("seniorDetail", seniorDetail);
+		model.addAttribute("seniorImg", seniorImg);
+		
+		List<SeniorScheduleDto> seniorEnableSchedule = seniorService.getSeniorEnableSchedule(id);
+		model.addAttribute("seniorEnableSchedule", seniorEnableSchedule);
+		return "snrMypage";
+	}
 	@PostMapping("/sampleSession")
 	public String sampleSession_action(@RequestParam("id") String id,
+									   @RequestParam("userCode") String userCode,
 										HttpServletRequest request) {
 		
 		if(id.equals("")) {
@@ -56,32 +84,31 @@ public class MypageController {
 		}else {
 			HttpSession session = request.getSession();
 			session.setAttribute("userId", id);
+			session.setAttribute("userCode", userCode);
+		
 			
-			return "redirect:/updateMypage";
+			return "redirect:/userMypage";
 		}
 		
 	}
 
-	@GetMapping("/updateMypage")
+	@GetMapping("/userMypage")
 	public String updateMypage(Model model, HttpServletRequest request) {
 		
 		HttpSession session = request.getSession();
-		String id = (String)session.getAttribute("userId");
-		
-		SeniorDetailDto seniorDetail = seniorService.getSeniorDetailById(id);
-		ImageFileDTO seniorImg = seniorService.getImgById(id);
-		
-		model.addAttribute("seniorDetail", seniorDetail);
-		model.addAttribute("seniorImg", seniorImg);
-		
-		List<SeniorScheduleDto> seniorEnableSchedule = seniorService.getSeniorEnableSchedule(id);
-		model.addAttribute("seniorEnableSchedule", seniorEnableSchedule);
-		
-		return "updateMypage";
+		String userCode = (String)session.getAttribute("userCode");
+		if(userCode.equals("SNR")) {
+					
+			return "redirect:/snrMypage";
+		}else if(userCode.equals("PAR")) {
+						
+			return "redirect:/seniorDetail";
+		}
+		return "";
 	}
 	
-	@PostMapping("/updateMypage")
-	public String updateMypage_action(SeniorDetailDto seniorDetail,
+	@PostMapping("/snrMypage")
+	public String updateMypage_action1(SeniorDetailDto seniorDetail,
 									SeniorScheduleDto schedule,
 									@RequestParam("file") MultipartFile file,
 									Model model) {
@@ -108,7 +135,7 @@ public class MypageController {
 
             } catch (IOException e) {
                 e.printStackTrace();
-                return "updateMypage";
+                return "snrMypage";
             }
         } 		
 		
@@ -145,8 +172,50 @@ public class MypageController {
 			System.out.println("update 성공");
 		}
 		
-		return "redirect:/updateMypage";
+		return "redirect:/snrMypage";
 	}
 	
+	@PostMapping("/parMypage")
+	public String updateMypage_action2(ParentsDetailDto parentsDetail,
+	                                 @RequestParam("file") MultipartFile file,
+	                                 Model model) {
 
+	    if (!file.isEmpty()) {
+	        try {
+	            String originalFileName = file.getOriginalFilename();
+	            String extension = originalFileName.substring(originalFileName.lastIndexOf('.'));
+	            String fileName = UUID.randomUUID().toString() + extension;
+	            Path uploadPath = Paths.get(uploadDir);
+
+	            if (!Files.exists(uploadPath)) {
+	                Files.createDirectories(uploadPath);
+	            }
+	            Path filePath = uploadPath.resolve(fileName);
+	            Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+
+	            String storedFilePath = filePath.toString();
+	            // Get the session ID and pass it to the service method
+	            String sessionId = (String) session.getAttribute("userId"); // Add code to retrieve the session ID here
+	            ImageFileDTO imageFile = imageFileService.saveImageFile(fileName, storedFilePath, sessionId);
+
+	            model.addAttribute("uploadedImageFileName", imageFile.getFileName());
+
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	            return "parMypage";
+	        }
+	    }
+
+	    int result = parentsService.updateUserInfo(parentsDetail);
+
+	    if (result != 2) {
+	        // update가 둘 중 하나는 정상적으로 수행되지 않음 !!!(로직 다시 점검해야함)
+	        System.out.println("update 실패");
+	    } else {
+	        // update가 정상적으로 수행됨 !
+	        System.out.println("update 성공");
+	    }
+
+	    return "redirect:/parMypage";
+	}
 }
