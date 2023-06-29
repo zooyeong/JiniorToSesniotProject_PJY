@@ -16,4 +16,5 @@ public interface SeniorService {
 	public List<SeniorScheduleDto> getSeniorEnableSchedule(String id);
 	public int updateSchedule(Map<String, String> map);
 	public ImageFileDTO getImgById(String id);
+	public int updateScheduleWorkStatus(Map<String, String> map);
 }

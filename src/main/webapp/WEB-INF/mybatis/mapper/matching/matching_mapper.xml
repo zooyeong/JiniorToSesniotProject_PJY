@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+						
+<mapper namespace="matching_mapper">
+
+	<insert id="insert_matching_info" parameterType="MatchingDto">
+		insert into matching_m
+		values
+		( (select NVL(MAX(matching_number), 0) + 1 from matching_m)
+		, #{snrId}, #{parId}, #{startDate}, #{endDate}, #{scheduleCode}
+		, #{pickUpPlace}, #{arrivePlace}, '매칭전' )
+	</insert>
+	
+	<select id="select_max_matching_number" resultType="int">
+		select max(matching_number) from matching_m
+	</select>
+	
+	<select id="select_matching_info" resultType="MatchingDto"
+									parameterType="int">
+		select * from matching_m where matching_number = #{value}								
+	</select>
+	
+	<insert id="insert_mail" parameterType="MailDto">
+		insert into mailbox (no, rev_id, send_id, content, matching_number, status)
+		values ( (select NVL(MAX(no), 0) + 1 from mailbox)
+		, #{revId}, #{sendId}, #{content}, #{matchingNumber}, #{status} )
+	</insert>
+	
+	<select id="select_senior_mail_by_id" resultType="MailDto"
+									parameterType="String">
+		select * from mailbox
+		where rev_id = #{value} and status is null
+	</select>
+	
+	<select id="count_senior_mail_by_id" resultType="_int"
+									parameterType="String">
+		select count(*) from mailbox
+		where rev_id = #{value} and status is null
+	</select>
+	
+	<select id="select_parents_mail_by_id" resultType="MailDto"
+									parameterType="String">
+		select * from mailbox
+		where rev_id = #{value}
+	</select>
+	
+	<select id="count_parents_mail_by_id" resultType="_int"
+									parameterType="String">
+		select count(*) from mailbox
+		where rev_id = #{value}
+	</select>
+	
+	<update id="update_mail_status" parameterType="MailDto">
+		update mailbox set
+			status = #{status}
+		where no = #{no}
+	</update>
+	
+	<update id="update_matching_m_status" parameterType="MatchingDto">
+		update matching_m set
+			status = #{status}
+		where matching_number = #{matchingNumber}
+	</update>
+	
+	<insert id="insert_matching_detail" parameterType="MatchingDetailDto">
+		insert into matching_d values
+		( #{matchingNumber}, #{scheduleCode}, #{day}, #{status} )
+	</insert>
+	
+	<select id="select_matching_detail" resultType="MatchingDetailDto"
+										parameterType="String">
+		select d.matching_number, d.schedule_code, d.day, d.status, 
+			m.pick_up_place, m.arrive_place, m.par_id
+		from matching_d d
+		inner join matching_m m on d.matching_number = m.matching_number
+		where m.snr_id = #{value} and d.status = '진행예정'
+	</select>
+	
+	<update id="update_matching_d_status" parameterType="MatchingDetailDto">
+		update matching_d d set d.status = #{status}
+    	where d.schedule_code = #{scheduleCode}
+    	and matching_number = #{matchingNumber}
+	</update>
+	
+	<select id="select_matching_d_last" resultType="MatchingDetailDto"
+										parameterType="int">
+		select * from (select * from matching_d order by rownum desc)
+		where matching_number = #{value} and rownum = 1
+	</select>
+</mapper>

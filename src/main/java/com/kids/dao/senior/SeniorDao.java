@@ -16,4 +16,5 @@ public interface SeniorDao {
 	public List<SeniorScheduleDto> selectSeniorEnableSchedule(String id);
 	public int updateSchedule(Map<String, String> map);
 	public ImageFileDTO selectImgById(String id);
+	public int updateScheduleWorkStatus(Map<String, String> map);
 }

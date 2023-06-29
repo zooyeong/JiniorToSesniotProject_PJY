@@ -11,9 +11,9 @@
 <body>
 	<h1>도우미 신청하기</h1>
 	
-	<form action="" method="post">
-		시작일<input type="date" id="startDate" name="startDay"><br>
-		종료일<input type="date" id="endDate" name="lastDay"><br>
+	<form name="registerForm" action="" method="post">
+		시작일<input type="date" id="startDate" name="startDate"><br>
+		종료일<input type="date" id="endDate" name="endDate"><br>
 		픽업시간<br>
 		
 		<c:forEach var="item" items="${seniorEnableSchedule}">
@@ -22,7 +22,7 @@
 			<c:set var="status" value="${item.status}"/>
 			<c:set var="workStatus" value="${item.workStatus}"/>
 	
-			<input type="checkbox" name="" value="${item.scheduleCode}" 
+			<input type="checkbox" id="${item.scheduleCode}" onclick="dateCheck()" name="scheduleCode" value="${item.scheduleCode}" 
 			<c:if test="${fn:contains(workStatus, 'N')}">disabled</c:if>>
 			<label for="${item.scheduleCode}" class="label"></label>
 	
@@ -41,16 +41,16 @@
 		픽업지역<br>
 		<input type="text" placeholder="우편번호">
 		<input type="button" onclick="sample6_execDaumPostcode(event)" value="우편번호 찾기"><br>
-		<input type="text" placeholder="주소"><br>
-		<input type="text" placeholder="상세주소">
-		<input type="text" placeholder="참고항목"><br>
+		<input type="text" name="pickUpPlace" placeholder="주소"><br>
+		<input type="text" name="pickUpPlace" placeholder="상세주소">
+		<input type="text" name="pickUpPlace" placeholder="참고항목"><br>
 		도착지역<br>
 		<input type="text" placeholder="우편번호">
 		<input type="button" onclick="sample6_execDaumPostcode(event)" value="우편번호 찾기"><br>
-		<input type="text" placeholder="주소"><br>
-		<input type="text" placeholder="상세주소">
-		<input type="text" placeholder="참고항목"><br>
-		<button type="submit">신청하기</button>
+		<input type="text" name="arrivePlace" placeholder="주소"><br>
+		<input type="text" name="arrivePlace" placeholder="상세주소">
+		<input type="text" name="arrivePlace" placeholder="참고항목"><br>
+		<button type="button" onclick="submitCheck()">신청하기</button>
 	</form>
 	
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -121,6 +121,45 @@
 	            }
 	        }).open();
 	    }
+		
+		function submitCheck(){
+			let result = confirm("이 정보로 신청하시겠습니까?");
+			let form = document.registerForm;
+			
+			if(result){
+				form.submit();	
+			}			
+		}
+		
+		function dateCheck(){
+			let startDate = new Date(document.getElementById('startDate').value);
+			let endDate = new Date(document.getElementById('endDate').value);
+			
+			let checkboxes = document.getElementsByName('scheduleCode');
+			for(let i=0; i<checkboxes.length; i++){
+				if(checkboxes[i].checked){
+					let code = checkboxes[i].value;
+					let dayOfWeek = Number(code.charAt(0));
+					
+					if(!isDayOfWeekInRange(startDate, endDate, dayOfWeek)){
+						alert("체크한 요일이 기간에 해당되지 않습니다!");
+						checkboxes[i].checked = false;
+					}
+				}
+			}
+		}
+		
+		function isDayOfWeekInRange(startDate, endDate, dayOfWeek){
+			let currentDate = new Date(startDate);
+			
+			while(currentDate <= endDate){
+				if(currentDate.getDay() === dayOfWeek){
+					return true;
+				}
+				currentDate.setDate(currentDate.getDate() +1);
+			}
+			return false;
+		}
 	</script>
 </body>
 </html>

@@ -79,4 +79,11 @@ public class SeniorServiceImpl implements SeniorService{
 		return result;
 	}
 
+	@Override
+	public int updateScheduleWorkStatus(Map<String, String> map) {
+		// TODO Auto-generated method stub
+		int result = seniorDao.updateScheduleWorkStatus(map);
+		return result;
+	}
+
 }

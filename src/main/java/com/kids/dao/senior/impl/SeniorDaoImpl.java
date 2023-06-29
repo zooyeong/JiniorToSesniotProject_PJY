@@ -81,4 +81,11 @@ public class SeniorDaoImpl implements SeniorDao{
 		return result;
 	}
 
+	@Override
+	public int updateScheduleWorkStatus(Map<String, String> map) {
+		// TODO Auto-generated method stub
+		int result = sqlSessionTemplate.update("senior_mapper.update_schedule_work_status", map);
+		return result;
+	}
+
 }

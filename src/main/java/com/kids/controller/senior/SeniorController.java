@@ -37,13 +37,5 @@ public class SeniorController {
 			return "seniorDetailIn";
 		}
 	}
-	
-	@GetMapping("/registerSenior")
-	public String askSenior(@RequestParam String id, Model model) {
-		
-		List<SeniorScheduleDto> seniorEnableSchedule = seniorService.getSeniorEnableSchedule(id);
-		model.addAttribute("seniorEnableSchedule", seniorEnableSchedule);
-		
-		return "registerSenior";
-	}
+
 }

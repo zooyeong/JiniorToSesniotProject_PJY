@@ -57,7 +57,7 @@
 	</c:forEach>
 <%-- 	<p>${seniorDetail.picture}</p> --%>
 	<br>
-	<button type="button" onclick="location.href='/registerSenior?id=${seniorDetail.id}'">도우미 신청하기</button>
+	<button type="button" onclick="location.href='/askForSenior?id=${seniorDetail.id}'">도우미 신청하기</button>
 	<button type="button">채팅하기</button>
 </body>
 </html>

@@ -56,5 +56,11 @@
 			work_status = #{workStatus}
 		where id = #{id} and schedule_code = #{scheduleCode}
 	</update>
+	
+	<update id="update_schedule_work_status" parameterType="hashMap">
+		update senior_enable_schedule set
+			work_status = #{workStatus}
+		where id = #{id} and schedule_code = #{scheduleCode}
+	</update>
 
 </mapper>
