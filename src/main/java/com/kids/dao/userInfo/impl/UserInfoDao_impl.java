@@ -22,6 +22,15 @@ public class UserInfoDao_impl implements UserInfo_Dao{
 
 		return result;
 	}
+	
+	@Override
+	public int insertUser2(UserInfo_Dto userInfo_dto) {
+
+		int result = sqlSessionTemplate.insert("userInfo_mapper.insert_userInfo2", userInfo_dto);
+
+
+		return result;
+	}
 
 	@Override
 	public List<UserInfo_Dto> selectUesrList(UserInfo_Dto userInfo_dto) {

@@ -22,7 +22,7 @@
 <body>
 	<h1>회원가입</h1>
 	<div class="container">
-		<form method="post" action="" name="userInfo">
+		<form method="post" action="" name="userInfo2">
 
 			아이디<br>
 			<!-- 로그인 중복확인 하면 아이디값이 인풋에 들어가도록 보완필요 -->
@@ -45,10 +45,10 @@
 			<br> 이메일<br> <input type="text" id="email" name="email"><br>
 
 			<!-- 이전 페이지에서 부모 버튼 누르면 "PAR"입력, 시니어 누르면 "SNR" 입력됨. 확인 후 hidden할 것임. -->
-			<c:if test="${userCode == 'par'}">
+<%-- 			<c:if test="${userCode == 'par'}">
 				<input type="text" class="user_code" id="user_code" name="user_code"
 					value="PAR">
-			</c:if>
+			</c:if> --%>
 			<c:if test="${userCode == 'snr'}">
 				<input type="text" class="user_code" id="user_code" name="user_code"
 					value="SNR">
@@ -56,9 +56,9 @@
 
 
 			<!-- 부모 누르면 parForm 가져오고 시니어 누르면 snrForm 가져오기 -->
-			<c:if test="${type == 'par'}">
+<%-- 			<c:if test="${type == 'par'}">
 				<%@ include file="ParForm.jsp"%>
-			</c:if>
+			</c:if> --%>
 			<c:if test="${type == 'snr'}">
 				<%@ include file="SnrForm.jsp"%>
 			</c:if>
@@ -95,9 +95,9 @@
 		var postCode = document.querySelector('#postcode').value;
 		var address = document.querySelector('#address').value;
 		
-		var c_name = document.querySelector('#c_name').value;
+/* 		var c_name = document.querySelector('#c_name').value;
 		var birthYear = document.querySelector('#birthYear').value;
-		var personality = document.querySelector('#personality').value;
+		var personality = document.querySelector('#personality').value; */
 		
 		
 		var agree_code_01 =document.querySelector('#agree_code_01').checked;
@@ -183,7 +183,7 @@
 			}
 ////
 
-			if(!c_name){
+/* 			if(!c_name){
 				console.log("자녀이름 : " + c_name );
 				
 				alert("자녀이름을 입력하세요.");
@@ -200,7 +200,7 @@
 				
 				alert("자녀성격을 입력하세요.")
 				return false;
-			}
+			} */
 						
 		
 			
@@ -213,16 +213,11 @@
 				alert("필수약관에 동의 후 가입가능합니다.")
 				return false;
 			}
-			if(confirm("회원가입이 완료되었습니다. 로그인 페이지로 이동합니다.")){
-		        document.userInfo.action = "/insertUserInfo";
-		        document.userInfo.submit();
-		    }
-		
+			
 		
 			alert("회원가입 완료! 로그인 페이지로 이동합니다.")
 			location.href = "/logInForm";
 			return true;
-			
 			
 	}
 

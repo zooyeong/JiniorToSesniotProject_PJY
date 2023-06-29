@@ -15,6 +15,7 @@ public interface UserInfo_Dao {
 	public int inserAgreement(UserInfo_Dto userInfo_dto);
 	
 	public int idChk(String id);
+	int insertUser2(UserInfo_Dto userInfo_dto);
 	
 
 }

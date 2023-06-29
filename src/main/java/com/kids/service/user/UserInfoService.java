@@ -11,6 +11,12 @@ public interface UserInfoService {
 	public int idChk(String id);
 
 	void insertInfo(UserInfo_Dto userInfo_dto);
+///////
+	void insertInfo2(UserInfo_Dao userInfo_dao);
+
+	void insertInfo2(UserInfo_Dto userInfo_dto);
+
+	public int insertUser(UserInfo_Dto userInfo_dto);
 
 
 

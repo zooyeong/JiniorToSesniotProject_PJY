@@ -28,6 +28,18 @@ public class UserInfoServiceImpl implements UserInfoService {
 	}
 
 	@Override
+	public void insertInfo2(UserInfo_Dao userInfo_dao) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void insertInfo2(UserInfo_Dto userInfo_dto) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
 	public int idChk(String id) {
 		// TODO Auto-generated method stub
 		int result = userInfo_dao.idChk(id);
@@ -35,11 +47,9 @@ public class UserInfoServiceImpl implements UserInfoService {
 		return result;
 	}
 
-
-
-
-
-
-
-
+	@Override
+    public int insertUser(UserInfo_Dto userInfo_dto) {
+        // DB에 저장하고 결과를 반환
+        return userInfo_dao.insertUser(userInfo_dto);
+    }
 }

@@ -1,17 +1,25 @@
 package com.kids.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.kids.dao.UserInfo_Dao;
+import com.kids.dto.UserInfo_Dto;
 import com.kids.service.user.UserInfoService;
 
 @Controller
 public class UserInfoFormController {
-   
+//	private static final Logger log = LogManager.getLogger(UserInfoFormController.class);
+
+	
+	
     @Autowired
     UserInfoService userInfoService;
 	
@@ -31,6 +39,8 @@ public class UserInfoFormController {
 		model.addAttribute("type", "par");
 		model.addAttribute("userCode", "par");
 		
+		
+		
 		return "UserInfoForm";
 	}
 	
@@ -40,7 +50,7 @@ public class UserInfoFormController {
 		model.addAttribute("type", "snr");
 		model.addAttribute("userCode", "snr");
 		
-		return "UserInfoForm";
+		return "UserInfoForm2";
 	}	
 	
 	@RequestMapping("/IdCheckForm")
@@ -111,7 +121,17 @@ public class UserInfoFormController {
 		return "testMain";
 	}
 	
-	
+	@PostMapping("/insertUserInfo")
+	public String insertUserInfo(UserInfo_Dto userInfo_dto, HttpServletRequest request, Model model) {
+	    String code = request.getParameter("user_code");
+	    userInfo_dto.setUserCode(code);
+
+	    // 서비스 메서드를 호출하여 userInfo_dto를 전달
+	    userInfoService.insertUser(userInfo_dto);
+	    
+	    // 로그인 페이지로 리다이렉트
+	    return "redirect:/logInForm";
+	}
 	@RequestMapping("/logInForm")
 	public String logInForm() {
 		
