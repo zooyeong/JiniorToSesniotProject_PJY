@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <style type="text/css">
 	.container {
 		width: 100%;
@@ -16,7 +17,7 @@
 	
 
 </style>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 
 </head>
 <body>
@@ -24,8 +25,8 @@
 <div class="container">
 	<form method="post" action = "" name="userInfo">
 	
-	아이디<br>
-	<input type="text" class="id_input" id="Id" name="Id" maxlength="50" onkeydown="inputIdChk()">
+	아이디<br> <!-- 로그인 중복확인 하면 아이디값이 인풋에 들어가도록 보완필요 -->
+	<input type="text" class="id_input" id="id" name="id" maxlength="50" onkeydown="inputIdChk()">
 	
 	<button type="button" id="IdChkBtn" onclick="openIdChk()">중복확인</button>
 	<input type="text" name="idDuplication" value="idUnCheck">
@@ -40,20 +41,30 @@
 	<%@ include file = "sms_cf.jsp" %> 
 	주소<br><%@ include file = "address.jsp" %> 
 	<br>
-	이메일<br><input type="email" name="email"><br>
+	이메일<br><input type="text" id="email" name="email"><br>
 	
 	<!-- 이전 페이지에서 부모 버튼 누르면 "PAR"입력, 시니어 누르면 "SNR" 입력됨. 확인 후 hidden할 것임. -->
-	<input type="text" class="user_code" id="user_code" name="user_code">
+	<c:if test="${userCode == 'par'}">
+	<input type="text" class="user_code" id="user_code" name="user_code" value="PAR">
+	</c:if> 
+	<c:if test="${userCode == 'snr'}"> 
+	<input type="text" class="user_code" id="user_code" name="user_code" value="SNR">
+	</c:if> 	
+	
 	
 	<!-- 부모 누르면 parForm 가져오고 시니어 누르면 snrForm 가져오기 -->
-	<%@ include file = "ParForm.jsp" %> 
-	<%@ include file = "SnrForm.jsp" %> 
+	<c:if test="${type == 'par'}">
+		<%@ include file = "ParForm.jsp" %>
+	</c:if> 
+	<c:if test="${type == 'snr'}">
+		<%@ include file = "SnrForm.jsp" %>
+	</c:if> 
 	<br>
 	약관
 	<%@ include file = "agreementBox.jsp" %> 
 	
 	<input type="button" onclick="goMainPage()" value="취소">
-	<input type="button" onclick="checkValue()" onclick="signUp()" value="가입"><br>
+	<input type="button" onclick="checkValueAndSignUp()" value="가입"><br>
 	
 	</form>
 </div>
@@ -63,57 +74,96 @@
 <script>
 
 	//회원가입 화면의 입력값들을 검사함.
-	function checkValue(){
-		var form = document.userInfo;
-
-		if(!form.id.value){
+	function checkValueAndSignUp(){
+		
+		var id = document.querySelector('#id').value;
+		
+		var idDuplication = document.querySelector('#idDuplication');
+		var password = document.querySelector('#password');
+		var passwordCheck = document.querySelector('#passwordCheck');
+		var name = document.querySelector('#name');
+		var phoneNum = document.querySelector('#phoneNum');
+		var smsPass = document.querySelector('#smsPass');
+		var postCode = document.querySelector('#postCode');
+		var address = document.querySelector('#address');
+		var agree_code_01 =document.querySelector('#agree_code_01');
+		var agree_code_02 = document.querySelector('#agree_code_02');
+		var agree_code_03 = document.querySelector('#agree_code_03');
+		
+		alert(password);
+		if(id == null){
+			console.log("아이디 : " + id );
+			
 				alert("아이디를 입력하세요.");
 				return false;
 			}
-			if(form.idDuplication.value != "idCheck"){
+			if(idDuplication == "idCheck"){
+				console.log("중복체크상태 : " + idDuplication );
+				
 				alert("아이디 중복체크를 해주세요.");
 				return false;
 			}
 			
-			if(!form.password.value){
+			if(password == null){
+				console.log("비밀번호 : " + password );
+				
 				alert("비밀번호를 입력하세요.");
 				return false;
 			}
 			// 비밀번호와 비밀번호 확인에 입력된 값이 동일한지 확인
-			if(form.password.value != form.passwordCheck.value ){
+			if(password != passwordCheck){
+				console.log("비밀번호 : " + password + "/ 비밀번호 확인 : " + passwordCheck );
+				
 				alert("비밀번호를 동일하게 입력하세요.");
 				return false;
 			}
-			if(!form.name.value){
+			if(name == null){
+				console.log("이름 : " + name );
+				
 				alert("이름을 입력하세요.");
 				return false;
 			}
 
-			if(!form.phoneNum.value){
+			if(phoneNum == null){
+				console.log("휴대전화 번호 : " + phoneNum );
+				
 				alert("휴대전화 번호를 입력하세요.");
 				return false;
 			}
-			if(!form.smsPass.value || form.smsPass.value == 0){
+			if(smsPass == null || smsPass == 1){
+				console.log("문자인증 : " + smsPass );
+				
 				alert("휴대전화를 인증하세요.");
 				return false;
 			}
-			if(isNaN(form.phoneNum.value)){
+			if(isNaN(phoneNum)){
 				alert("전화번호는 - 제외한 숫자만 입력해주세요.");
 				return false;
 			}
-			if(!form.postCode.value){
+			if(postCode == null){
+				console.log("이름 : " + name );
+				
 				alert("우편번호를 입력하세요.")
 				return false;
 			}
-			if(!form.address.value){
+			if(address == null){
+				console.log("이름 : " + name );
+				
 				alert("주소를 입력하세요.")
 				return false;
 			}
-			if(form.agree_code_01.value == "N" || form.agree_code_02.value == "N"){
+			if(agree_code_01 == "N" || agree_code_02 == "N"){
+				console.log("1번약관 동의 : " + agree_code_01 + "/ 2번약관 동의 : " + agree_code_02 );
+				
 				alert("필수약관에 동의 후 가입가능합니다.")
 				return false;
 			}
 			
+			if(checkValueAndSignUp()){
+			alert("회원가입 완료! 로그인 페이지로 이동합니다.")
+			location.href = "/logInForm";
+			return true;
+			}
 	}
 
 	// 취소 버튼 클릭시 첫화면으로 이동(메인페이지랑 생성하면 수정해서 연결하기)
@@ -135,7 +185,11 @@
 			document.userInfo.idDuplication.value ="idUnCheck";
 		}
 
-		
+
+		//취소버튼 누르면 메인페이지로 이동
+		function goMainPage() {
+			location.href = "/testMain";
+		}
 
 		
 </script>

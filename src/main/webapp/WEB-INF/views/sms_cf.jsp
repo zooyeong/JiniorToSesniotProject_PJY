@@ -8,7 +8,8 @@
 <meta charset="UTF-8">
 <title>sms_cf</title>
 <style type="text/css"></style>
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 
 
 </head>
@@ -18,7 +19,7 @@
 			휴대전화 : <input type="text" id="phoneNum" name="phoneNum" placeholder="숫자만 입력해주세요" />
 			<input type="button" id="send" value="전송" /><br>
 			인증번호 : <input type="text" id="authNum"> <input type="button" id="enterBtn" value="확인">
-			<input type="text" name="ckeckAuth" id="ckeckAuth" placeholder="인증번호 대조">
+			<input type="text" id="checkAuth" name="checkAuth"  placeholder="인증번호 대조">
 			<input type="text" name="smsPass" id="smsPass" placeholder="인증상태">
 		</form>
 	</div>
@@ -27,12 +28,23 @@
       $("#send").click(getPhoneNumber);
       $("#enterBtn").click(compareAuthNumber);
     });
+    
 
     function getPhoneNumber() {
     	  var phoneNumber = $("#phoneNum").val();
+    	  var regPhone= /^01([0|1|6|7|8|9])?([0-9]{3,4})?([0-9]{4})$/;
+    	  
+    	  
     	  if (phoneNumber === "" || phoneNumber === null) {
     	    alert("전화번호를 입력해주세요.");
-    	  } else {
+    	  }
+    	  if (regPhone.test(phoneNumber) != true) {
+    		 
+      	    alert("숫자만 입력 가능합니다.");
+			return false;
+      	  } 
+    	  
+    	  else {
     	    var con_test = confirm("해당번호로 인증문자를 발송하시겠습니까?");
     	    if (con_test == true) {
     	      $.ajax({
@@ -60,7 +72,7 @@
 
  	
       var authNum = $("#authNum").val();
-      var sysNum = $("#ckeckAuth").val();
+      var sysNum = $("#checkAuth").val();
 
       if (authNum == null || authNum == "") {
         alert("휴대폰으로 발송된 인증번호를 입력해주세요");

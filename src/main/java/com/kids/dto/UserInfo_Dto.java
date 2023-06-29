@@ -21,9 +21,22 @@ public class UserInfo_Dto {
     private String userCode;
     private Date regDate;
     
-    private String firstAgr;
-    private String secondAgr;
-    private String thirdAgr;
+    //부모 폼
+    private String c_name;
+    private String birthYear;
+    private String c_gender;
+    private String personality;
+    private String etc;
+    
+    //시니어
+    private String info;
+    private String area;
+    
+    //약관
+    
+    private String agree_code_01;
+    private String agree_code_02;
+    private String agree_code_03;
     
 //-----------------------------					    -----------------------------				-----------------------------
 //	public String getId() {

@@ -6,14 +6,28 @@
 <mapper namespace="userInfo_mapper">
 
 	<insert id="insert_userInfo" parameterType="UserInfo_Dto">
-		insert into USER_INFO
+		insert into USER_INFO <!-- 유저 회원가입 기본저장 -->
 		values ( #{id} , #{password}, #{name} ,#{birthday},#{phoneNumber},
 		#{postCode},#{address},#{detailAddress},#{extraAddress},#{gender},
 		#{email},#{userCode},#{regDate})
-		
-		insert into AGREEMENT
-		values ( #{id}, #{agree_code_01}, #{agree_code_02}, #{agree_code_03})
 	</insert>
+ 	
+ 	<insert id="insert_parent_userInfo" parameterType="UserInfo_Dto">
+		insert into PAR <!-- 부모가입 폼 -->
+		values ( #{id}, #{c_name}, #{birthYear}, #{c_gender}, #{personality}, #{etc})
+	</insert> 
+ 	
+ 	<insert id="insert_senior_userInfo" parameterType="UserInfo_Dto">
+		insert into SNR <!-- 시니어가입 폼 -->
+		values ( #{id}, #{info}, #{area})
+	</insert>  	
+ 	
+ 	
+		<insert id="insert_agreement_userInfo" parameterType="UserInfo_Dto">
+		insert into AGREEMENT <!-- 약관동의여부 -->
+		values ( #{id}, #{agree_code_01}, #{agree_code_02}, #{agree_code_03})
+	</insert> 
+	
 
 	<select id = "idChk" parameterType="UserInfo_Dto" resultType = "int">
 	select count(id) from USER_INFO

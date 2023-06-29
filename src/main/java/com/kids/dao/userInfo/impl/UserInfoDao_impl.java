@@ -16,7 +16,7 @@ public class UserInfoDao_impl implements UserInfo_Dao{
 
 	@Override
 	public int insertUser(UserInfo_Dto userInfo_dto) {
-		// TODO Auto-generated method stub
+
 		int result = sqlSessionTemplate.insert("userInfo_mapper.insert_userInfo", userInfo_dto);
 
 
@@ -25,15 +25,43 @@ public class UserInfoDao_impl implements UserInfo_Dao{
 
 	@Override
 	public List<UserInfo_Dto> selectUesrList(UserInfo_Dto userInfo_dto) {
-		// TODO Auto-generated method stub
-//		return null;
+
+
 		return sqlSessionTemplate.selectList("userInfo_mapper.select_userList", userInfo_dto);
 	
+	}
+	//
+	@Override
+	public int insertUserPar(UserInfo_Dto userInfo_dto) {
+
+		int result = sqlSessionTemplate.insert("userInfo_mapper.insert_parent_userInfo", userInfo_dto);
+
+
+		return result;
+	}
+
+
+	//
+	@Override
+	public int insertUserSnr(UserInfo_Dto userInfo_dto) {
+
+		int result = sqlSessionTemplate.insert("userInfo_mapper.insert_senior_userInfo", userInfo_dto);
+
+
+		return result;
+	}
+
+	@Override
+	public int inserAgreement(UserInfo_Dto userInfo_dto) {
+
+		int result = sqlSessionTemplate.insert("userInfo_mapper.insert_agreement_userInfo", userInfo_dto);
+
+
+		return result;
 	}
 
 	@Override
 	public int idChk(String id) {
-		// TODO Auto-generated method stub
 		UserInfo_Dto userInfo_Dto = new UserInfo_Dto();
 		userInfo_Dto.setId(id);
 		System.out.println("DAO ID  : "+ id);

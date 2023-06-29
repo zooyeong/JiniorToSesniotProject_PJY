@@ -2,6 +2,10 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
 <style>
 
 	.agreementBox{
@@ -15,9 +19,6 @@
 		height: 100px;
 	}
 </style>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
 </head>
 <body>
 
@@ -31,27 +32,10 @@
 			itaque nam.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta a, obcaecati assumenda eaque ratione sint
 			nesciunt voluptatibus odio, iusto eos repudiandae ea! Sunt, quod velit cupiditate numquam voluptate explicabo
 			blanditiis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus cupiditate velit porro eius
-			nulla, expedita cum quos laudantium consectetur assumenda officiis ea quo fugit aperiam debitis dolore sequi,
-			itaque nam.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta a, obcaecati assumenda eaque ratione sint
-			nesciunt voluptatibus odio, iusto eos repudiandae ea! Sunt, quod velit cupiditate numquam voluptate explicabo
-			blanditiis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus cupiditate velit porro eius
-			nulla, expedita cum quos laudantium consectetur assumenda officiis ea quo fugit aperiam debitis dolore sequi,
-			itaque nam.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta a, obcaecati assumenda eaque ratione sint
-			nesciunt voluptatibus odio, iusto eos repudiandae ea! Sunt, quod velit cupiditate numquam voluptate explicabo
-			blanditiis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus cupiditate velit porro eius
-			nulla, expedita cum quos laudantium consectetur assumenda officiis ea quo fugit aperiam debitis dolore sequi,
-			itaque nam.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta a, obcaecati assumenda eaque ratione sint
-			nesciunt voluptatibus odio, iusto eos repudiandae ea! Sunt, quod velit cupiditate numquam voluptate explicabo
-			blanditiis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus cupiditate velit porro eius
-			nulla, expedita cum quos laudantium consectetur assumenda officiis ea quo fugit aperiam debitis dolore sequi,
-			itaque nam.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta a, obcaecati assumenda eaque ratione sint
-			nesciunt voluptatibus odio, iusto eos repudiandae ea! Sunt, quod velit cupiditate numquam voluptate explicabo
-			blanditiis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus cupiditate velit porro eius
-			nulla, expedita cum quos laudantium consectetur assumenda officiis ea quo fugit aperiam debitis dolore sequi,
-			itaque nam.</p>
+			</p>
 	</div>
 	<div class="first_agree">
-	동의<input type="radio" name="agree_code_01" value="Y" checked> 비동의<input type="radio" name="agree_code_01" value="N" >
+	동의<input type="checkbox" id= "agree_code_01" name="agree_code_01" value="Y" checked>
 	</div>
 	<div class="agreement">
 		<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta a, obcaecati assumenda eaque ratione sint
@@ -60,28 +44,10 @@
 			nulla, expedita cum quos laudantium consectetur assumenda officiis ea quo fugit aperiam debitis dolore sequi,
 			itaque nam.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta a, obcaecati assumenda eaque ratione sint
 			nesciunt voluptatibus odio, iusto eos repudiandae ea! Sunt, quod velit cupiditate numquam voluptate explicabo
-			blanditiis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus cupiditate velit porro eius
-			nulla, expedita cum quos laudantium consectetur assumenda officiis ea quo fugit aperiam debitis dolore sequi,
-			itaque nam.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta a, obcaecati assumenda eaque ratione sint
-			nesciunt voluptatibus odio, iusto eos repudiandae ea! Sunt, quod velit cupiditate numquam voluptate explicabo
-			blanditiis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus cupiditate velit porro eius
-			nulla, expedita cum quos laudantium consectetur assumenda officiis ea quo fugit aperiam debitis dolore sequi,
-			itaque nam.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta a, obcaecati assumenda eaque ratione sint
-			nesciunt voluptatibus odio, iusto eos repudiandae ea! Sunt, quod velit cupiditate numquam voluptate explicabo
-			blanditiis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus cupiditate velit porro eius
-			nulla, expedita cum quos laudantium consectetur assumenda officiis ea quo fugit aperiam debitis dolore sequi,
-			itaque nam.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta a, obcaecati assumenda eaque ratione sint
-			nesciunt voluptatibus odio, iusto eos repudiandae ea! Sunt, quod velit cupiditate numquam voluptate explicabo
-			blanditiis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus cupiditate velit porro eius
-			nulla, expedita cum quos laudantium consectetur assumenda officiis ea quo fugit aperiam debitis dolore sequi,
-			itaque nam.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta a, obcaecati assumenda eaque ratione sint
-			nesciunt voluptatibus odio, iusto eos repudiandae ea! Sunt, quod velit cupiditate numquam voluptate explicabo
-			blanditiis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus cupiditate velit porro eius
-			nulla, expedita cum quos laudantium consectetur assumenda officiis ea quo fugit aperiam debitis dolore sequi,
-			itaque nam.</p>
+			</p>
 	</div>	
 	<div class="second_agree">
-	동의<input type="radio" name="agree_code_02" value="Y" checked> 비동의<input type="radio" name="agree_code_02" value="N" >
+	동의<input type="checkbox" id= "agree_code_02" name="agree_code_02" value="Y" checked>
 	</div>	
 	<div class="agreement">
 		<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta a, obcaecati assumenda eaque ratione sint
@@ -89,29 +55,10 @@
 			blanditiis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus cupiditate velit porro eius
 			nulla, expedita cum quos laudantium consectetur assumenda officiis ea quo fugit aperiam debitis dolore sequi,
 			itaque nam.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta a, obcaecati assumenda eaque ratione sint
-			nesciunt voluptatibus odio, iusto eos repudiandae ea! Sunt, quod velit cupiditate numquam voluptate explicabo
-			blanditiis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus cupiditate velit porro eius
-			nulla, expedita cum quos laudantium consectetur assumenda officiis ea quo fugit aperiam debitis dolore sequi,
-			itaque nam.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta a, obcaecati assumenda eaque ratione sint
-			nesciunt voluptatibus odio, iusto eos repudiandae ea! Sunt, quod velit cupiditate numquam voluptate explicabo
-			blanditiis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus cupiditate velit porro eius
-			nulla, expedita cum quos laudantium consectetur assumenda officiis ea quo fugit aperiam debitis dolore sequi,
-			itaque nam.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta a, obcaecati assumenda eaque ratione sint
-			nesciunt voluptatibus odio, iusto eos repudiandae ea! Sunt, quod velit cupiditate numquam voluptate explicabo
-			blanditiis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus cupiditate velit porro eius
-			nulla, expedita cum quos laudantium consectetur assumenda officiis ea quo fugit aperiam debitis dolore sequi,
-			itaque nam.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta a, obcaecati assumenda eaque ratione sint
-			nesciunt voluptatibus odio, iusto eos repudiandae ea! Sunt, quod velit cupiditate numquam voluptate explicabo
-			blanditiis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus cupiditate velit porro eius
-			nulla, expedita cum quos laudantium consectetur assumenda officiis ea quo fugit aperiam debitis dolore sequi,
-			itaque nam.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta a, obcaecati assumenda eaque ratione sint
-			nesciunt voluptatibus odio, iusto eos repudiandae ea! Sunt, quod velit cupiditate numquam voluptate explicabo
-			blanditiis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus cupiditate velit porro eius
-			nulla, expedita cum quos laudantium consectetur assumenda officiis ea quo fugit aperiam debitis dolore sequi,
-			itaque nam.</p>
+			</p>
 	</div>
 		<div class="third_agree">
-	동의<input type="radio" name="agree_code_03" value="Y" checked> 비동의<input type="radio" name="agree_code_03" value="N" >
+	동의<input type="radio" id= "agree_code_03" name="agree_code_03" value="Y" checked> 비동의<input type="radio" id= "agree_code_03" name="agree_code_03" value="N" >
 	</div>
 	</div>
 

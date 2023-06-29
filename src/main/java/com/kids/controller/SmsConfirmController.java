@@ -88,7 +88,7 @@ public class SmsConfirmController {
      */
     @PostMapping("/sendSms")
     @ResponseBody
-    public SmsResponseDto sendOne(@RequestParam("phoneNum") String phoneNumber, HttpServletRequest request) {
+    public SmsResponseDto sendOne(@RequestParam("phoneNum") String phoneNum, HttpServletRequest request) {
     	//net.nurigo.sdk.message.model.Message message = new net.nurigo.sdk.message.model.Message();
     	Message message = new Message();
 //    	 인증 번호 난수 생성
@@ -107,7 +107,7 @@ public class SmsConfirmController {
 	    
         // 발신번호 및 수신번호는 반드시 01012345678 형태로 입력되어야 합니다.
         message.setFrom("01083389611");
-        message.setTo(phoneNumber);
+        message.setTo(phoneNum);
         message.setText("인증번호 : " + authNumber);
 
         

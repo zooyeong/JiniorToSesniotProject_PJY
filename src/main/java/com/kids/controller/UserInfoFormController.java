@@ -2,11 +2,11 @@ package com.kids.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.kids.dto.UserInfo_Dto;
 import com.kids.service.user.UserInfoService;
 
 @Controller
@@ -25,10 +25,23 @@ public class UserInfoFormController {
     
     
 	
-	@RequestMapping("/userInfoForm")
-	public String userInfoForm() {
+	@RequestMapping("/userInfoFormPar")
+	public String userInfoFormPar(Model model) {
+		//부모 폼을 보여줌
+		model.addAttribute("type", "par");
+		model.addAttribute("userCode", "par");
+		
 		return "UserInfoForm";
 	}
+	
+	@RequestMapping("/userInfoFormSnr")
+	public String userInfoFormSnr(Model model) {
+		//시니어 폼을 보여줌
+		model.addAttribute("type", "snr");
+		model.addAttribute("userCode", "snr");
+		
+		return "UserInfoForm";
+	}	
 	
 	@RequestMapping("/IdCheckForm")
 		public String idCheckForm() {
@@ -91,6 +104,19 @@ public class UserInfoFormController {
 		      return "0"; // 중복, 사용 불가능
 		    }
 		  }
+	
+	@RequestMapping("/testMain")
+	public String testMain() {
+		
+		return "testMain";
 	}
 	
-
+	
+	@RequestMapping("/logInForm")
+	public String logInForm() {
+		
+		return "logInForm";
+	}
+	}
+	
+	
