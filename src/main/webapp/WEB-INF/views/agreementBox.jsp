@@ -58,7 +58,7 @@
 			</p>
 	</div>
 		<div class="third_agree">
-	동의<input type="radio" id= "agree_code_03" name="agree_code_03" value="Y" checked> 비동의<input type="radio" id= "agree_code_03" name="agree_code_03" value="N" >
+	동의<input type="radio" class= "agree_code_03" id="agree_code_03Y"  name="agree_code_03" value="Y" checked> 비동의<input type="radio" class= "agree_code_03" id="agree_code_03N" name="agree_code_03" value="N" >
 	</div>
 	</div>
 
