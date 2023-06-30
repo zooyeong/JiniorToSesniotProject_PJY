@@ -85,4 +85,11 @@ public class UserInfoServiceImpl implements UserInfoService {
         return userInfo_dao.inserAgreement(userInfo_dto);
 	}
 	
+    @Override
+    public UserInfo_Dto logInCheck(UserInfo_Dto lgChk) {
+
+    	UserInfo_Dto result = userInfo_dao.logInChk(lgChk);
+        return result;
+    }
+	
 }

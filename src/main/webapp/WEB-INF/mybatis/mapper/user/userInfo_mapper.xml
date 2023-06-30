@@ -22,12 +22,12 @@
 		values ( #{id}, #{CName}, #{birthYear}, #{CGender}, #{personality}, #{etc})
 	</insert> 
 	
- 		<insert id="insertUser2" parameterType="UserInfo_Dto">
-		insert into USER_INFO <!-- 유저 회원가입 기본저장 -->
+<!--  		<insert id="insertUser2" parameterType="UserInfo_Dto">
+		insert into USER_INFO 유저 회원가입 기본저장
 		values ( #{id} , #{password}, #{name} ,#{birthday},#{phoneNumber},
 		#{postCode},#{address},#{detailAddress},#{extraAddress},#{gender},
 		#{email},#{userCode},#{regDate})
-	</insert> 
+	</insert> --> 
  	
  	
  	<insert id="insert_senior_userInfo" parameterType="UserInfo_Dto">
@@ -50,7 +50,10 @@
 	WHERE id = #{id}
 	</select>
 
-	
-
+	<select id="logInChk" parameterType="UserInfo_Dto" resultType = "UserInfo_Dto">
+	select * from USER_INFO
+	WHERE id = #{id} AND password = #{password} 
+	 
+	</select>
 
 </mapper>

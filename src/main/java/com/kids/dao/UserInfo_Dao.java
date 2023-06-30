@@ -22,5 +22,9 @@ public interface UserInfo_Dao {
 
     // insertUserDto 메서드를 추가합니다.
     public int insertUserDto(UserInfo_Dto userInfo_dto);
+    
+    
+    //로그인 할때 아이디 비밀번호 체크
+	public UserInfo_Dto logInChk(UserInfo_Dto userInfo_Dto);
 
 }

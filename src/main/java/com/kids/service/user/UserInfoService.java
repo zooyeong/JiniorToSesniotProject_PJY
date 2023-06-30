@@ -16,9 +16,10 @@ public interface UserInfoService {
 	int insertUserSnr(UserInfo_Dto userInfo_dto);
 	int insertAgreement(UserInfo_Dto userInfo_dto);
 
+    // 로그인 ID와 비밀번호 확인 함수 수정: UserInfo_Dto 객체를 반환하는 메서드로 변경
+    UserInfo_Dto logInCheck(UserInfo_Dto lgChk);
 
-
-
+	
 
 	
 }

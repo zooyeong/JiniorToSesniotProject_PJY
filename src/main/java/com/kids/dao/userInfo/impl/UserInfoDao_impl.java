@@ -90,6 +90,12 @@ public class UserInfoDao_impl implements UserInfo_Dao{
 		return 0;
 	}
 
+	@Override
+	public UserInfo_Dto logInChk(UserInfo_Dto userInfo_Dto) {
+		UserInfo_Dto result = sqlSessionTemplate.selectOne("userInfo_mapper.logInChk", userInfo_Dto);
+		return result;
+	}
+
 
 
 
