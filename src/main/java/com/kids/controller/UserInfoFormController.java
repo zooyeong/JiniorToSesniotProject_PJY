@@ -5,12 +5,14 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.kids.dao.UserInfo_Dao;
 import com.kids.dto.UserInfo_Dto;
 import com.kids.service.user.UserInfoService;
 
@@ -33,25 +35,56 @@ public class UserInfoFormController {
     
     
 	
-	@RequestMapping("/userInfoFormPar")
+	@GetMapping("/userInfoFormPar")
 	public String userInfoFormPar(Model model) {
 		//부모 폼을 보여줌
 		model.addAttribute("type", "par");
-		model.addAttribute("userCode", "par");
 		
 		
 		
-		return "UserInfoForm";
+		return "userInfoFormPar";
 	}
+	@PostMapping("/userInfoFormPar")
+	public String userInfoFormPar(@ModelAttribute UserInfo_Dto userInfo_dto) {
+		
+		System.out.println(userInfo_dto);
+//	    String code = request.getParameter("user_code");
+//		String code = userInfo_dto.getUserCode();
+//	    userInfo_dto.setUserCode(code);
+		userInfo_dto.setPostCode(userInfo_dto.getPostCode());
+	    // 서비스 메서드를 호출하여 userInfo_dto를 전달
+	    userInfoService.insertUser(userInfo_dto);
+	    userInfoService.insertUserPar(userInfo_dto);
+	    userInfoService.insertAgreement(userInfo_dto);	    
+	    
+	    
+	    // 로그인 페이지로 리다이렉트
+	    return "redirect:/logInForm";
+	}	
 	
-	@RequestMapping("/userInfoFormSnr")
+	@GetMapping("/userInfoFormSnr")
 	public String userInfoFormSnr(Model model) {
 		//시니어 폼을 보여줌
 		model.addAttribute("type", "snr");
-		model.addAttribute("userCode", "snr");
 		
-		return "UserInfoForm2";
+		return "userInfoFormSnr";
+	}
+	
+	@PostMapping("/userInfoFormSnr")
+	public String userInfoFormSnr(@ModelAttribute UserInfo_Dto userInfo_dto) {
+		
+		System.out.println(userInfo_dto);
+		userInfo_dto.setPostCode(userInfo_dto.getPostCode());
+	    // 서비스 메서드를 호출하여 userInfo_dto를 전달
+	    userInfoService.insertUser(userInfo_dto);
+	    userInfoService.insertUserSnr(userInfo_dto);
+	    userInfoService.insertAgreement(userInfo_dto);
+	    
+	    
+	    // 로그인 페이지로 리다이렉트
+	    return "redirect:/logInForm";
 	}	
+
 	
 	@RequestMapping("/IdCheckForm")
 		public String idCheckForm() {
@@ -121,17 +154,7 @@ public class UserInfoFormController {
 		return "testMain";
 	}
 	
-	@PostMapping("/insertUserInfo")
-	public String insertUserInfo(UserInfo_Dto userInfo_dto, HttpServletRequest request, Model model) {
-	    String code = request.getParameter("user_code");
-	    userInfo_dto.setUserCode(code);
 
-	    // 서비스 메서드를 호출하여 userInfo_dto를 전달
-	    userInfoService.insertUser(userInfo_dto);
-	    
-	    // 로그인 페이지로 리다이렉트
-	    return "redirect:/logInForm";
-	}
 	@RequestMapping("/logInForm")
 	public String logInForm() {
 		

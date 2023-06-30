@@ -5,34 +5,43 @@
 
 <mapper namespace="userInfo_mapper">
 
-	<insert id="insert_userInfo" parameterType="UserInfo_Dto">
+	<insert id="insertUser" parameterType="UserInfo_Dto">
 		insert into USER_INFO <!-- 유저 회원가입 기본저장 -->
-		values ( #{id} , #{password}, #{name} ,#{birthday},#{phoneNumber},
+		<!-- 컬럼명 -->
+		( id, password, name, birthday, phone_number,
+		post_code,address,detail_address,extra_Address,gender,
+		email,user_code)
+		<!-- 머라하지 -->
+		values ( #{id} , #{password}, #{name} ,TO_DATE(#{birthday},'YYYY-MM-DD'),#{phoneNumber},
 		#{postCode},#{address},#{detailAddress},#{extraAddress},#{gender},
-		#{email},#{userCode},#{regDate})
+		#{email},#{userCode})
 	</insert>
+	
  	<insert id="insert_parent_userInfo" parameterType="UserInfo_Dto">
 		insert into PAR <!-- 부모가입 폼 -->
-		values ( #{id}, #{c_name}, #{birthYear}, #{c_gender}, #{personality}, #{etc})
+		values ( #{id}, #{CName}, #{birthYear}, #{CGender}, #{personality}, #{etc})
 	</insert> 
 	
-		<insert id="insert_userInfo2" parameterType="UserInfo_Dto">
+ 		<insert id="insertUser2" parameterType="UserInfo_Dto">
 		insert into USER_INFO <!-- 유저 회원가입 기본저장 -->
 		values ( #{id} , #{password}, #{name} ,#{birthday},#{phoneNumber},
 		#{postCode},#{address},#{detailAddress},#{extraAddress},#{gender},
 		#{email},#{userCode},#{regDate})
-	</insert>
+	</insert> 
  	
  	
  	<insert id="insert_senior_userInfo" parameterType="UserInfo_Dto">
 		insert into SNR <!-- 시니어가입 폼 -->
+		<!-- 컬럼명 -->
+		(id,info,area)
+		
 		values ( #{id}, #{info}, #{area})
 	</insert>  	
  	
  	
 		<insert id="insert_agreement_userInfo" parameterType="UserInfo_Dto">
-		insert into AGREEMENT <!-- 약관동의여부 -->
-		values ( #{id}, #{agree_code_01}, #{agree_code_02}, #{agree_code_03})
+		insert into AGREEMENT <!-- 약관동의여부 -->		
+		values ( #{id}, #{agreeCode01}, #{agreeCode02}, #{agreeCode03})
 	</insert> 
 	
 

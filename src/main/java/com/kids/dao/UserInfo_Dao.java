@@ -17,5 +17,10 @@ public interface UserInfo_Dao {
 	public int idChk(String id);
 	int insertUser2(UserInfo_Dto userInfo_dto);
 	
+    // insertUserDao 메서드를 추가합니다.
+    public int insertUserDao(UserInfo_Dao userInfo_dao);
+
+    // insertUserDto 메서드를 추가합니다.
+    public int insertUserDto(UserInfo_Dto userInfo_dto);
 
 }

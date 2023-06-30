@@ -22,7 +22,7 @@
 <body>
 	<h1>회원가입</h1>
 	<div class="container">
-		<form method="post" action="" name="userInfo2">
+		<form method="post" action="" name="userInfo">
 
 			아이디<br>
 			<!-- 로그인 중복확인 하면 아이디값이 인풋에 들어가도록 보완필요 -->
@@ -45,20 +45,15 @@
 			<br> 이메일<br> <input type="text" id="email" name="email"><br>
 
 			<!-- 이전 페이지에서 부모 버튼 누르면 "PAR"입력, 시니어 누르면 "SNR" 입력됨. 확인 후 hidden할 것임. -->
-<%-- 			<c:if test="${userCode == 'par'}">
-				<input type="text" class="user_code" id="user_code" name="user_code"
-					value="PAR">
-			</c:if> --%>
-			<c:if test="${userCode == 'snr'}">
-				<input type="text" class="user_code" id="user_code" name="user_code"
+
+
+				<input type="text" class="user_code" id="user_code" name="userCode"
 					value="SNR">
-			</c:if>
+				<input type="date" id="regDate" name="regDate">
 
 
 			<!-- 부모 누르면 parForm 가져오고 시니어 누르면 snrForm 가져오기 -->
-<%-- 			<c:if test="${type == 'par'}">
-				<%@ include file="ParForm.jsp"%>
-			</c:if> --%>
+
 			<c:if test="${type == 'snr'}">
 				<%@ include file="SnrForm.jsp"%>
 			</c:if>
@@ -111,14 +106,14 @@
 				alert("아이디를 입력하세요.");
 				return false;
 			}
-			if(idDuplication == "idUnCheck"){
+		else if(idDuplication == "idUnCheck"){
 				console.log("중복체크상태 : " + idDuplication );
 				
 				alert("아이디 중복체크를 해주세요.");
 				return false;
 			}
 			
-			if(!password){
+		else if(!password){
 				console.log("비밀번호 : " + password );
 				
 				alert("비밀번호를 입력하세요.");
@@ -126,101 +121,77 @@
 			}
 			
 			// 비밀번호와 비밀번호 확인에 입력된 값이 동일한지 확인
-			if(password != passwordCheck || !passwordCheck){
+			else if(password != passwordCheck || !passwordCheck){
 				console.log("비밀번호 : " + password + "/ 비밀번호 확인 : " + passwordCheck );
 				
 				alert("비밀번호를 동일하게 입력하세요.");
 				return false;
 			}
-			if(!name){
+			else if(!name){
 				console.log("이름 : " + name );
 				
 				alert("이름을 입력하세요.");
 				return false;
 			}
 
-			if(!birthday ){
+			else if(!birthday ){
 				console.log("생일언제냐 : " + birthday );
 				
 				alert("생년월일을 입력하세요.");
 				return false;
 			}
-			if(!phoneNum){
+			else if(!phoneNum){
 				console.log("휴대전화 번호 : " + phoneNum );
 				
 				alert("휴대전화 번호를 입력하세요.");
 				return false;
 			}
-	    	  if (regPhone.test(phoneNum) != true) {
+			else if (regPhone.test(phoneNum) != true) {
 	     		 
 	        	    alert("전화번호는 숫자만 입력 가능합니다.");
 	  			return false;
 	        	  } 
-			if( !smsPass || smsPass == 1){
+			else if( !smsPass || smsPass == 1){
 				console.log("문자인증 : " + smsPass );
 				
 				alert("휴대전화를 인증하세요.");
 				return false;
 			}
-			if(!checkAuth){
+			else if(!checkAuth){
 				console.log("인증번호 대조 : " + checkAuth );
 				
 				alert("휴대전화를 인증하세요.");
 				return false;
 			}
 			
-			if(!postCode){
+			else if(!postCode){
 				console.log("우편번호 : " + postCode );
 				
 				alert("우편번호를 입력하세요.")
 				return false;
 			}
-			if(!address){
+			else if(!address){
 				console.log("주소 : " + address );
 				
 				alert("주소를 입력하세요.")
 				return false;
 			}
 ////
-
-/* 			if(!c_name){
-				console.log("자녀이름 : " + c_name );
-				
-				alert("자녀이름을 입력하세요.");
-				return false;
-			}
-			if(!birthYear){
-				console.log("자녀생일 : " + birthYear );
-				
-				alert("자녀의 생년월일을 입력하세요.");
-				return false;
-			}
-			if(!personality){
-				console.log("자녀성격 : " + personality );
-				
-				alert("자녀성격을 입력하세요.")
-				return false;
-			} */
-						
-		
-			
-			
 			
 			////
-			if(!agree_code_01 || !agree_code_02 ){
+			else if(!agree_code_01 || !agree_code_02 ){
 				console.log("1번약관 동의 : " + agree_code_01 + "/ 2번약관 동의 : " + agree_code_02 );
 				
 				alert("필수약관에 동의 후 가입가능합니다.")
 				return false;
 			}
-			
-		
-			alert("회원가입 완료! 로그인 페이지로 이동합니다.")
-			location.href = "/logInForm";
-			return true;
-			
+			else {
+// 		        document.userInfo.action = "/insertUserInfo";
+				alert(postCode);
+				alert("회원가입이 완료되었습니다. 로그인 페이지로 이동합니다.");
+		        document.userInfo.submit();
+		    }
 	}
-
 	// 취소 버튼 클릭시 첫화면으로 이동(메인페이지랑 생성하면 수정해서 연결하기)
 	// function goMainPage() {
 	// 	location.href = "메인페이지jsp";

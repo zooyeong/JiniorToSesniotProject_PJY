@@ -17,7 +17,7 @@ public class UserInfoDao_impl implements UserInfo_Dao{
 	@Override
 	public int insertUser(UserInfo_Dto userInfo_dto) {
 
-		int result = sqlSessionTemplate.insert("userInfo_mapper.insert_userInfo", userInfo_dto);
+		int result = sqlSessionTemplate.insert("userInfo_mapper.insertUser", userInfo_dto);
 
 
 		return result;
@@ -27,7 +27,6 @@ public class UserInfoDao_impl implements UserInfo_Dao{
 	public int insertUser2(UserInfo_Dto userInfo_dto) {
 
 		int result = sqlSessionTemplate.insert("userInfo_mapper.insert_userInfo2", userInfo_dto);
-
 
 		return result;
 	}
@@ -77,6 +76,18 @@ public class UserInfoDao_impl implements UserInfo_Dao{
 		int result = sqlSessionTemplate.selectOne("userInfo_mapper.idChk", userInfo_Dto);
 
 		return result;
+	}
+
+	@Override
+	public int insertUserDao(UserInfo_Dao userInfo_dao) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int insertUserDto(UserInfo_Dto userInfo_dto) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 

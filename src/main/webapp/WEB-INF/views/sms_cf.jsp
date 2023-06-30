@@ -15,14 +15,14 @@
 </head>
 <body>
 	<div id="contents">
-		<form action="/sendSms" method="post">
-			휴대전화 : <input type="text" id="phoneNum" name="phoneNum" placeholder="숫자만 입력해주세요" />
+<!-- 		<form action="/sendSms" method="post"> -->
+			휴대전화 : <input type="text" id="phoneNum" name="phoneNumber" placeholder="숫자만 입력해주세요" />
 			<input type="button" id="send" value="전송" /><br>
 			인증번호 : <input type="text" id="authNum">
 			<input type="button" id="enterBtn" value="확인">
 			<input type="text" id="checkAuth" name="checkAuth"  placeholder="인증번호 대조">
 			<input type="text" name="smsPass" id="smsPass" placeholder="인증상태">
-		</form>
+<!-- 		</form> -->
 	</div>
 	<script>
     $(document).ready(function() {
@@ -56,7 +56,7 @@
     	        },
     	        success: function(response) {
     	            // 인증 번호를 체크 값에 저장합니다.
-    	            $("#ckeckAuth").val(response.authNumber);
+    	            $("#checkAuth").val(response.authNumber);
     	            console.log("전화번호를 전달했으며 성공적으로 난수가 생성되었습니다.");
     	            alert("인증번호를 발송하였습니다.");
     	          },

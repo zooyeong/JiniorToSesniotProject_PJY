@@ -10,7 +10,7 @@ public class UserInfo_Dto {
     private String id;
     private String password;
     private String name;
-    private Date birthday;
+    private String birthday;
     private String phoneNumber;
     private String postCode;
     private String address;
@@ -19,12 +19,12 @@ public class UserInfo_Dto {
     private String gender;
     private String email;
     private String userCode;
-    private Date regDate;
+    private String regDate;
     
     //부모 폼
-    private String c_name;
+    private String CName;
     private String birthYear;
-    private String c_gender;
+    private String CGender;
     private String personality;
     private String etc;
     
@@ -34,9 +34,9 @@ public class UserInfo_Dto {
     
     //약관
     
-    private String agree_code_01;
-    private String agree_code_02;
-    private String agree_code_03;
+    private String agreeCode01;
+    private String agreeCode02;
+    private String agreeCode03;
     
 //-----------------------------					    -----------------------------				-----------------------------
 //	public String getId() {

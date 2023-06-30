@@ -9,12 +9,13 @@
 </head>
 <body>
 
-<input type="text" id="postcode" name = "postcode" placeholder="우편번호">
+<input type="text" id="postcode" name = "postCode" placeholder="우편번호">
 <input type="button" onclick="execDaumPostcode()" value="우편번호 찾기"><br>
 <input type="text" id="address" name = "address" placeholder="주소"><br>
 <input type="text" id="detailAddress" name="detailAddress" placeholder="상세주소">
 <input type="text" id="extraAddress" name = "extraAddress" placeholder="참고항목">
 
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
     function execDaumPostcode() {
         new daum.Postcode({
@@ -68,6 +69,6 @@
 
 
 
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
 </body>
 </html>

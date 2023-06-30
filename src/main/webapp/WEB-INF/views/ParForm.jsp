@@ -20,10 +20,10 @@ textarea{
 	<h1>ParForm</h1>
 	
 
-	자녀이름<br><input type="text" class="c_name" id="c_name" name="c_name"><br>
+	자녀이름<br><input type="text" class="c_name" id="c_name" name="CName"><br>
 	출생년도<br><input type="date" class="birthYear" id="birthYear" name="birthYear"><br>
 	자녀성별<br>
-	남자<input type="radio" id="c_genderM" name="c_gender" value="M" checked>여자<input type="radio" id="c_genderF" name="c_gender" value="F">
+	남자<input type="radio" id="c_genderM" name="CGender" value="M" checked>여자<input type="radio" id="c_genderF" name="CGender" value="F">
 	<br>
 	자녀성격<br>
 	<textarea rows="20" cols="150" class="personality" id="personality" name="personality" 

@@ -6,19 +6,19 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<style>
+<style> 
 
-	.agreementBox{
-		width: 900px;
-		height: 100%;
+ 	.agreementBox{ 
+ 		width: 900px; 
+ 		height: 100%; 
+ 	} 
+ 	.agreement {  /*이미지 고정, 텍스트 스크롤 */ 
+ 		border: 1px solid black; 
+ 		overflow: scroll; 
+ 		width: 700px; 
+		height: 100px; 
 	}
-	.agreement {  /*이미지 고정, 텍스트 스크롤 */
-		border: 1px solid black;
-		overflow: scroll;
-		width: 700px;
-		height: 100px;
-	}
-</style>
+ </style> 
 </head>
 <body>
 
@@ -35,7 +35,7 @@
 			</p>
 	</div>
 	<div class="first_agree">
-	동의<input type="checkbox" id= "agree_code_01" name="agree_code_01" value="Y" checked>
+	동의<input type="checkbox" id= "agree_code_01" name="agreeCode01" value="Y" checked>
 	</div>
 	<div class="agreement">
 		<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta a, obcaecati assumenda eaque ratione sint
@@ -47,7 +47,7 @@
 			</p>
 	</div>	
 	<div class="second_agree">
-	동의<input type="checkbox" id= "agree_code_02" name="agree_code_02" value="Y" checked>
+	동의<input type="checkbox" id= "agree_code_02" name="agreeCode02" value="Y" checked>
 	</div>	
 	<div class="agreement">
 		<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta a, obcaecati assumenda eaque ratione sint
@@ -58,7 +58,7 @@
 			</p>
 	</div>
 		<div class="third_agree">
-	동의<input type="radio" class= "agree_code_03" id="agree_code_03Y"  name="agree_code_03" value="Y" checked> 비동의<input type="radio" class= "agree_code_03" id="agree_code_03N" name="agree_code_03" value="N" >
+	동의<input type="radio" class= "agree_code_03" id="agree_code_03Y"  name="agreeCode03" value="Y" checked> 비동의<input type="radio" class= "agree_code_03" id="agree_code_03N" name="agreeCode03" value="N" >
 	</div>
 	</div>
 
