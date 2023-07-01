@@ -143,7 +143,7 @@
                         </li>
                         <li>
                             <a href="" class="img_box">
-                                <img src="/resources/image/innerimage.jpg" alt=""
+                                <img src="/resources/image/hands.jpg" alt=""
                                     title="">
                             </a>
                             <figure class="logo"><img
