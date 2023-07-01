@@ -53,15 +53,17 @@ public class MypageController {
 	@GetMapping("/parMypage")
 	public String parMypage(Model model) {
 		String id = (String)session.getAttribute("userId");
+		
 		ParentsDetailDto parentsDetail = parentsService.getParentsDetailById(id);
+		
 		ImageFileDTO parentsImg = parentsService.getImgById(id);
 		model.addAttribute("parentsDetail", parentsDetail);
 		model.addAttribute("parentsImg", parentsImg);
+		
 		return "parMypage";
 	}
 	@GetMapping("/snrMypage")
-	public String snrMypage(Model model ,HttpServletRequest request) {
-		HttpSession session = request.getSession();
+	public String snrMypage(Model model) {
 		String id = (String)session.getAttribute("userId");
 		
 		ImageFileDTO seniorImg = seniorService.getImgById(id);

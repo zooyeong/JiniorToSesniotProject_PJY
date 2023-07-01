@@ -53,7 +53,7 @@ input:checked + .label::before{
 		<label for="image">     
                 <img class="profileimage" id="preview" src="${pageContext.request.contextPath}/image/profile/${seniorImg.fileName}" onerror="this.onerror=null;this.src='${pageContext.request.contextPath}/image/profile/noprofile1.png?v=1';">
         </label>
-        <input type="file" name="file" id="image" style="display: none;" onchange="readURL(this)" required>
+        <input type="file" name="file" id="image" style="display: none;" onchange="readURL(this)">
         <br>
         <input type="hidden" value="<%= session.getAttribute("userId") %>" name="id"><br>
 		
@@ -81,7 +81,6 @@ input:checked + .label::before{
 		<label>희망지역</label><br>
 		<input type="text" name="area" value="${seniorDetail.area}"><br>
 		
-		<input type="hidden" name="id" value="${seniorDetail.id}">
 		
 		<p>스케줄 : </p>
 		<c:forEach var="item" items="${seniorEnableSchedule}">

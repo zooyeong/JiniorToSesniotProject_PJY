@@ -117,7 +117,7 @@ border-radius: 12px;
     <input type="hidden" name="reportedUserId" value="${seniorid}" />
     <input type="hidden" name="reportedUserName" value="${seniorDetail.name}" />
     <button class="declaration1" type="submit">
-        <img src="/resources/image/신고.jpg" width="30px" height="30px" style="margin-top: 10px border-radius: 12px; ">
+        <img src="/resources/image/경고.png" width="30px" height="30px" style="margin-top: 10px border-radius: 12px; ">
     </button>
 </form>
 	

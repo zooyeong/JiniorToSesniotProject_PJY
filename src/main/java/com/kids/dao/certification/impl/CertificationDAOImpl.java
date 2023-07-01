@@ -14,7 +14,7 @@ public class CertificationDAOImpl implements CertificationDAO {
 
     @Override
     public int saveCertification(CertificationDTO certificationDTO) {
-    	int result = sqlSession.insert("certificationDAO.saveCertification", certificationDTO);
-    	return result;
+        int result = sqlSession.insert("certificationDAO.saveCertification", certificationDTO);
+        return result;
     }
 }
