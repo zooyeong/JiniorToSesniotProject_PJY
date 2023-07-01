@@ -243,7 +243,6 @@ public class ManagingController {
 		  @RequestParam(name = "snrId", required = false) String snrId,
 		  @RequestParam(name = "parId", required = false) String parId,
 		  @RequestParam(name="num", required = false, defaultValue = "1") int num) {
-		  //@RequestParam(name = "snrId", required = false) String snrId) 
 	  
 	  	 // 파라미터 값이 아무것도 없으면 전체 매칭 이력을 보여주고
 	  if (snrId == null && parId == null) {
@@ -299,8 +298,6 @@ public class ManagingController {
 
   @GetMapping("/matchingDetailLog") 
   public String matchingDetailLog(Model model,
-		 // @RequestParam(name = "snrId", required = false) String snrId ,
-		 // @RequestParam(name = "parId", required = false) String parId ,
 		  @RequestParam(name = "matchingNumber", required = false) Integer matchingNumber) {
 	  
 	  // 해당 matchingNum의 디테일 보여준다
@@ -313,27 +310,3 @@ public class ManagingController {
   }
 
 }
-  
-
-/*
-	@GetMapping("/seniorList")
-	public String seniorList(Model model) {
-
-		List<UserDto> userList = userService.getUserList();
-		model.addAttribute("userList", userList);
-
-		return "seniorList";
-	}
-
-	@GetMapping("/singleInfo")
-	public String singleInfo(Model model, @RequestParam(name = "id") String id) {
-
-		UserDto userDto = new UserDto();
-		userDto.setId(id);
-		List<UserDto> userList = userService.getUserListById(userDto);
-		model.addAttribute("userList", userList);
-
-		return "singleInfo";
-	}*/
-
-

@@ -17,25 +17,6 @@ public class UserDaoImpl implements UserDao{
 	SqlSessionTemplate sqlSessionTemplate;
 
 	@Override
-	public List<UserDto> selectUserList() {
-		// TODO Auto-generated method stub
-		List<UserDto> list = 
-				sqlSessionTemplate.selectList("user_mapper.select_user_list");
-		
-		return list;
-	}
-	
-	@Override
-	public List<UserDto> selectUserListById(UserDto userDto) {
-		// TODO Auto-generated method stub
-		
-		List<UserDto> list = 
-				sqlSessionTemplate.selectList("user_mapper.select_user_list_by_id", userDto);
-		
-		return list;
-	}
-
-	@Override
 	public int updateUserCodeAsBlack(UserDto userDto) {
 		// TODO Auto-generated method stub
 		
