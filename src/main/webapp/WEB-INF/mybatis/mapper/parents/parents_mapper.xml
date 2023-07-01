@@ -18,7 +18,7 @@
 	<select id="select_parents_detail_by_id" resultType="ParentsDetailDto"
 											parameterType="String">
 		select u.id, u.name, u.phone_number,
-				u.adress, u.gender, u.birthday, u.user_code, u.email, p.personality, p.etc, p.c_name, p.c_age
+				u.address, u.detail_address, u.extra_address, u.gender, u.birthday, u.user_code, u.email, p.personality, p.etc, p.c_name, p.birthyear
 				, p.c_gender 
 			from user_info u
 			inner join par p on u.id = p.id
@@ -30,6 +30,8 @@
 			password = NVL(#{password}, password),
 			phone_number = NVL(#{phoneNumber}, phone_number),
 			adress = NVL(#{adress}, adress),
+			detail_address = NVL(#{detail_address}, detailAddress),
+			extra_address = NVL(#{extra_address}, extraAddress),
 			email = NVL(#{email}, email)
 		where id = #{id}
 	</update>
@@ -37,8 +39,7 @@
 	<update id="update_par" parameterType="ParentsDetailDto">
 		update par set 
 			personality = NVL(#{personality}, personality),
-			etc = NVL(#{etc}, etc),
-			c_age = NVL(#{CAge}, c_age)
+			etc = NVL(#{etc}, etc)
 		where id = #{id}
 	</update>
 	
