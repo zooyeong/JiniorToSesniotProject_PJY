@@ -47,7 +47,7 @@
 	<select id="select_senior_detail_by_id" resultType="SeniorDetailDto"
 											parameterType="String">
 		select u.id, u.name, u.birthday, u.phone_number, u.password, u.user_code,
-				u.adress, u.gender, u.email, s.info, s.area
+				u.address, u.detail_address, u.extra_address,  u.gender, u.email, s.info, s.area
 			from user_info u
 			inner join snr s on u.id = s.id
 			where u.id = #{value}
@@ -58,6 +58,8 @@
 			password = NVL(#{password}, password),
 			phone_number = NVL(#{phoneNumber}, phone_number),
 			adress = NVL(#{adress}, adress),
+			detail_address = NVL(#{detail_address}, detailAddress),
+			extra_address = NVL(#{extra_address}, extraAddress),
 			email = NVL(#{email}, email)
 		where id = #{id}
 	</update>

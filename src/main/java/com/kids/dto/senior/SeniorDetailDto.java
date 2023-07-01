@@ -10,6 +10,8 @@ public class SeniorDetailDto {
 	String phoneNumber;
 	String password;
 	String adress;
+	String detailAddress;
+	String extraAddress;
 	String email;
 	String gender;
 	String info;
