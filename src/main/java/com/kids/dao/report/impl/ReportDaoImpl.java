@@ -1,5 +1,6 @@
 package com.kids.dao.report.impl;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -16,11 +17,15 @@ public class ReportDaoImpl implements ReportDao{
 	SqlSessionTemplate sqlSessionTemplate;
 
 	@Override
-	public List<ReportDto> selectReportedList() {
+	public List<ReportDto> selectReportedList(int displayArticle, int articleNum) {
 		// TODO Auto-generated method stub
 		
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("displayArticle", displayArticle);
+		map.put("articleNum", articleNum);
+		
 		List<ReportDto> list = 
-				sqlSessionTemplate.selectList("report_mapper.select_reported_user_list");		
+				sqlSessionTemplate.selectList("report_mapper.select_reported_user_list", map);		
 		
 		return list;
 	}
@@ -58,6 +63,15 @@ public class ReportDaoImpl implements ReportDao{
 		// TODO Auto-generated method stub
 		
 		int result = sqlSessionTemplate.update("report_mapper.update_report_count", reportDto);
+		
+		return result;
+	}
+
+	@Override
+	public int selectReportCount() {
+		// TODO Auto-generated method stub
+		
+		int result = sqlSessionTemplate.selectOne("report_mapper.select_report_count");
 		
 		return result;
 	}

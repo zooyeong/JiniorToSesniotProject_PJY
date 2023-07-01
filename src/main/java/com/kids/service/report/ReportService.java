@@ -6,7 +6,7 @@ import com.kids.dto.report.ReportDto;
 
 public interface ReportService {
 	
-	public List<ReportDto> getReportedList();
+	public List<ReportDto> getReportedList(int displayArticle, int articleNum);
 	
 	public List<ReportDto> getReportedListById(ReportDto reportDto);
 	
@@ -15,5 +15,7 @@ public interface ReportService {
 	public int getReportedStatusAsRejected(ReportDto reportDto);
 
 	public int getReportCount(ReportDto reportDto);
+	
+	public int getReportCount();
 	
 }

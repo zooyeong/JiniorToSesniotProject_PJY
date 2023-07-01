@@ -6,7 +6,7 @@ import com.kids.dto.report.ReportDto;
 
 public interface ReportDao {
 	
-	public List<ReportDto> selectReportedList();
+	public List<ReportDto> selectReportedList(int displayArticle, int articleNum);
 	
 	public List<ReportDto> selectReportedListById(ReportDto reportDto);
 	
@@ -15,6 +15,8 @@ public interface ReportDao {
 	public int updateReportedStatusAsRejected(ReportDto reportDto);
 	
 	public int updateReportCount(ReportDto reportDto);
+	
+	public int selectReportCount();
 	
 	
 }

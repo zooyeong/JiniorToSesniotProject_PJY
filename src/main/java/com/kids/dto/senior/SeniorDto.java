@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class SeniorDto {
 	
+	public int verificationNum;
 	public String idcpicture;
 	public String cmnpicture;
 	public String id;

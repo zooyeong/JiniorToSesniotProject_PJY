@@ -16,10 +16,10 @@ public class ReportSeviceImpl implements ReportService {
 	ReportDao reportDao;
 
 	@Override
-	public List<ReportDto> getReportedList() {
+	public List<ReportDto> getReportedList(int displayArticle, int articleNum) {
 		// TODO Auto-generated method stub
 		
-		List<ReportDto> reportList = reportDao.selectReportedList();
+		List<ReportDto> reportList = reportDao.selectReportedList(displayArticle, articleNum);
 		
 		return reportList;
 	}
@@ -53,6 +53,13 @@ public class ReportSeviceImpl implements ReportService {
 	public int getReportCount(ReportDto reportDto) {
 		// TODO Auto-generated method stub
 		int result = reportDao.updateReportCount(reportDto);
+		return result;
+	}
+
+	@Override
+	public int getReportCount() {
+		// TODO Auto-generated method stub
+		int result = reportDao.selectReportCount();
 		return result;
 	}
 

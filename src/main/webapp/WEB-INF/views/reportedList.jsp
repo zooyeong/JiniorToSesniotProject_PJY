@@ -6,21 +6,42 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="/resources/css/table.css" rel="stylesheet" type="text/css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 </head>
-<body>
-	<h1>신고 목록</h1>
+<style>
 
+.regSnrList {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 1.8rem;
+	margin: 10px
+}
+.pd {
+	align-items: center;
+	padding: 10px 100px 10px 100px;
+}
+a {
+	font-weight: bold;
+}
+</style>
+
+<div class="pd">
+<div class="regSnrList">신고 목록</div>
+
+<body>
 	<table>
 		<thead>
 			<tr>
-				<th>신고번호</th>
+				<th>NO.</th>
 				<th>신고자아이디</th>
 				<th>시니어아이디</th>
-				<th>시니어이름</th>
+				<th>이름</th>
 				<th>신고사유</th>
 				<th>신고일자</th>
 				<th>신고처리상태</th>
-				<th>누적신고횟수</th>
+				<th>경고누적횟수</th>
 			</tr>
 		</thead>
 
@@ -29,7 +50,7 @@
 				<tr>
 					<td>${list.reportNum}</td>
 					<td>${list.parentId}</td>
-					<td><p class="seniorId" id="${list.seniorId}">${list.seniorId}</p></td>
+					<td><a href="reportedList?seniorId=${list.seniorId}">${list.seniorId}</a></td>
 					<td>${list.name}</td>
 					<td>${list.reportedReason}</td>
 					<td>${list.reportDate}</td>
@@ -45,27 +66,38 @@
 		</tbody>
 	</table>
 	
-		<button type="button" onclick="location.href='admin'">관리자 페이지로 돌아가기</button>
+	<!-- 페이징 처리 부분 -->
+	<div style="text-align: center">
+	<c:if test="${prev}">
+		<span>
+		<a href="/reportedList?num=${startPageNum - 1}">
+			<button class="btn btn-success" style="margin-top: 10px">이전</button>
+		</a>
+		</span>
+	</c:if>
 
-	<script src="https://code.jquery.com/jquery-3.7.0.js"
-		integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
-		crossorigin="anonymous">
-		
-	</script>
+		<c:forEach begin="${startPageNum}" end="${endPageNum}" var="num">
+			<span> <c:if test="${select != num}">
+					<a href="/reportedList?num=${num}"><button type="button" class="btn btn-light" style="margin-top: 10px">${num}</button></a>
+				</c:if> <c:if test="${select == num}">
+					<button type="button" class="btn btn-success" style="margin-top: 10px"><b>${num}</b></button>
+				</c:if>
 
+			</span>
+		</c:forEach>
 
-	<script>
-		$(function() {
-
-			$(".seniorId").click(function() {
-
-				const seniorId = $(this).attr("id");
-				location.href = 'reportedList?seniorId=' + seniorId;
-
-			});
-		});
-	</script>
-
+		<c:if test="${next}">
+		<span>
+			<a href="/reportedList?num=${endPageNum + 1}">
+				<button class="btn btn-success" style="margin-top: 10px">다음</button>
+			</a>
+		</span>
+	</c:if>
+	</div>
+	<!-- 페이징 처리 끝 부분 -->
+	
+		<button type="button" class="btn btn-secondary" onclick="location.href='admin'">관리자 페이지로 돌아가기</button>
 
 </body>
+</div>
 </html>

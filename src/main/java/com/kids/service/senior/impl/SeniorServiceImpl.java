@@ -17,10 +17,10 @@ public class SeniorServiceImpl implements SeniorService {
 	SeniorDao seniorDao;
 
 	@Override
-	public List<SeniorDto> getSeniorVerificationList() {
+	public List<SeniorDto> getSeniorVerificationList(int displayArticle, int articleNum) {
 		// TODO Auto-generated method stub
 
-		List<SeniorDto> seniorVeriList = seniorDao.selectVerificationList();
+		List<SeniorDto> seniorVeriList = seniorDao.selectVerificationList(displayArticle, articleNum);
 		
 		return seniorVeriList;
 	}
@@ -39,6 +39,24 @@ public class SeniorServiceImpl implements SeniorService {
 		// TODO Auto-generated method stub
 		
 		int result = seniorDao.updateVerificationStatusAsCertified(seniorDto);
+		
+		return result;
+	}
+
+	@Override
+	public int setSeniorVerificationStatusAsRejected(SeniorDto seniorDto) {
+		// TODO Auto-generated method stub
+		
+		int result = seniorDao.updateVerificationStatusAsRejected(seniorDto);
+		
+		return result;
+	}
+
+	@Override
+	public int getRegisterCount() {
+		// TODO Auto-generated method stub
+		
+		int result = seniorDao.selectRegisterCount();
 		
 		return result;
 	}
