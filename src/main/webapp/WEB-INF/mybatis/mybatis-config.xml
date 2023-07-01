@@ -9,9 +9,8 @@
 		<setting name="mapUnderscoreToCamelCase" value="true" />
 		<setting name="jdbcTypeForNull" value="VARCHAR" />
 	</settings>
-	
-	
-    <typeAliases>
+ <typeAliases>
+    	<typeAlias type="com.kids.dto.board.BoardDto" alias="BoardDto"/>
     	<typeAlias type="com.kids.dto.user.UserDto" alias="UserDto"/>
     	<typeAlias type="com.kids.dto.report.ReportDto" alias="ReportDto"/>
     	<typeAlias type="com.kids.dto.senior.SeniorDto" alias="SeniorDto"/>
