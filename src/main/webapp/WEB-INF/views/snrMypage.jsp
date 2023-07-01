@@ -53,21 +53,14 @@ input:checked + .label::before{
 		<label for="image">     
                 <img class="profileimage" id="preview" src="${pageContext.request.contextPath}/image/profile/${seniorImg.fileName}" onerror="this.onerror=null;this.src='${pageContext.request.contextPath}/image/profile/noprofile1.png?v=1';">
         </label>
-        <input type="file" name="file" id="image" style="display: none;" onchange="readURL(this)" required>
+        <input type="file" name="file" id="image" style="display: none;" onchange="readURL(this)">
         <br>
         <input type="hidden" value="<%= session.getAttribute("userId") %>" name="id"><br>
 		
-		<label>기존 비밀번호</label><br>
-		<input type="password" name="password"><br>
-		
-		<label>변경할 비밀번호</label><br>
-		<input type="password" name="password"><br>
-		
-		<label>비밀번호 재확인</label><br>
-		<input type="password"><br>
+		<p>비밀번호 <button type="button" onclick="location.href='/changePassword'">수정</button></p><br>
 		
 		<label>전화번호</label><br>
-		<input type="text" name="phoneNumber" value="${seniorDetail.phoneNumber}"><br>
+		<input type="text" name="phoneNumber" value="${seniorDetail.phoneNumber}" disabled><br>
 		
 		<label>주소</label><br>
 		<input type="text" name="adress" value="${seniorDetail.adress}"><br>
@@ -80,8 +73,6 @@ input:checked + .label::before{
 
 		<label>희망지역</label><br>
 		<input type="text" name="area" value="${seniorDetail.area}"><br>
-		
-		<input type="hidden" name="id" value="${seniorDetail.id}">
 		
 		<p>스케줄 : </p>
 		<c:forEach var="item" items="${seniorEnableSchedule}">

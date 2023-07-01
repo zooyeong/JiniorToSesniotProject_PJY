@@ -57,17 +57,10 @@ input:checked + .label::before{
         <br>
         <input type="hidden" value="<%= session.getAttribute("userId") %>" name="id"><br>
 		
-		<label>기존 비밀번호</label><br>
-		<input type="password" name="password"><br>
-		
-		<label>변경할 비밀번호</label><br>
-		<input type="password" name="password"><br>
-		
-		<label>비밀번호 재확인</label><br>
-		<input type="password"><br>
+		<p>비밀번호 <button type="button" onclick="location.href='/changePassword'">수정</button></p><br>
 		
 		<label>전화번호</label><br>
-		<input type="text" name="phoneNumber" value="${parentsDetail.phoneNumber}"><br>
+		<input type="text" name="phoneNumber" value="${parentsDetail.phoneNumber}" disabled><br>
 		
 		<label>주소</label><br>
 		<input type="text" name="adress" value="${parentsDetail.adress}"><br>

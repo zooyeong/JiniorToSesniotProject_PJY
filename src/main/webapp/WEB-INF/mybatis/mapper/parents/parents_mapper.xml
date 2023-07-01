@@ -18,7 +18,7 @@
 	<select id="select_parents_detail_by_id" resultType="ParentsDetailDto"
 											parameterType="String">
 		select u.id, u.name, u.phone_number,
-				u.adress,u.user_code, u.email, p.personality, p.etc, p.c_name, p.c_age
+				u.adress, u.gender, u.birthday, u.user_code, u.email, p.personality, p.etc, p.c_name, p.c_age
 				, p.c_gender 
 			from user_info u
 			inner join par p on u.id = p.id

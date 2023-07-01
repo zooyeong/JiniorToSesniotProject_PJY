@@ -17,11 +17,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.kids.dto.image.ImageFileDTO;
 import com.kids.dto.matching.MailDto;
 import com.kids.dto.matching.MatchingDetailDto;
 import com.kids.dto.matching.MatchingDto;
+import com.kids.dto.parents.ParentsDetailDto;
+import com.kids.dto.senior.SeniorDetailDto;
 import com.kids.dto.senior.SeniorScheduleDto;
 import com.kids.service.matching.MatchingService;
+import com.kids.service.parents.ParentsService;
 import com.kids.service.senior.SeniorService;
 
 @Controller
@@ -34,6 +38,9 @@ public class MatchingController {
 	SeniorService seniorService;
 	
 	@Autowired
+	ParentsService parentsService;
+	
+	@Autowired
 	MatchingService matchingService;
 	
 	@GetMapping("/askForSenior")
@@ -41,6 +48,8 @@ public class MatchingController {
 		
 		List<SeniorScheduleDto> seniorEnableSchedule = seniorService.getSeniorEnableSchedule(id);
 		model.addAttribute("seniorEnableSchedule", seniorEnableSchedule);
+		String userId = (String)session.getAttribute("userId");
+		model.addAttribute("userId", userId);
 		
 		return "askForSenior";
 	}
@@ -96,11 +105,12 @@ public class MatchingController {
 				break;
 			}
 		}
-		
-//		matchingDto.setScheduleCode(askForWeekday);
-		
+				
 		int result = matchingService.saveMatchingInfo(matchingDto);
 		int matchingNumber = matchingService.getMatchingNumber();
+		
+		/* 시니어에게 전송할 부모 데이터 가져오기 */
+		ParentsDetailDto parentsDetailDto = parentsService.getParentsDetailById(parId);
 		
 		/* 시니어에게 알림 전송 */
 		MailDto mailDto = new MailDto();
@@ -112,6 +122,7 @@ public class MatchingController {
 							+ "<br>*** 픽업 장소 : " + pickUpPlace + "***"
 							+ "<br>*** 도착 장소 : " + arrivePlace + "***"
 							+ "<br>*** 요청 기간 : " + matchingDto.getStartDate() + " ~ " + matchingDto.getEndDate() + " ***"
+							+ "<br>*** 연락처 : " + parentsDetailDto.getPhoneNumber() + " ***"
 							+ "<br>수락하시겠습니까?");
 		
 		int resultMailSave = matchingService.save_mail(mailDto);
@@ -138,10 +149,14 @@ public class MatchingController {
 		mailDto.setStatus("수락");
 		matchingService.updateMailStatus(mailDto);
 		
+		/* 부모에게 전송할 시니어 데이터 가져오기 */
+		SeniorDetailDto seniorDetailDto = seniorService.getSeniorDetailById(mailDto.getSendId());
+		
 		/* 부모에게 알림 전송 */
 		mailDto.setStatus("완료");
 		mailDto.setContent(mailDto.getSendId()+"님이 신청을 수락하였습니다!<br>"
-						+ "시니어 도우미가 빠른 시일 내에 연락을 드릴게요.");
+						+ "시니어 도우미가 빠른 시일 내에 연락을 드릴게요.<br>"
+						+ "시니어 비상 연락망 : " + seniorDetailDto.getPhoneNumber());
 		
 		int resultMailSave = matchingService.save_mail(mailDto);
 		
@@ -219,7 +234,7 @@ public class MatchingController {
 			int resultMatchingDetail = matchingService.saveMathingDetail(matchingDetailDto);
 		}
 		
-		return "redirect:/mailboxSenior";
+		return "redirect:/countMail";
 	}
 	
 	@PostMapping("/refuseMail")
@@ -240,7 +255,7 @@ public class MatchingController {
 		matchingDto.setMatchingNumber(mailDto.getMatchingNumber());
 		int resultMatchingMStatus = matchingService.updateMatchingMStatus(matchingDto);
 		
-		return "redirect:/mailboxSenior";
+		return "redirect:/countMail";
 	}
 	
 	@GetMapping("/mailboxParents")
@@ -253,24 +268,30 @@ public class MatchingController {
 		return "mailboxParents";
 	}
 	
-	@GetMapping("/countMailSenior")
-	public String countMailSenior(Model model){
+	@GetMapping("/countMail")
+	public String countMail(Model model){
 		
-		int cnt = matchingService.countSeniorMailById((String)session.getAttribute("userId"));
-		model.addAttribute("count", cnt);
-		
-		return "countMailSenior";
+		String userCode = (String)session.getAttribute("userCode");
+		String userId = (String)session.getAttribute("userId");
+		if(userCode.equals("PAR")) {
+			
+			int cnt = matchingService.countParentsMailById(userId);
+			List<MailDto> mail = matchingService.getParentsMailById(userId);
+			model.addAttribute("count", cnt);
+			model.addAttribute("mail", mail);
+			
+		}else if(userCode.equals("SNR")) {
+			
+			int cnt = matchingService.countSeniorMailById((String)session.getAttribute("userId"));
+			List<MailDto> mail = matchingService.getSeniorMailById(userId);
+			model.addAttribute("count", cnt);
+			model.addAttribute("mail", mail);
+			
+		}
+		model.addAttribute("userCode", userCode);
+		return "countMail";
 	}
 	
-	@GetMapping("/countMailParents")
-	public String countMailParents(Model model){
-		
-		int cnt = matchingService.countParentsMailById((String)session.getAttribute("userId"));
-		model.addAttribute("count", cnt);
-		
-		return "countMailParents";
-	}
-
 	@GetMapping("/scheduleList")
 	public String scheduleList(Model model) {
 		
@@ -278,6 +299,20 @@ public class MatchingController {
 			= matchingService.selectMatchingDetail((String)session.getAttribute("userId"));
 		
 		model.addAttribute("matchingDetailDtoList", matchingDetailDtoList);
+		
+		List<ParentsDetailDto> parentsDetailDto = new ArrayList<>();
+		List<ImageFileDTO> imageFileDto = new ArrayList<>();
+		for(MatchingDetailDto val : matchingDetailDtoList) {
+			String parId = val.getParId();
+			ParentsDetailDto pDD = parentsService.getParentsDetailById(parId);
+			parentsDetailDto.add(pDD);
+			ImageFileDTO iFD = parentsService.getImgById(parId);
+			imageFileDto.add(iFD);
+		}
+		model.addAttribute("parentsDetailDto", parentsDetailDto);			
+		model.addAttribute("imageFileDto", imageFileDto);			
+		
+		
 		
 		return "scheduleList";
 	}

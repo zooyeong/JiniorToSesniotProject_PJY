@@ -60,8 +60,7 @@ public class MypageController {
 		return "parMypage";
 	}
 	@GetMapping("/snrMypage")
-	public String snrMypage(Model model ,HttpServletRequest request) {
-		HttpSession session = request.getSession();
+	public String snrMypage(Model model) {
 		String id = (String)session.getAttribute("userId");
 		
 		ImageFileDTO seniorImg = seniorService.getImgById(id);

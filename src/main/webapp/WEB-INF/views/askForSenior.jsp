@@ -7,51 +7,121 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+@font-face {
+    font-family: 'omyu_pretty';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/omyu_pretty.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+*{
+	font-family: 'omyu_pretty';
+	margin: 5px 0; 
+	padding: 0;
+	box-sizing: border-box;
+}
+h1{
+	text-align: center;
+}
+#ask_for_wrapper{
+	text-align: center;
+	background-color: #F1F1F1;
+    width: 500px;
+    margin: 0 auto;
+    padding-top: 1px;
+}
+span, label{
+	font-size: 1.2rem;
+}
+input[type="text"], input[type="date"]{
+	padding-left: 5px;
+	width: 150px;
+	height: 30px;
+}
+input[type="button"]{
+    width: 70px;
+    height: 30px;
+}
+.data_wrapper{
+	background-color: white;
+	border-radius: 10px;
+	width: 450px;
+	margin: 25px;
+    padding: 10px;
+}
+.postcode{
+    margin-left: 80px;
+    margin-right: 8px
+}
+button{
+    width: 150px;
+    height: 40px;
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+}
+</style>
 </head>
 <body>
 	<h1>도우미 신청하기</h1>
-	
-	<form name="registerForm" action="" method="post">
-		시작일<input type="date" id="startDate" name="startDate"><br>
-		종료일<input type="date" id="endDate" name="endDate"><br>
-		픽업시간<br>
+	<div id="ask_for_wrapper">
 		
-		<c:forEach var="item" items="${seniorEnableSchedule}">
-	
-			<c:set var="code" value="${item.scheduleCode}"/>
-			<c:set var="status" value="${item.status}"/>
-			<c:set var="workStatus" value="${item.workStatus}"/>
-	
-			<input type="checkbox" id="${item.scheduleCode}" onclick="dateCheck()" name="scheduleCode" value="${item.scheduleCode}" 
-			<c:if test="${fn:contains(workStatus, 'N')}">disabled</c:if>>
-			<label for="${item.scheduleCode}" class="label"></label>
-	
-			<c:if test="${fn:contains(code, '1')}"><span>월요일</span></c:if>
-			<c:if test="${fn:contains(code, '2')}"><span>화요일</span></c:if>
-			<c:if test="${fn:contains(code, '3')}"><span>수요일</span></c:if>
-			<c:if test="${fn:contains(code, '4')}"><span>목요일</span></c:if>
-			<c:if test="${fn:contains(code, '5')}"><span>금요일</span></c:if>
-			<c:if test="${fn:contains(code, 'A')}"><span>오전</span></c:if>
-			<c:if test="${fn:contains(code, 'B')}"><span>오후</span></c:if><br>
-
-		</c:forEach>
-		<p>* 오전 09:00 ~ 12:00</p>
-		<p>* 오후 14:00 ~ 18:00</p>
+		<form name="registerForm" action="" method="post">
+			
+			<div class="data_wrapper">
+				<h2>신청기간</h2>
+				<label>시작일</label>
+				<input type="date" id="startDate" name="startDate">
+				<br>
+				<label>종료일</label>
+				<input type="date" id="endDate" name="endDate">
+			</div>
+			
+			<div class="data_wrapper">
+				<h2>* 픽업시간</h2>
+				<p>* 오전 09:00 ~ 12:00</p>
+				<p>* 오후 14:00 ~ 18:00</p>
+				<c:forEach var="item" items="${seniorEnableSchedule}">
+			
+					<c:set var="code" value="${item.scheduleCode}"/>
+					<c:set var="status" value="${item.status}"/>
+					<c:set var="workStatus" value="${item.workStatus}"/>
+			
+					<input type="checkbox" id="${item.scheduleCode}" onclick="dateCheck()" name="scheduleCode" value="${item.scheduleCode}" 
+					<c:if test="${fn:contains(workStatus, 'N')}">disabled</c:if>>
+					<label for="${item.scheduleCode}" class="label"></label>
+			
+					<c:if test="${fn:contains(code, '1')}"><span>월요일</span></c:if>
+					<c:if test="${fn:contains(code, '2')}"><span>화요일</span></c:if>
+					<c:if test="${fn:contains(code, '3')}"><span>수요일</span></c:if>
+					<c:if test="${fn:contains(code, '4')}"><span>목요일</span></c:if>
+					<c:if test="${fn:contains(code, '5')}"><span>금요일</span></c:if>
+					<c:if test="${fn:contains(code, 'A')}"><span>오전</span></c:if>
+					<c:if test="${fn:contains(code, 'B')}"><span>오후</span></c:if><br>
 		
-		픽업지역<br>
-		<input type="text" placeholder="우편번호">
-		<input type="button" onclick="sample6_execDaumPostcode(event)" value="우편번호 찾기"><br>
-		<input type="text" name="pickUpPlace" placeholder="주소"><br>
-		<input type="text" name="pickUpPlace" placeholder="상세주소">
-		<input type="text" name="pickUpPlace" placeholder="참고항목"><br>
-		도착지역<br>
-		<input type="text" placeholder="우편번호">
-		<input type="button" onclick="sample6_execDaumPostcode(event)" value="우편번호 찾기"><br>
-		<input type="text" name="arrivePlace" placeholder="주소"><br>
-		<input type="text" name="arrivePlace" placeholder="상세주소">
-		<input type="text" name="arrivePlace" placeholder="참고항목"><br>
-		<button type="button" onclick="submitCheck()">신청하기</button>
-	</form>
+				</c:forEach>
+			</div>
+			
+			<div class="data_wrapper">
+				<h2>픽업지역</h2>
+				<input type="text" class="postcode" placeholder="우편번호">
+				<input type="button" onclick="sample6_execDaumPostcode(event)" value="우편번호 찾기"><br>
+				<input type="text" id="pickAddress" name="pickUpPlace" placeholder="주소"><br>
+				<input type="text" name="pickUpPlace" placeholder="상세주소"><br>
+				<input type="text" name="pickUpPlace" placeholder="참고항목"><br>
+			</div>
+			
+			<div class="data_wrapper">
+				<h2>도착지역</h2>
+				<input type="text" class="postcode" placeholder="우편번호">
+				<input type="button" onclick="sample6_execDaumPostcode(event)" value="우편번호 찾기"><br>
+				<input type="text" id="arrAddress" name="arrivePlace" placeholder="주소"><br>
+				<input type="text" name="arrivePlace" placeholder="상세주소"><br>
+				<input type="text" name="arrivePlace" placeholder="참고항목"><br>
+			</div>
+			<button type="button" onclick="submitCheck()">신청하기</button>
+		</form>
+		<input type="hidden" id="userId" value="${userId}">
+	</div>
 	
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
@@ -70,7 +140,6 @@
 		startDate.setAttribute("max", maxStr);
 		startDate.value = minStr;
 		endDate.setAttribute("min", minStr);
-// 		endDate.setAttribute("max", maxStr);
 		endDate.value = minStr;
 		
 		/* 우편번호 찾기 */
@@ -123,6 +192,50 @@
 	    }
 		
 		function submitCheck(){
+			
+			let userId = document.getElementById('userId').value;
+			if(userId == ""){
+				alert('로그인 후 신청이 가능합니다.');
+				return false;
+			}
+				
+			let count = 0;
+			let checkboxes = document.getElementsByName('scheduleCode');
+			
+			for(let i=0; i<checkboxes.length; i++){
+				if(checkboxes[i].checked){
+					count++;
+				}
+			}
+			
+			if(count == 0){
+				alert('신청할 요일을 선택해주세요.');
+				return false;
+			}else{
+				let result = dateCheck();
+				if(result == false){
+					return false;
+				}
+			}
+			
+			let pickAddress = document.getElementById('pickAddress').value;
+			let arrAddress = document.getElementById('arrAddress').value;
+			let expA = /천안/;
+			let expB = /아산/;
+			
+			if( pickAddress == '' ){
+				alert('출발지를 입력해주세요.');
+				return false;
+			}else if( arrAddress == '' ){
+				alert('도착지를 입력해주세요.');
+				return false;
+			}else if( !( (expA.test(pickAddress) || expB.test(pickAddress) )
+				&& (expA.test(arrAddress) || expB.test(arrAddress)) ) ){
+				alert('신청은 천안·아산 지역만 가능합니다.');
+				return false;
+			}
+			
+				
 			let result = confirm("이 정보로 신청하시겠습니까?");
 			let form = document.registerForm;
 			
@@ -144,6 +257,7 @@
 					if(!isDayOfWeekInRange(startDate, endDate, dayOfWeek)){
 						alert("체크한 요일이 기간에 해당되지 않습니다!");
 						checkboxes[i].checked = false;
+						return false;
 					}
 				}
 			}
@@ -160,6 +274,7 @@
 			}
 			return false;
 		}
+		
 	</script>
 </body>
 </html>

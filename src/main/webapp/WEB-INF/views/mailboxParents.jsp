@@ -27,5 +27,8 @@
 			<p>내용 : ${item.content}</p>
 		</div>
 	</c:forEach>
+	<c:if test="${empty mail}">
+		<p>새로운 알림이 없습니다.</p>
+	</c:if>
 </body>
 </html>

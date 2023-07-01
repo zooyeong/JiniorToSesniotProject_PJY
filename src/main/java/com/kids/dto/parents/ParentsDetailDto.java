@@ -10,6 +10,7 @@ public class ParentsDetailDto {
 	String phoneNumber;
 	String password;
 	String adress;
+	String gender;
 	String email;
 	String userCode;
 	String personality;
