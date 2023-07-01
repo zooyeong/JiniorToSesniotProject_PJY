@@ -3,6 +3,9 @@ package com.kids.controller.board;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,22 +34,18 @@ public class BoardController {
 	@PostMapping("/addNewArticle")
 	public String addNewArticle_process(@ModelAttribute BoardDto boardDto) {
 		
+		String content = boardDto.getContent().replaceAll("<p>|</p>", "");
+		if(content == "") {
+			content = " ";
+		}
+		boardDto.setContent(content);
+		
 		int result = boardService.addNewArticle(boardDto);
 		
 		System.out.println(result);
 		
 		//return "redirect:/articleList";
-		return "redirect:/listPage";
-	}
-	
-	//게시글 전체 리스트 보기
-	@GetMapping("/articleList")
-	public String articleList(Model model) {
-		
-		List<BoardDto> articleList =  boardService.getAllArticleList();
-		model.addAttribute("articleList", articleList);
-		
-		return "listPage";
+		return "redirect:/boardList";
 	}
 	
 	//게시글 상세 보기
@@ -81,6 +80,12 @@ public class BoardController {
 	//글 수정 완료를 수행
 	@PostMapping("/modifyArticle")
 	public String modifyArticle_process(@ModelAttribute BoardDto boardDto) {
+		System.out.println("수정완료 컨트롤러");
+		String content = boardDto.getContent().replaceAll("<p>|</p>", "");
+		boardDto.setContent(content);
+		if(content == "") {
+			content = " ";
+		}
 		
 		int result = boardService.updateArticle(boardDto);
 		System.out.println("게시물 수정 : result " + result);
@@ -93,14 +98,16 @@ public class BoardController {
 		
 		boardService.removeArticle(articleNo);
 		
-		return "redirect:/listPage";
+		return "redirect:/boardList";
 	}
 	
 	//페이징 처리 + 게시글 목록
-	@GetMapping("/listPage")
-	public String getArticlePage(Model model, @RequestParam(name="num", defaultValue = "1") int num) {
+	@GetMapping("/boardList")
+	public String getArticlePage(HttpSession session, Model model, @RequestParam(defaultValue = "1", required = false) int num) throws Exception {
 		
-		System.out.println("num : " + num);
+		//세션에 userId 에 admin을 넣고 테스트하기 위한 부분
+		session.setAttribute("userId", "admin");
+		//session.setAttribute("userId", "user1");
 		
 		//게시물 총 갯수
 		int count = boardService.getArticleCount();
@@ -152,7 +159,7 @@ public class BoardController {
 		model.addAttribute("articleList", articleList);
 		model.addAttribute("pageNum", pageNum);
 		
-		return "listPage";
+		return "boardList";
 	}
 	
 	@GetMapping("/reply")
@@ -169,7 +176,7 @@ public class BoardController {
 		System.out.println("부모글번호 : " + boardDto.getParentNo());
 		System.out.println(boardDto.toString());
 		boardService.addNewArticle(boardDto);
-		return "redirect:/listPage";
+		return "redirect:/boardList";
 	}
 	
 }
