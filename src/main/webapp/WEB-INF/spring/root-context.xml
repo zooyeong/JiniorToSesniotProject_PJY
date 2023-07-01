@@ -4,7 +4,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
                            http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean class="org.apache.commons.dbcp2.BasicDataSource" id="dataSource">
+	 <bean class="org.apache.commons.dbcp2.BasicDataSource" id="dataSource">
         <property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy" />
         <property name="url" value="jdbc:log4jdbc:oracle:thin:@localhost:1521:orcl" />
         <property name="username" value="scott" />
@@ -20,10 +20,15 @@
     <bean class="org.mybatis.spring.SqlSessionTemplate" id="sqlSessionTemplate">
         <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory" />
     </bean>
-    
-    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"> 
-        <property name="maxUploadSize" value="100000000" /> 
-        <property name="maxInMemorySize" value="100000000" /> 
-    </bean> 
-
+	
+	<bean class="org.mybatis.spring.SqlSessionTemplate" id="sqlSessionTemplate">
+		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+		
+        	<!-- 파일 업로드를 위한 MutipartResolver 구현체 CommonsMultipartResolver  bean 등록 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+  		<property name="maxUploadSize" value="104857600"/>
+  		<property name="maxUploadSizePerFile" value="104857600"/>
+  		<property name="maxInMemorySize" value="104857600"/>
+	</bean>
 </beans>

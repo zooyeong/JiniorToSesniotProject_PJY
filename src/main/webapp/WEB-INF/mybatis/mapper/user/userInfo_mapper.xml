@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="userInfo_mapper">
+
+	<insert id="insertUser" parameterType="UserInfo_Dto">
+		insert into USER_INFO <!-- 유저 회원가입 기본저장 -->
+		<!-- 컬럼명 -->
+		( id, password, name, birthday, phone_number,
+		post_code,address,detail_address,extra_Address,gender,
+		email,user_code)
+		<!-- 머라하지 -->
+		values ( #{id} , #{password}, #{name} ,TO_DATE(#{birthday},'YYYY-MM-DD'),#{phoneNumber},
+		#{postCode},#{address},#{detailAddress},#{extraAddress},#{gender},
+		#{email},#{userCode})
+	</insert>
+	
+ 	<insert id="insert_parent_userInfo" parameterType="UserInfo_Dto">
+		insert into PAR <!-- 부모가입 폼 -->
+		values ( #{id}, #{CName}, #{birthYear}, #{CGender}, #{personality}, #{etc})
+	</insert> 
+	
+<!--  		<insert id="insertUser2" parameterType="UserInfo_Dto">
+		insert into USER_INFO 유저 회원가입 기본저장
+		values ( #{id} , #{password}, #{name} ,#{birthday},#{phoneNumber},
+		#{postCode},#{address},#{detailAddress},#{extraAddress},#{gender},
+		#{email},#{userCode},#{regDate})
+	</insert> --> 
+ 	
+ 	
+ 	<insert id="insert_senior_userInfo" parameterType="UserInfo_Dto">
+		insert into SNR <!-- 시니어가입 폼 -->
+		<!-- 컬럼명 -->
+		(id,info,area)
+		
+		values ( #{id}, #{info}, #{area})
+	</insert>  	
+ 	
+ 	
+		<insert id="insert_agreement_userInfo" parameterType="UserInfo_Dto">
+		insert into AGREEMENT <!-- 약관동의여부 -->		
+		values ( #{id}, #{agreeCode01}, #{agreeCode02}, #{agreeCode03})
+	</insert> 
+	
+	<!-- 회원가입 시 데이터에 이미 중보되는 아이디가 있는지 조회 -->
+	<select id = "idChk" parameterType="UserInfo_Dto" resultType = "int">
+	select count(id) from USER_INFO
+	WHERE id = #{id}
+	</select>
+
+	<!-- 로그인 시 아이디 비밀번호 조회 -->
+	<select id="logInChk" parameterType="UserInfo_Dto" resultType = "UserInfo_Dto">
+	select * from USER_INFO
+	WHERE id = #{id} AND password = #{password} 
+	</select>
+
+
+	<select id="searchId" parameterType="UserInfo_Dto" resultType = "UserInfo_Dto">
+	select * from USER_INFO
+	WHERE name = #{name} AND phone_number = #{phoneNumber} 
+	</select>
+	
+	
+		<select id="searchPw" parameterType="UserInfo_Dto" resultType = "UserInfo_Dto">
+	select * from USER_INFO
+	WHERE name = #{name} AND phone_number = #{phoneNumber} AND id = ${id}
+	</select>
+	
+</mapper>
