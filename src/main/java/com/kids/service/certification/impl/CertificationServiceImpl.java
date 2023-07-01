@@ -11,7 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.kids.dao.certification.CertificationDAO;
 import com.kids.dto.certification.CertificationDTO;
 import com.kids.service.certification.CertificationService;
-import com.kids.service.certification.CertificationService;
+
 @Service
 public class CertificationServiceImpl implements CertificationService {
 
@@ -40,21 +40,15 @@ public class CertificationServiceImpl implements CertificationService {
         return filePath; // 업로드된 파일 경로 반환
     }
 
-    
-
     private String generateFileName(String originalFileName) {
         String extension = originalFileName.substring(originalFileName.lastIndexOf(".") + 1);
         String fileName = UUID.randomUUID().toString(); // 고유한 파일 이름 생성
         return fileName + "." + extension;
     }
 
-	@Override
-	public int saveCertification(CertificationDTO certificationDTO) {
-		int result= certificationDAO.saveCertification(certificationDTO);
-		return result;
-		 
-		
-		// TODO Auto-generated method stub
-		
-	}
+    @Override
+    public int saveCertification(CertificationDTO certificationDTO) {
+        int result = certificationDAO.saveCertification(certificationDTO);
+        return result;
+    }
 }

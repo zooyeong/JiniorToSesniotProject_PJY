@@ -9,12 +9,12 @@ public class CertificationDTO {
     private String id;
     private String verificationStatus;
 
-
     // Constructors, getters, and setters (omitted for brevity)
 
-    public CertificationDTO(String idcpicture, String cmnpicture, String verificationStatus) {
+    public CertificationDTO(String idcpicture, String cmnpicture, String verificationStatus, String id) {
         this.idcpicture = idcpicture;
         this.cmnpicture = cmnpicture;
         this.verificationStatus = verificationStatus;
+        this.id = id;
     }
 }

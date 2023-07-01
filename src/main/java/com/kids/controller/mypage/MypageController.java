@@ -53,10 +53,13 @@ public class MypageController {
 	@GetMapping("/parMypage")
 	public String parMypage(Model model) {
 		String id = (String)session.getAttribute("userId");
+		
 		ParentsDetailDto parentsDetail = parentsService.getParentsDetailById(id);
+		
 		ImageFileDTO parentsImg = parentsService.getImgById(id);
 		model.addAttribute("parentsDetail", parentsDetail);
 		model.addAttribute("parentsImg", parentsImg);
+		
 		return "parMypage";
 	}
 	@GetMapping("/snrMypage")

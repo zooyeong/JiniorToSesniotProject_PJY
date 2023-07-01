@@ -3,6 +3,9 @@ package com.kids.controller;
 import java.io.File;
 import java.io.IOException;
 
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +21,9 @@ import com.kids.service.certification.CertificationService;
 @RequestMapping("/certification")
 public class CertificationController {
 
+    @Autowired
+    HttpSession session;
+
     private final CertificationService certificationService;
     private static final String FILE_UPLOAD_PATH = "C:\\upload\\image\\Certification\\";
 
@@ -25,16 +31,33 @@ public class CertificationController {
         this.certificationService = certificationService;
     }
 
-    @GetMapping("/certification")
-    public String showUploadForm() {
+    @GetMapping("")
+    public String showUploadForm(HttpSession session) {
+        String userId = (String) session.getAttribute("userId");
+        if (userId == null) {
+            // Redirect to login page or handle the case when user is not logged in
+            return "redirect:/sampleSession";
+        }
         return "certification";
     }
-    
+
+    @GetMapping("/sampleSession")
+    public String sampleSession() {
+        return "sampleSession";
+    }
+
     @PostMapping("/upload")
     public String uploadFiles(@RequestParam("idcFile") MultipartFile idcFile,
                               @RequestParam("cmnFile") MultipartFile cmnFile,
-                              Model model) {
+                              Model model,
+                              HttpSession session) {
         try {
+            String userId = (String) session.getAttribute("userId");
+            if (userId == null) {
+                // Redirect to login page or handle the case when user is not logged in
+                return "redirect:/sampleSession";
+            }
+
             String idcFileName = idcFile.getOriginalFilename();
             String idcFilePath = FILE_UPLOAD_PATH + idcFileName;
             File idcDest = new File(idcFilePath);
@@ -48,8 +71,8 @@ public class CertificationController {
             model.addAttribute("idcFilePath", idcFilePath); // Add IDC file path to the model
             model.addAttribute("cmnFilePath", cmnFilePath); // Add CMN file path to the model
 
-            // Save the certification data to the database
-            CertificationDTO certificationDTO = new CertificationDTO(idcFileName, cmnFileName, "");
+            // Save the certification data to the database with user ID
+            CertificationDTO certificationDTO = new CertificationDTO(idcFileName, cmnFileName, "", userId);
             int result = certificationService.saveCertification(certificationDTO);
             if (result == 1) {
                 model.addAttribute("uploadSuccess", true); // Add upload success flag to the model
