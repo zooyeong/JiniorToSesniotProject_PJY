@@ -1,5 +1,8 @@
 package com.kids.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 //import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -124,6 +127,8 @@ public class UserInfoFormController {
 	@RequestMapping("/logInForm")
 	public String logInForm() {
 		
+		
+		
 		return "logInForm";
 	}
 
@@ -142,10 +147,17 @@ public class UserInfoFormController {
 	
 
 	@RequestMapping("/login")
-	public String logInCheck(UserInfo_Dto userInfo_dtoFromForm ) {
+	public String logInCheck(UserInfo_Dto userInfo_dtoFromForm, HttpServletRequest request ) {
 	    UserInfo_Dto userInfo_dto = userInfoService.logInCheck(userInfo_dtoFromForm);
 	    
 	    String userCode = userInfo_dto.getUserCode();
+	    
+	    String userId = userInfo_dto.getId();
+	    
+	    HttpSession session = request.getSession();
+	    session.setAttribute("userId", userId);
+	    session.setAttribute("userCode", userCode);
+	    
 	    
 	    if(userCode.equals("PAR")) {
 	    	

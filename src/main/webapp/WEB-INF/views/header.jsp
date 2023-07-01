@@ -7,12 +7,13 @@
     <link rel="stylesheet" href="http://nenia.kr/theme/responsive_nenia/css/default.css?ver=191202">
     <link rel="stylesheet" href="http://nenia.kr/theme/responsive_nenia/include/common.css?ver=191202">
     
-
-
-    
 </head>
 
 <header class="header_t" id="header_t_id" style="top: 0px;">
+<%
+	String userId = (String)session.getAttribute("userId");
+	String userCode = (String)session.getAttribute("userCode");
+%>
     <div class="header_gnb">
 
         <ul class="main_menu">
