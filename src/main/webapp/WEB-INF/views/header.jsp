@@ -7,6 +7,42 @@
     <link rel="stylesheet" href="http://nenia.kr/theme/responsive_nenia/include/common.css?ver=191202">
 </head>
 
+<style>
+    .menuA {
+        display: none;
+    }
+
+    .userIdhover:hover .menuA {
+        display: block;
+        animation: slide-down 0.3s ease;
+    }
+
+    @keyframes slide-down {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+  .header_gnb {
+    flex-direction: column;
+}
+
+.main_menu li {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.main_menu a {
+    display: block;
+}
+
+</style>
+
 <%
     String userId = (String) session.getAttribute("userId");
     String userCode = (String) session.getAttribute("userCode");
@@ -46,7 +82,7 @@
             </a>
         <% } else { %>
             <div class="logged-in-user">
-                <span>Welcome, <%= userId %></span>
+                <span class="userIdhover"><%= userId %></span>
             </div>
         <% } %>
 
@@ -57,5 +93,24 @@
             </a>
         <% } %>
     </div>
+    
+    <div class="userIdhover">
+        <span>Username</span>
+        <div class="menuA">
+            <a href="/edit-profile">개인정보 수정</a>
+            <a href="#" onclick="logout()">로그아웃</a>
+        </div>
+    </div>
+
+    <script>
+        function logout() {
+            // 서버로 로그아웃 요청 등 필요한 작업 수행
+            // ...
+
+            // 세션 무효화 및 리다이렉트
+            <% session.invalidate(); %>
+            window.location.href = "/main";
+        }
+    </script>
 </header>
 </html>
