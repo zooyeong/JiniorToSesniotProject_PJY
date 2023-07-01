@@ -42,40 +42,11 @@ function idAndPasswordCheck() {
         alert("아이디와 비밀번호를 입력하세요.");
         return false;
     }else{
+    	alert("코코노아에 오신 걸 환영합니다!");
     	let form = document.getElementById('login-form');
     	form.submit();
     }
-}   
-//     $.ajax({
-//         type: "POST",
-//         url: "/login",
-//         data: {
-//             "id": id,
-//             "password": password
-//         },
-//         success: function (data) {
-//              if (data != null) {
-//                 if (data.userCode == "SNR") {
-//                     alert(id + "님, 반갑습니다.");
-//                     location.href = "/testMainSnr.jsp";
-//                 } else if (data.userCode == "PAR") {
-//                     alert(id + "님, 반갑습니다.");
-//                     location.href = "/testMainPar.jsp";
-//                 } else {
-//                     alert("올바르지 않은 사용자입니다.");
-//                 }
-//             } else {
-//                 alert("로그인에 실패하였습니다. 아이디와 비밀번호를 확인하세요.");
-//             }
-//         },
-//         dataType: "text",
-//         error: function (jqXHR, textStatus, errorThrown) {
-//             alert("서버 요청 오류. 관리자에게 문의하세요.");
-//             console.error(jqXHR, textStatus, errorThrown);
-//         }
-//     });
-
-// }
+}    
 
 </script>
 

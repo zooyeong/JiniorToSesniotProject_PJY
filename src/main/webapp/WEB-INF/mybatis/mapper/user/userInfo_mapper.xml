@@ -44,16 +44,28 @@
 		values ( #{id}, #{agreeCode01}, #{agreeCode02}, #{agreeCode03})
 	</insert> 
 	
-
+	<!-- 회원가입 시 데이터에 이미 중보되는 아이디가 있는지 조회 -->
 	<select id = "idChk" parameterType="UserInfo_Dto" resultType = "int">
 	select count(id) from USER_INFO
 	WHERE id = #{id}
 	</select>
 
+	<!-- 로그인 시 아이디 비밀번호 조회 -->
 	<select id="logInChk" parameterType="UserInfo_Dto" resultType = "UserInfo_Dto">
 	select * from USER_INFO
 	WHERE id = #{id} AND password = #{password} 
-	 
 	</select>
 
+
+	<select id="searchId" parameterType="UserInfo_Dto" resultType = "UserInfo_Dto">
+	select * from USER_INFO
+	WHERE name = #{name} AND phone_number = #{phoneNumber} 
+	</select>
+	
+	
+		<select id="searchPw" parameterType="UserInfo_Dto" resultType = "UserInfo_Dto">
+	select * from USER_INFO
+	WHERE name = #{name} AND phone_number = #{phoneNumber} AND id = ${id}
+	</select>
+	
 </mapper>

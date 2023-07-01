@@ -142,7 +142,6 @@ public class UserInfoFormController {
 	
 
 	@RequestMapping("/login")
-	
 	public String logInCheck(UserInfo_Dto userInfo_dtoFromForm ) {
 	    UserInfo_Dto userInfo_dto = userInfoService.logInCheck(userInfo_dtoFromForm);
 	    
@@ -163,6 +162,8 @@ public class UserInfoFormController {
 //----------------		----------------		----------------		----------------		----------------
 }
 //끗..	
+//컨트롤러 -> 서비스 -> 다오 -> mapper(db)
+//컨트롤러 <- 서비스 <- 다오 <----┘
 //----------------		----------------		----------------		----------------		----------------
 
 /*
