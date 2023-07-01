@@ -7,12 +7,22 @@ import com.kids.dao.user.UserDao;
 import com.kids.dto.user.UserDto;
 import com.kids.service.user.UserService;
 
+
 @Service
 public class UserServiceImpl implements UserService{
 
 	@Autowired
 	UserDao userDao;
-	
+
+	@Override
+	public int getUserCodeAsBlack(UserDto userDto) {
+		// TODO Auto-generated method stub
+		
+		int result = userDao.updateUserCodeAsBlack(userDto);
+		
+		return result;
+	}
+
 	@Override
 	public UserDto getUserInfoById(String id) {
 		// TODO Auto-generated method stub

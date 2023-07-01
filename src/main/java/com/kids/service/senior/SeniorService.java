@@ -1,6 +1,9 @@
 package com.kids.service.senior;
 
 import java.util.List;
+
+import com.kids.dto.senior.SeniorDto;
+
 import java.util.Map;
 
 import com.kids.dto.image.ImageFileDTO;
@@ -8,8 +11,17 @@ import com.kids.dto.senior.SeniorDetailDto;
 import com.kids.dto.senior.SeniorScheduleDto;
 
 public interface SeniorService {
-//	public List<SeniorListDto> getSeniorList();
-//	public List<SeniorSNRDto> getSeniorSNRList();
+
+	public List<SeniorDto> getSeniorVerificationList(int displayArticle, int articleNum);
+
+	public List<SeniorDto> getSeniorVerificationListById(SeniorDto seniorDto);
+	
+	public int setSeniorVerificationStatusAsCertified(SeniorDto seniorDto);
+
+	public int setSeniorVerificationStatusAsRejected(SeniorDto seniorDto);
+
+	public int getRegisterCount();
+
 	public List<SeniorDetailDto> getSeniorDetail();
 	public SeniorDetailDto getSeniorDetailById(String id);
 	public int updateUserInfo(SeniorDetailDto seniorDetail);
@@ -17,4 +29,5 @@ public interface SeniorService {
 	public int updateSchedule(Map<String, String> map);
 	public ImageFileDTO getImgById(String id);
 	public int updateScheduleWorkStatus(Map<String, String> map);
+	
 }

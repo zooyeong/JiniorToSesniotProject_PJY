@@ -1,13 +1,26 @@
 package com.kids.service.matching;
 
 import java.util.List;
-import java.util.Map;
 
-import com.kids.dto.matching.MailDto;
 import com.kids.dto.matching.MatchingDetailDto;
 import com.kids.dto.matching.MatchingDto;
 
+import java.util.Map;
+
+import com.kids.dto.matching.MailDto;
+
 public interface MatchingService {
+	
+	public List<MatchingDto> getMatchingLogList(int displayPost, int postNum);
+
+	public List<MatchingDto> getMatchingLogListBySnrId(MatchingDto matchingDto);
+	
+	public List<MatchingDto> getMatchingLogListByPnrId(MatchingDto matchingDto);
+
+	public List<MatchingDetailDto> getMatchingDetailByMatchingNum(MatchingDetailDto matchingDetailDto);
+
+	public int getMatchingCount();
+
 	public int saveMatchingInfo(MatchingDto matchingDto);
 	public int getMatchingNumber();
 	public MatchingDto getMatchingInfo(int num);

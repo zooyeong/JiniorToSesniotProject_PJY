@@ -1,9 +1,14 @@
 package com.kids.dto.user;
 
 import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
+@AllArgsConstructor
+@NoArgsConstructor
 @Data
 public class UserDto {
+
 	String id;
 	String password;
 	String name;

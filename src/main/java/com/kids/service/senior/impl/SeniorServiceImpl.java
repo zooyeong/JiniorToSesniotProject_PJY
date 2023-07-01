@@ -1,16 +1,21 @@
 package com.kids.service.senior.impl;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kids.dao.senior.SeniorDao;
+import com.kids.dto.senior.SeniorDto;
+import com.kids.dto.user.UserDto;
+import com.kids.service.senior.SeniorService;
+
+import java.util.Map;
+
 import com.kids.dto.image.ImageFileDTO;
 import com.kids.dto.senior.SeniorDetailDto;
 import com.kids.dto.senior.SeniorScheduleDto;
-import com.kids.service.senior.SeniorService;
+
 
 @Service
 public class SeniorServiceImpl implements SeniorService{
@@ -18,21 +23,50 @@ public class SeniorServiceImpl implements SeniorService{
 	@Autowired
 	SeniorDao seniorDao;
 
-//	@Override
-//	public List<SeniorListDto> getSeniorList() {
-//		// TODO Auto-generated method stub
-//		List<SeniorListDto> list = seniorListDao.selectSeniorList();
-//		
-//		return list;
-//	}
-//
-//	@Override
-//	public List<SeniorSNRDto> getSeniorSNRList() {
-//		// TODO Auto-generated method stub
-//		List<SeniorSNRDto> list = seniorListDao.selectSeniorSNRList();
-//		
-//		return list;
-//	}
+	@Override
+	public List<SeniorDto> getSeniorVerificationList(int displayArticle, int articleNum) {
+		// TODO Auto-generated method stub
+
+		List<SeniorDto> seniorVeriList = seniorDao.selectVerificationList(displayArticle, articleNum);
+		
+		return seniorVeriList;
+	}
+
+	@Override
+	public List<SeniorDto> getSeniorVerificationListById(SeniorDto seniorDto) {
+		// TODO Auto-generated method stub
+
+		List<SeniorDto> seniorVeriList = seniorDao.selectVerificationListById(seniorDto);
+		
+		return seniorVeriList;
+	}
+
+	@Override
+	public int setSeniorVerificationStatusAsCertified(SeniorDto seniorDto) {
+		// TODO Auto-generated method stub
+		
+		int result = seniorDao.updateVerificationStatusAsCertified(seniorDto);
+		
+		return result;
+	}
+
+	@Override
+	public int setSeniorVerificationStatusAsRejected(SeniorDto seniorDto) {
+		// TODO Auto-generated method stub
+		
+		int result = seniorDao.updateVerificationStatusAsRejected(seniorDto);
+		
+		return result;
+	}
+
+	@Override
+	public int getRegisterCount() {
+		// TODO Auto-generated method stub
+		
+		int result = seniorDao.selectRegisterCount();
+		
+		return result;
+	}
 
 	@Override
 	public List<SeniorDetailDto> getSeniorDetail() {
