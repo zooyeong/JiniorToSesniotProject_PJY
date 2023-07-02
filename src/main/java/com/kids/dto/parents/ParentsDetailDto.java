@@ -9,7 +9,7 @@ public class ParentsDetailDto {
 	String birthday;
 	String phoneNumber;
 	String password;
-	String adress;
+	String address;
 	String detailAddress;
 	String extraAddress;
 	String gender;

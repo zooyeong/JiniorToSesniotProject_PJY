@@ -7,53 +7,47 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style>
-*{
-	text-align: center;
-}
-.scheduleContainer{
-	border: 1px solid black;
-	border-radius: 8px;
-	margin-bottom: 5px;
-}
-</style>
+<link rel="stylesheet" href="/resources/css/scheduleList_css.css">
 </head>
 <body>
-	<h1>시니어 스케줄 리스트</h1>
+<%@ include file="header.jsp"%>
+<div class="container">
+	<h1>활동 예정 목록</h1>
 	<c:forEach var="item" varStatus="varStatus" items="${matchingDetailDtoList}">
 		<c:set var="code" value="${item.scheduleCode}"/>
 		<form action="" method="post">
 			<div class="scheduleContainer">
-				<p>${parentsDetailDto[varStatus.index].name}님(${item.parId})의 어린이
-					${parentsDetailDto[varStatus.index].CName}</p>
 				<label for="image">     
-                	<img class="profileimage" onclick="location.href='parentsDetailIn?id=${item.parId}'" id="preview" 
-                	src="${pageContext.request.contextPath}/image/profile/${imageFileDto[varStatus.index].fileName}" onerror="this.onerror=null;this.src='${pageContext.request.contextPath}/image/profile/noprofile1.png?v=1';" style="clip-path: circle(50% at 50% 50%);">
+                	<img class="profileimage" onclick=" window.open('/parentsDetailIn?id=${item.parId}', '_blank', 'toolbar=yes,scrollbars=yes,resizable=yes,top=250,left=250,width=1000,height=800')" id="preview" 
+                	src="${pageContext.request.contextPath}/image/profile/${imageFileDto[varStatus.index].fileName}" width="300px;" onerror="this.onerror=null;this.src='${pageContext.request.contextPath}/image/profile/noprofile1.png?v=1';" style="clip-path: circle(35% at 50% 50%);">
         		</label>
-				<p>${fn:substring(item.day, 0, 10)}</p>
+				<h4 class="h4_date">일자 : ${fn:substring(item.day, 0, 10)}
 				<c:if test="${fn:contains(code, 'A')}"><span>오전</span></c:if>
-				<c:if test="${fn:contains(code, 'B')}"><span>오후</span></c:if>
+				<c:if test="${fn:contains(code, 'B')}"><span>오후</span></c:if></h4>
+				<p>${parentsDetailDto[varStatus.index].name}님(${item.parId})의 어린이
+					<span class="childName">${parentsDetailDto[varStatus.index].CName}</span></p>
 				<p>픽업장소 : ${item.pickUpPlace}</p>
 				<p>도착장소 : ${item.arrivePlace}</p>
 				<input type="hidden" name="matchingNumber" value="${item.matchingNumber}">
 				<input type="hidden" name="scheduleCode" value="${item.scheduleCode}">
 				<input type="hidden" name="day" value="${item.day}">
 				<input type="hidden" name="btnValue">
-				<button type="button" onclick="completeCheck(this)" value="complete">완료</button>
-				<button type="button" onclick="completeCheck(this)" value="cancel">취소</button>
+				<button type="button" class="sl_btn" onclick="completeCheck(this)" value="complete">완료</button>
+				<button type="button" class="sl_btn" onclick="completeCheck(this)" value="cancel">취소</button>
 			</div>
 		</form>
 	</c:forEach>
 	<c:if test="${empty matchingDetailDtoList}">
 		<p>새로운 스케줄이 없습니다.</p>
 	</c:if>
+</div>
 	
 	<script>
 		function completeCheck(button){
 			let today = new Date();
 			let form = button.closest('form');
-			let dateEl = form.querySelector('p:nth-child(2)');
-			let dateStr = dateEl.textContent;
+			let dateEl = form.querySelector('h4');
+			let dateStr = dateEl.textContent.substr(5, 15);
 			let date = new Date(dateStr);
 			
 			if(date > today){

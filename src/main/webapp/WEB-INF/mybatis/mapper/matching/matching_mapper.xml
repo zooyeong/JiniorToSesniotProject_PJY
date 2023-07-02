@@ -108,7 +108,7 @@
 			m.pick_up_place, m.arrive_place, m.par_id
 		from matching_d d
 		inner join matching_m m on d.matching_number = m.matching_number
-		where m.snr_id = #{value} and d.status = '진행예정'
+		where m.snr_id = #{value} and d.status = '진행예정' order by day
 	</select>
 	
 	<update id="update_matching_d_status" parameterType="MatchingDetailDto">

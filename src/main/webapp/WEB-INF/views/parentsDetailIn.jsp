@@ -88,7 +88,7 @@
 		<span class="infotext">자녀소개</span>
 		<div class="infomation">
 			<p class="infomationtext">자녀이름 ${parentsDetail.CName}</p>
-			<p class="infomationtext">자녀나이 ${2023 - fn:substring(parentsDetail.CAge, 0, 4)}살</p>
+			<p class="infomationtext">자녀나이 ${2023 - fn:substring(parentsDetail.birthyear, 0, 4)}살</p>
 		</div>
 		
 		<span class="infotext">자녀성격</span>
