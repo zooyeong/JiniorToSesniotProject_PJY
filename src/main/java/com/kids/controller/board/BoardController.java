@@ -44,7 +44,6 @@ public class BoardController {
 		
 		System.out.println(result);
 		
-		//return "redirect:/articleList";
 		return "redirect:/boardList";
 	}
 	
@@ -80,7 +79,6 @@ public class BoardController {
 	//글 수정 완료를 수행
 	@PostMapping("/modifyArticle")
 	public String modifyArticle_process(@ModelAttribute BoardDto boardDto) {
-		System.out.println("수정완료 컨트롤러");
 		String content = boardDto.getContent().replaceAll("<p>|</p>", "");
 		boardDto.setContent(content);
 		if(content == "") {
@@ -88,7 +86,6 @@ public class BoardController {
 		}
 		
 		int result = boardService.updateArticle(boardDto);
-		System.out.println("게시물 수정 : result " + result);
 		
 		return "redirect:/viewArticle?articleNo="+boardDto.getArticleNo();
 	}
@@ -105,9 +102,12 @@ public class BoardController {
 	@GetMapping("/boardList")
 	public String getArticlePage(HttpSession session, Model model, @RequestParam(defaultValue = "1", required = false) int num) throws Exception {
 		
-		//세션에 userId 에 admin을 넣고 테스트하기 위한 부분
-		session.setAttribute("userId", "admin");
-		//session.setAttribute("userId", "user1");
+		//로그인 없이 테스트하기 위해서 직접 아이디 값을 세팅하는 부분임
+		//삭제 예정
+		//String userId = (String)session.getAttribute("userId");
+		//session.setAttribute("userId", "test1234");
+		//session.setAttribute("userId", "test4567");
+		//session.setAttribute("userId", "admin");
 		
 		//게시물 총 갯수
 		int count = boardService.getArticleCount();
@@ -165,7 +165,6 @@ public class BoardController {
 	@GetMapping("/reply")
 	public String reply(Model model, @RequestParam int parentNo) {
 		
-		System.out.println("답변하기 부모글 번호 : " + parentNo);
 		model.addAttribute("parentNo", parentNo);
 		
 		return "replyForm";
@@ -173,8 +172,6 @@ public class BoardController {
 	@PostMapping("/reply")
 	public String reply_process(@ModelAttribute BoardDto boardDto) {
 		
-		System.out.println("부모글번호 : " + boardDto.getParentNo());
-		System.out.println(boardDto.toString());
 		boardService.addNewArticle(boardDto);
 		return "redirect:/boardList";
 	}

@@ -1,6 +1,6 @@
 --게시판 테이블 생성
 CREATE TABLE BOARD(
-    article_no NUMBER(10) NOT NULL,
+    article_no NUMBER(10) NOT NULL PRIMARY KEY,
     parent_no NUMBER(10) DEFAULT 0 NOT NULL,
     title VARCHAR2(100) NOT NULL,
     content VARCHAR2(4000) NOT NULL,

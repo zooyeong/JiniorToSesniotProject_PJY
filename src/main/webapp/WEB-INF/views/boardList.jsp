@@ -9,7 +9,18 @@
 <title>게시판 리스트</title>
 <link href="${path}/resources/css/table1.css" rel="stylesheet" type="text/css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
 <style>
+	@font-face {
+	    font-family: 'omyu_pretty';
+	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/omyu_pretty.woff2') format('woff2');
+	    font-weight: normal;
+	    font-style: normal;
+	}
+	h1 {
+		font-family: 'omyu_pretty';
+		font-size: 60px;
+	}
 	* {
 		margin: 0;
 		padding: 0;
@@ -26,6 +37,7 @@
 	}
 	a {
 		text-decoration: none;
+		color: #198754;
 	}
 	
 	.btn {
@@ -33,17 +45,17 @@
 	}
 	.emphasis {
 		text-emphasis: sesame #198754;
-		-webkt-text-emphasis: sesame #e5c046; 
+		-webkt-text-emphasis: sesame #198754; 
 	}
 	
 </style>
 </head>
 <body>
-	<h1 style="text-align: center"><span class="emphasis">관리자</span>에게 <span class="emphasis">문의</span>하기</h1>
+	<h1 style="text-align: center"><span class="emphasis">문의게시판 </span>목록</h1>
 	<div id="container">
 		<div style="margin-right: 130px; text-align: right">
 			<c:if test="${sessionScope.userId != 'admin' }">
-				<button type="button" class="btn btn-secondary" onclick="location.href='/addNewArticle'">문의하기</button>
+				<button type="button" class="btn btn-secondary" style="margin-bottom: 10px;" onclick="location.href='/addNewArticle'">문의하기</button>
 			</c:if>
 		</div>
 		<table>
