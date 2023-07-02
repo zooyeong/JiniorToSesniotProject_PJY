@@ -6,7 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="/resources/css/table.css" rel="stylesheet" type="text/css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 </head>
 <style>
@@ -15,19 +14,117 @@
 	justify-content: center;
 	align-items: center;
 	font-size: 1.8rem;
-	margin: 10px
+	margin: 10px;
 }
+
 .pd {
 	align-items: center;
-	padding: 10px 50px 10px 50px;
+	padding: 110px 50px 110px 50px;
+}
+
+@charset "UTF-8";
+
+@font-face {
+	font-family: 'omyu_pretty';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/omyu_pretty.woff2')
+		format('woff2');
+	font-weight: normal;
+	font-style: normal;
+}
+
+* {
+	text-align: center;
+	font-family: 'omyu_pretty';
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	color: #666;
+}
+
+#table {
+	border-collapse: separate;
+	border-spacing: 0;
+	text-align: center;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, .25);
+	margin: 0 auto;
+}
+
+th {
+	background: #198754;
+	color: #fff;
+	text-align: center;
+	height: 50px;
+	font-size: 20px;
+
+}
+
+th:nth-child(1),
+th:nth-child(8){
+	padding-left: 15px;
+	padding-right: 10px;
+}
+
+th:nth-child(2),
+th:nth-child(3){
+	padding-left: 10px;
+	padding-right: 10px;
+}
+th:nth-child(4),
+th:nth-child(6),
+th:nth-child(7){
+	padding-left: 30px;
+	padding-right: 30px;
+}
+
+th:nth-child(5){
+	padding-left: 70px;
+	padding-right: 70px;
+}
+
+tr th {
+	padding-left: 30px;
+	padding-right: 30px;
+}
+
+tr:first-child th:first-child {
+	border-top-left-radius: 6px;
+}
+
+tr:first-child th:last-child {
+	border-top-right-radius: 6px;
+}
+
+td {
+	border-right: 1px solid #c6c9cc;
+	border-bottom: 1px solid #c6c9cc;
+	height: 50px;
+	
+}
+
+td:first-child {
+	border-left: 1px solid #c6c9cc;
+}
+
+tr:last-child td:first-child {
+	border-bottom-left-radius: 6px;
+}
+
+tr:last-child td:last-child {
+	border-bottom-right-radius: 6px;
 }
 </style>
+
+<%@ include file="header.jsp"%>
 
 <div class="pd">
 <div class="mngrpt">신고 처리</div>
 
 <body>
-	<table>
+	<table id="table">
 		<thead>
 			<tr>
 				<th>NO.</th>
