@@ -18,6 +18,7 @@ h1{
 #ask_for_wrapper{
 	text-align: center;
 	background-color: #F1F1F1;
+	border-radius: 12px;
     width: 500px;
     margin: 0 auto;
     padding-top: 1px;
