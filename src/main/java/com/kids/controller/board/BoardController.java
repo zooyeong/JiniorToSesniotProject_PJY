@@ -1,9 +1,7 @@
 package com.kids.controller.board;
 
 import java.util.List;
-import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -102,12 +100,8 @@ public class BoardController {
 	@GetMapping("/boardList")
 	public String getArticlePage(HttpSession session, Model model, @RequestParam(defaultValue = "1", required = false) int num) throws Exception {
 		
-		//로그인 없이 테스트하기 위해서 직접 아이디 값을 세팅하는 부분임
-		//삭제 예정
-		//String userId = (String)session.getAttribute("userId");
-		//session.setAttribute("userId", "test1234");
-		//session.setAttribute("userId", "test4567");
-		//session.setAttribute("userId", "admin");
+		String userId = (String)session.getAttribute("userId");
+		session.setAttribute("userId", userId);
 		
 		//게시물 총 갯수
 		int count = boardService.getArticleCount();
