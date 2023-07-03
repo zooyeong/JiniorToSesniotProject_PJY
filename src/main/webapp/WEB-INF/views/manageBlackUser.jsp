@@ -116,9 +116,20 @@ tr:last-child td:first-child {
 tr:last-child td:last-child {
 	border-bottom-right-radius: 6px;
 }
+
+td:last-child {
+	padding-left: 15px;	
+	padding-right: 20px;	
+}
 </style>
 
 <%@ include file="header.jsp"%>
+
+<%
+if ( !(userId.equals("admin")) || userId == null) {
+response.sendRedirect("main");
+}
+%> 
 
 <div class="pd">
 <div class="mngrpt">신고 처리</div>

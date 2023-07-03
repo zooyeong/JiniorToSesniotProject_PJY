@@ -65,26 +65,20 @@ th {
 	color: #fff;
 	text-align: center;
 	height: 50px;
-	width: 15px;
 	font-size: 20px;
 }
 
-th:nth-child(1),
-th:nth-child(8){
+th:nth-child(1){
 	padding-left: 15px;
 	padding-right: 15px;
 }
 
-th:nth-child(2),
-th:nth-child(3),
-th:nth-child(4),
-th:nth-child(6),
-th:nth-child(7){
-	padding-left: 20px;
-	padding-right: 20px;
+th:nth-child(2n){
+	padding-left: 50px;
+	padding-right: 50px;
 }
 
-th:nth-child(5){
+th:nth-child(3){
 	padding-left: 70px;
 	padding-right: 70px;
 }
@@ -101,6 +95,10 @@ td {
 	border-right: 1px solid #c6c9cc;
 	border-bottom: 1px solid #c6c9cc;
 	height: 50px;
+	padding-left: 70px;
+	padding-right: 70px;
+}
+	
 }
 
 td:first-child {
@@ -118,16 +116,22 @@ tr:last-child td:last-child {
 
 <%@ include file="header.jsp"%>
 
+<%
+if ( !(userId.equals("admin")) || userId == null) {
+response.sendRedirect("main");
+}
+%> 
+
 <div class="pd">
 <div class="dLog">매칭 상세 - 동행 여부 확인</div>
 
 <body>
-	<table>
+	<table id="table">
 		<thead>
 			<tr>
-				<th>매칭 고유번호</th>
-				<th>스케줄 코드</th>
-				<th>동행 완료 날짜</th>
+				<th>NO.</th>
+				<th>스케줄</th>
+				<th>동행 예정일</th>
 				<th>동행 상태</th>
 			</tr>
 		</thead>

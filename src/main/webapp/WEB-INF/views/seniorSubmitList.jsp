@@ -108,6 +108,12 @@ tr:last-child td:last-child {
 
 <%@ include file="header.jsp"%>
 
+<%
+if ( !(userId.equals("admin")) || userId == null) {
+response.sendRedirect("main");
+}
+%> 
+
 <div class="pd">
 <div class="regSnrList">시니어 인증파일 제출 리스트</div>
 

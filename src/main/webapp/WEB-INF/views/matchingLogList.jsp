@@ -25,7 +25,7 @@
 	padding: 110px 50px 110px 50px;
 }
 
-#idBtn,
+#dtBtn,
 #snrIdBtn,
 #parIdBtn{
 	font-weight: bold;
@@ -81,18 +81,22 @@ th:nth-child(8){
 
 th:nth-child(2),
 th:nth-child(3),
-th:nth-child(4),
 th:nth-child(6),
-th:nth-child(7),
-th:nth-child(8),
 th:nth-child(9){
 	padding-left: 20px;
 	padding-right: 20px;
 }
 
+th:nth-child(4),
 th:nth-child(5){
-	padding-left: 70px;
-	padding-right: 70px;
+	padding-left: 40px;
+	padding-right: 40px;
+}
+
+th:nth-child(7),
+th:nth-child(8){
+	padding-left: 50px;
+	padding-right: 50px;
 }
 
 tr:first-child th:first-child {
@@ -123,6 +127,12 @@ tr:last-child td:last-child {
 </style>
 
 <%@ include file="header.jsp"%>
+
+<%
+if ( !(userId.equals("admin")) || userId == null) {
+response.sendRedirect("main");
+}
+%> 
 
 <div class="pd">
 <div class="mLog">매칭 이력</div>

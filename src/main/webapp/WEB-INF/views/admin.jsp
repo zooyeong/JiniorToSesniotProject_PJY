@@ -44,6 +44,10 @@
 	align-items: center;
 	padding: 110px 100px 10px 100px;
 }
+
+.card-body {
+	font-size: 15px;
+}
 #regSnr,
 #mngRpt,
 #lgLst {
@@ -54,10 +58,16 @@
 
 <%@ include file="header.jsp"%>
 
+<%
+if ( !(userId.equals("admin")) || userId == null) {
+response.sendRedirect("main");
+}
+%> 
+
+<body>
 <div class="pd">
 <div class="admin">관리자 페이지</div>
 
-<body>
 	<div class="row row-cols-1 row-cols-md-3 g-4">
 		<div class="col">
 			<div class="card">

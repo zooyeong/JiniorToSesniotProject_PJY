@@ -117,6 +117,12 @@ tr:last-child td:last-child {
 
 <%@ include file="header.jsp"%>
 
+<%
+if ( !(userId.equals("admin")) || userId == null) {
+response.sendRedirect("main");
+}
+%> 
+
 <div class="pd">
 <div class="rptList">신고 목록</div>
 

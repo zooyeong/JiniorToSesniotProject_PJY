@@ -90,6 +90,7 @@ tr:first-child th:last-child {
 td {
 	border-right: 1px solid #c6c9cc;
 	border-bottom: 1px solid #c6c9cc;
+	font-size : 15px;
 }
 
 td:first-child {
@@ -103,9 +104,19 @@ tr:last-child td:first-child {
 tr:last-child td:last-child {
 	border-bottom-right-radius: 6px;
 }
+
+.tdInside{
+	font-size: 17px;
+}
 </style>
 
 <%@ include file="header.jsp"%>
+
+<%
+if ( !(userId.equals("admin")) || userId == null) {
+response.sendRedirect("main");
+}
+%> 
 
 <div class="pd">
 <div class="regSnr">시니어 등록 페이지</div>
@@ -133,12 +144,12 @@ tr:last-child td:last-child {
 					<td><img
 						src="${pageContext.request.contextPath}/image/Certification/${vlist.cmnpicture}"
 						width="150" height="200" onclick="window.open(this.src)" /></td>
-					<td>${vlist.id}</td>
-					<td><c:choose>
+					<td><span class="tdInside">${vlist.id}</span></td>
+					<td><span class="tdInside"><c:choose>
 							<c:when test="${vlist.verificationStatus eq 'N'}">미인증</c:when>
 							<c:when test="${vlist.verificationStatus eq 'Y'}">인증</c:when>
 							<c:when test="${vlist.verificationStatus eq 'Rejected'}">인증거절</c:when>
-						</c:choose></td>
+						</c:choose></span></td>
 
 					<td><c:choose>
 							<c:when
