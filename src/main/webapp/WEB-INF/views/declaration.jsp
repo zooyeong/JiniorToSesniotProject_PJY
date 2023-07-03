@@ -54,8 +54,8 @@ border-radius: 12px;
         <input class="input1" type="text" name="name" value="${name}" readonly="readonly">
         </div>
         <br><br>
-        <label for="reportedReason">신고 사유</label><br>
-        <textarea style="border-radius:12px;" name="reportedReason" id="reportedReason" cols="50" rows="20" required></textarea><br>
+        <label for="reportedReason" >신고 사유</label><br>
+        <textarea style="border-radius:12px;" name="reportedReason" id="reportedReason" cols="50" rows="20" required  placeholder="신고사유는 6하원칙에 맞게 작성 부탁드립니다."></textarea><br>
         <button type="submit">신고</button>
         </div>
     </form>

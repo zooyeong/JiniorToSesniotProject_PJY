@@ -130,7 +130,7 @@
 	    </button>
 	</form>
 	
-	<img class="profileimage1" src="${pageContext.request.contextPath}/image/profile/${parentsImg.fileName}"/>
+	<img class="profileimage1" src="${pageContext.request.contextPath}/image/profile/${parentsImg.fileName}" onerror="this.onerror=null;this.src='${pageContext.request.contextPath}/image/profile/noprofile1.png?v=1';"/>
 	
 	<div class="profile1">
 	<p>${seniorDetail.name}
