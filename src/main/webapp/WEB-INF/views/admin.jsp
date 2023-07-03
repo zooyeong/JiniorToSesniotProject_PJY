@@ -13,6 +13,25 @@
 </head>
 
 <style>
+@charset "UTF-8";
+
+@font-face {
+	font-family: 'omyu_pretty';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/omyu_pretty.woff2')
+		format('woff2');
+	font-weight: normal;
+	font-style: normal;
+}
+
+* {
+	text-align: center;
+	font-family: 'omyu_pretty';
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
 .admin {
 	display: flex;
 	justify-content: center;
@@ -23,18 +42,36 @@
 
 .pd {
 	align-items: center;
-	padding: 10px 100px 10px 100px;
+	padding: 110px 100px 10px 100px;
+}
+
+.card-body {
+	font-size: 15px;
+}
+#regSnr,
+#mngRpt,
+#lgLst {
+	font-size: 25px;
+	height:50px;
 }
 </style>
 
+<%@ include file="header.jsp"%>
+
+<%
+if ( !(userId.equals("admin")) || userId == null) {
+response.sendRedirect("main");
+}
+%> 
+
+<body>
 <div class="pd">
 <div class="admin">관리자 페이지</div>
 
-<body>
 	<div class="row row-cols-1 row-cols-md-3 g-4">
 		<div class="col">
 			<div class="card">
-				<button class="btn btn-success"
+				<button id="regSnr" class="btn btn-success"
 					onclick="location.href ='verifySenior'">시니어 등록 관리</button>
 				<div class="card-body">
 					<p class="card-text">
@@ -47,12 +84,12 @@
 		</div>
 		<div class="col">
 			<div class="card">
-				<button class="btn btn-success"
+				<button id="mngRpt" class="btn btn-success"
 					onclick="location.href ='reportedList'">신고 관리</button>
 				<div class="card-body">
 					<p class="card-text">
 						<br>부모 사용자가 신고한 내역을 확인하고, 신고 사유를 파악하여 '신고 반려' 처리를 하거나 해당 시니어
-						사용자 '경고' 처리를 할 수 있습니다. 2회 이상 경고가 누적된 경우에는 '블랙 회원 등록' 기능로 서비스 접근
+						사용자 '경고' 처리를 할 수 있습니다. 2회 이상 경고가 누적된 경우에는 '블랙 회원 등록' 기능으로 서비스 접근
 						권한을 제한합니다. <br>
 						<br>
 					</p>
@@ -61,7 +98,7 @@
 		</div>
 		<div class="col">
 			<div class="card">
-				<button class="btn btn-success"
+				<button id="lgLst" class="btn btn-success"
 					onclick="location.href ='matchingLogList'">매칭 / 동행 이력 조회</button>
 				<div class="card-body">
 					<p class="card-text">

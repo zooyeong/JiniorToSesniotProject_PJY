@@ -20,28 +20,115 @@
 	justify-content: center;
 	align-items: center;
 	font-size: 1.8rem;
-	margin: 10px
+	margin: 10px;
 }
 
 .pd {
 	align-items: center;
-	padding: 10px 100px 10px 100px;
+	padding: 110px 50px 110px 50px;
 }
 
+#idBtn {
+	font-weight: bold;
+	color: green;
+}
 
+@charset "UTF-8";
+
+@font-face {
+	font-family: 'omyu_pretty';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/omyu_pretty.woff2')
+		format('woff2');
+	font-weight: normal;
+	font-style: normal;
+}
+
+* {
+	text-align: center;
+	font-family: 'omyu_pretty';
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	color: #666;
+}
+
+#table {
+	border-collapse: separate;
+	border-spacing: 0;
+	text-align: center;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, .25);
+	margin: 0 auto;
+}
+
+th {
+	background: #198754;
+	color: #fff;
+	text-align: center;
+	height: 50px;
+	font-size: 20px;
+	padding-left: 30px;
+	
+}
+
+tr th {
+	padding-left: 30px;
+	padding-right: 30px;
+}
+
+tr:first-child th:first-child {
+	border-top-left-radius: 6px;
+}
+
+tr:first-child th:last-child {
+	border-top-right-radius: 6px;
+}
+
+td {
+	border-right: 1px solid #c6c9cc;
+	border-bottom: 1px solid #c6c9cc;
+	font-size : 15px;
+}
+
+td:first-child {
+	border-left: 1px solid #c6c9cc;
+}
+
+tr:last-child td:first-child {
+	border-bottom-left-radius: 6px;
+}
+
+tr:last-child td:last-child {
+	border-bottom-right-radius: 6px;
+}
+
+.tdInside{
+	font-size: 17px;
+}
 </style>
+
+<%@ include file="header.jsp"%>
+
+<%
+if ( !(userId.equals("admin")) || userId == null) {
+response.sendRedirect("main");
+}
+%> 
 
 <div class="pd">
 <div class="regSnr">시니어 등록 페이지</div>
 
 <body>
-	<table>
+	<table id="table">
 		<thead>
 			<tr>
 				<th>신분증</th>
 				<th>범죄이력</th>
 				<th>시니어아이디</th>
-				<th>인증여부상태</th>
+				<th>인증여부</th>
 				<th></th>
 				<th></th>
 
@@ -57,12 +144,12 @@
 					<td><img
 						src="${pageContext.request.contextPath}/image/Certification/${vlist.cmnpicture}"
 						width="150" height="200" onclick="window.open(this.src)" /></td>
-					<td>${vlist.id}</td>
-					<td><c:choose>
+					<td><span class="tdInside">${vlist.id}</span></td>
+					<td><span class="tdInside"><c:choose>
 							<c:when test="${vlist.verificationStatus eq 'N'}">미인증</c:when>
 							<c:when test="${vlist.verificationStatus eq 'Y'}">인증</c:when>
 							<c:when test="${vlist.verificationStatus eq 'Rejected'}">인증거절</c:when>
-						</c:choose></td>
+						</c:choose></span></td>
 
 					<td><c:choose>
 							<c:when
@@ -94,8 +181,8 @@
 		</tbody>
 	</table>
 	<br>
-	
-	<button type="button" style="margin-left: 150px;" class="btn btn-secondary"
+
+	<button type="button" class="btn btn-secondary"
 		onclick="location.href='verifySenior'">전체 인증 제출 목록으로 돌아가기</button>
 		
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
