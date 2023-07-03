@@ -15,6 +15,14 @@
 	width: 100%;
 	height: 100%;
 }
+
+	textarea{
+		resize: none;
+	}
+
+
+
+
 </style>
 
 
@@ -45,23 +53,59 @@
 			<br> 이메일<br> <input type="text" id="email" name="email"><br>
 
 			<!-- 이전 페이지에서 부모 버튼 누르면 "PAR"입력, 시니어 누르면 "SNR" 입력됨. 확인 후 hidden할 것임. -->
-
-
 				<input type="text" class="user_code" id="user_code" name="userCode"
 					value="SNR">
 				<input type="date" id="regDate" name="regDate">
+	<p>자기소개_선택사항입니다.</p>
+	<textarea rows="20" cols="150" id="info" name="info"></textarea><br>
+	<p>희망지역_선택사항입니다.</p>
+	<input type="text" id="area" name="area" >
+	
+	<p>스케줄 : </p>
+			<div id="snrTime" class="SnrTime" onsubmit="handleSubmit(event)">
+				<h2>* 픽업시간</h2>
+				<p>* 오전 09:00 ~ 12:00</p>
+				<p>* 오후 14:00 ~ 18:00</p>
+				
+								
+				<input type="checkbox" class="schedule" onclick="toggle()" value = "1A" >월요일 오전
+				<input type="hidden" name ="scheduleCode" value = "N" >
+				<br>
+				<input type="checkbox" class="schedule" onclick="toggle()" value = "1B" >월요일 오후
+				<input type="hidden" name ="scheduleCode" value = "N" >
+				<br>
+				<input type="checkbox" class="schedule" onclick="toggle()" value = "2A" >화요일 오전 
+				<input type="hidden" name ="scheduleCode" value = "N" >
+				<br>				
+				<input type="checkbox" class="schedule" onclick="toggle()" value = "2B" >화요일 오후 
+				<input type="hidden" name ="scheduleCode" value = "N" >
+				<br>
+				<input type="checkbox" class="schedule" onclick="toggle()" value = "3A" >수요일 오전
+				<input type="hidden" name ="scheduleCode" value = "N" >
+				<br>
+				<input type="checkbox" class="schedule" onclick="toggle()" value = "3B" >수요일 오후 
+				<input type="hidden" name ="scheduleCode" value = "N" >
+				<br>
+				<input type="checkbox" class="schedule" onclick="toggle()" value = "4A" >목요일 오전 
+				<input type="hidden" name ="scheduleCode" value = "N" >
+				<br>
+				<input type="checkbox" class="schedule" onclick="toggle()" value = "4B" >목요일 오후 
+				<input type="hidden" name ="scheduleCode" value = "N" >
+				<br>
+				<input type="checkbox" class="schedule" onclick="toggle()" value = "5A" >금요일 오전 
+				<input type="hidden" name ="scheduleCode" value = "N" >
+				<br>
+				<input type="checkbox" class="schedule" onclick="toggle()" value = "5B" >금요일 오후 
+				<input type="hidden" name ="scheduleCode" value = "N" ><br>
+	
+			</div>	
+			
 
-
-			<!-- 부모 누르면 parForm 가져오고 시니어 누르면 snrForm 가져오기 -->
-
-			<c:if test="${type == 'snr'}">
-				<%@ include file="SnrForm.jsp"%>
-			</c:if>
 			<br> 약관
 			<%@ include file="agreementBox.jsp"%>
 
-			<input type="button" onclick="goMainPage()" value="취소"> <input
-				type="button" onclick="checkValueAndSignUp()" value="가입"><br>
+			<input type="button" onclick="goMainPage()" value="취소"> 
+			<input type="button" onclick="checkValueAndSignUp()" value="가입"><br>
 
 		</form>
 	</div>
@@ -70,9 +114,33 @@
 
 	<script>
 
+	
+	function toggle(){
+		let checkboxes = document.querySelectorAll('.schedule');
+		
+		for (var i=0; i<checkboxes.length; i++){
+			checkboxes[i].addEventListener('change', function(event)
+	        {
+	            if (event.target.checked) {
+	                event.target.nextElementSibling.value = "Y";
+	                
+	            }else{
+	                event.target.nextElementSibling.value = "N";
+	            }
+	        });
+	    }
+	};
+//-------------------------------------------
+	
+// --------------------------------------------------
+	
 	//회원가입 화면의 입력값들을 검사함.
 	function checkValueAndSignUp(){
-		
+	
+
+		 
+//----------------------------------------------
+
 		var id = document.querySelector('#id').value;
 
 		var idDuplication = document.querySelector('#idDuplication').value;
@@ -89,16 +157,11 @@
 		var smsPass = document.querySelector('#smsPass').value;
 		var postCode = document.querySelector('#postcode').value;
 		var address = document.querySelector('#address').value;
-		
-/* 		var c_name = document.querySelector('#c_name').value;
-		var birthYear = document.querySelector('#birthYear').value;
-		var personality = document.querySelector('#personality').value; */
-		
-		
+
 		var agree_code_01 =document.querySelector('#agree_code_01').checked;
 		var agree_code_02 = document.querySelector('#agree_code_02').checked;
-//		var agree_code_03 = document.querySelector('#agree_code_03');
-		
+
+// --------------------------------------------------
 
 		if(!id ){
 			console.log("아이디 : " + id );
@@ -176,9 +239,7 @@
 				alert("주소를 입력하세요.")
 				return false;
 			}
-////
-			
-			////
+
 			else if(!agree_code_01 || !agree_code_02 ){
 				console.log("1번약관 동의 : " + agree_code_01 + "/ 2번약관 동의 : " + agree_code_02 );
 				
@@ -186,17 +247,12 @@
 				return false;
 			}
 			else {
-// 		        document.userInfo.action = "/insertUserInfo";
-				alert(postCode);
+
 				alert("회원가입이 완료되었습니다. 로그인 페이지로 이동합니다.");
 		        document.userInfo.submit();
 		    }
 	}
-	// 취소 버튼 클릭시 첫화면으로 이동(메인페이지랑 생성하면 수정해서 연결하기)
-	// function goMainPage() {
-	// 	location.href = "메인페이지jsp";
-	// }
-
+// --------------------------------------------------
 	// 아이디 중복체크 화면open
 	function openIdChk(){
 		window.name = "parentForm";
@@ -216,6 +272,7 @@
 		function goMainPage() {
 			location.href = "/testMain";
 		}
+// --------------------------------------------------
 
 		
 </script>

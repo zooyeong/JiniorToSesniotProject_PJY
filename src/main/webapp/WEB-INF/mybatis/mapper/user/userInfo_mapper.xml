@@ -22,21 +22,22 @@
 		values ( #{id}, #{CName}, #{birthYear}, #{CGender}, #{personality}, #{etc})
 	</insert> 
 	
-<!--  		<insert id="insertUser2" parameterType="UserInfo_Dto">
-		insert into USER_INFO 유저 회원가입 기본저장
-		values ( #{id} , #{password}, #{name} ,#{birthday},#{phoneNumber},
-		#{postCode},#{address},#{detailAddress},#{extraAddress},#{gender},
-		#{email},#{userCode},#{regDate})
-	</insert> --> 
  	
  	
  	<insert id="insert_senior_userInfo" parameterType="UserInfo_Dto">
 		insert into SNR <!-- 시니어가입 폼 -->
 		<!-- 컬럼명 -->
 		(id,info,area)
-		
 		values ( #{id}, #{info}, #{area})
-	</insert>  	
+		</insert>  	
+		
+		<insert id="insert_senior_schedule" parameterType="hashMap">
+		<!-- 시니어 스케줄 -->
+		insert into senior_enable_schedule
+		<!-- 컬럼명 -->
+		values ( #{id}, #{real_scheduleCode}, #{scheduleCode}, #{scheduleCode})
+		</insert> 
+		
  	
  	
 		<insert id="insert_agreement_userInfo" parameterType="UserInfo_Dto">

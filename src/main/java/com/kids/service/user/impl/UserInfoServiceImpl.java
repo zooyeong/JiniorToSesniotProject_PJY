@@ -2,6 +2,8 @@ package com.kids.service.user.impl;
 
 
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -91,5 +93,17 @@ public class UserInfoServiceImpl implements UserInfoService {
     	UserInfo_Dto result = userInfo_dao.logInChk(lgChk);
         return result;
     }
+
+//	@Override
+//	public int insertSnrSchedule(UserInfo_Dto userInfo_dto) {
+//		// TODO Auto-generated method stub
+//		return userInfo_dao.insertSnrSchedule(userInfo_dto);
+//	}
+
+	@Override
+	public int insertSnrSchedule(Map<String, String> map) {
+		// TODO Auto-generated method stub
+		return userInfo_dao.insertSnrSchedule(map);
+	}
 	
 }
