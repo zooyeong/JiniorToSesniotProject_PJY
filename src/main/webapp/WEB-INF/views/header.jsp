@@ -84,7 +84,7 @@
 .idbox1 {
 	text-align: center;
 	position: absolute;
-	top: -1px;
+	bottom: 8px;
 	color: white;
 	width: 100px;
 	height: 33px;
@@ -99,7 +99,6 @@
 
 .header_logo {
 	position: relative;
-	left: 7%;
 }
 
 </style>
@@ -142,18 +141,18 @@
 			<div class="label">
 				로그인<img src="" alt="">
 			</div>
-<<<<<<< HEAD
+
         <% if (userId == null) { %>
         <div class="store_btn font-8">
             <a class="store_btn font-8" href="" >
                 <div class="idbox1">
-                <div class="label" style="position: relative; top: 6px;">회원가입</div>
+                <div class="label" style="position: relative; top: 50%;">회원가입</div>
                 </div>
             </a>
         </div>
         <% } %>
     </div>
-	
+            
     <div class="black-box" id="blackBox">
     		<% if(userCode != null) {%>
 	    		<% if (userCode.equals("SNR")) { %>
@@ -164,7 +163,7 @@
 	            <% } %>
             <% } %>
         <a href="#" onclick="logout()"><div class="white-box"><br>로그아웃</div> </a>
-=======
+
 		</a>
 		<% } else { %>
 
@@ -178,7 +177,6 @@
 					<%@include file="countMail.jsp"%>
 				</div>
 				<% } %>
->>>>>>> develop_KDH
 
 
 
