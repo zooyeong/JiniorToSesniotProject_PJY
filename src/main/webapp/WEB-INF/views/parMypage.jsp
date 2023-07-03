@@ -63,7 +63,7 @@ input:checked + .label::before{
 		<input type="text" name="phoneNumber" value="${parentsDetail.phoneNumber}" disabled><br>
 		
 		<label>주소</label><br>
-		<input type="text" name="adress" value="${parentsDetail.adress}"><br>
+		<%@ include file="address.jsp"%>
 		
 		<label>이메일주소</label><br>
 		<input type="email" name="email" value="${parentsDetail.email}"><br>
@@ -77,7 +77,7 @@ input:checked + .label::before{
 		<c:if test="${parentsDetail.CGender eq 'M'}">
 			<span>남여</span>
 		</c:if>
-		<span>${2023 - fn:substring(parentsDetail.CAge, 0, 4)}세</span><br>
+		<span>${2023 - fn:substring(parentsDetail.birthyear, 0, 4)}세</span><br>
 		<br>
 		<textarea cols="50" rows="10" name="personality">${parentsDetail.personality}</textarea><br>
 	</p>	

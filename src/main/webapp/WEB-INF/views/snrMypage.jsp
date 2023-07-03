@@ -63,7 +63,7 @@ input:checked + .label::before{
 		<input type="text" name="phoneNumber" value="${seniorDetail.phoneNumber}" disabled><br>
 		
 		<label>주소</label><br>
-		<input type="text" name="adress" value="${seniorDetail.adress}"><br>
+		<%@ include file="address.jsp"%>
 		
 		<label>이메일주소</label><br>
 		<input type="email" name="email" value="${seniorDetail.email}"><br>
