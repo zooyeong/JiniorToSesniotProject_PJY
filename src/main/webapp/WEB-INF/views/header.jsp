@@ -41,11 +41,11 @@
     </div>
 
     <div class="header_btn">
-        <a class="down_btn font-8" href="http://localhost:8080/sampleSession">
+        <a class="down_btn font-8" href="http://localhost:8080/logInForm">
             <div class="a_bg"></div>
-            <div class="label">로그인<img src="" alt=""></div>
+            <div class="label">로그인<img src="" alt="" ></div>
         </a>
-        <a class="store_btn font-8" href="" target="_blank">
+        <a class="store_btn font-8" href="http://localhost:8080/signUpType" target="_blank">
             <div class="a_bg"></div>
             <div class="label">회원가입</div>
         </a>

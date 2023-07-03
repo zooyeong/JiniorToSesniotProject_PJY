@@ -31,10 +31,10 @@ public class UserInfoFormController {
 	
     
 //	----[회원가입 하기 전 회원유형 선택하기]----   
-    @RequestMapping("/typeBtn_test")
+    @RequestMapping("/signUpType")
     public String typeBtn_test() {
     	
-    	return "TypeBtn_test";
+    	return "signUpType";
     }
     
     
@@ -135,11 +135,6 @@ public class UserInfoFormController {
 		  }
 	
 	//회원가입 중 취소하면 메인페이지로 이동
-	@RequestMapping("/testMain")
-	public String testMain() {
-		
-		return "testMain";
-	}
 //----------------		----------------		----------------		----------------		----------------
 	
 	//로그인 페이지
@@ -153,21 +148,26 @@ public class UserInfoFormController {
 
 	
 	//부모 로그인성공 메인페이지
-	@RequestMapping("/testMainPar")
+	@RequestMapping("/mainPar")
 	public String testMainPar() {
-		return "testMainPar";
+		return "mainPar";
 	}
 
 	//시니어 로그인성공 메인페이지
-	@RequestMapping("/testMainSnr")
+	@RequestMapping("/ainSnr")
 	public String testMainSnr() {
-		return "testMainSnr";
+		return "mainSnr";
 	}
 	
 
 	@RequestMapping("/login")
 	public String logInCheck(UserInfo_Dto userInfo_dtoFromForm, HttpServletRequest request ) {
 	    UserInfo_Dto userInfo_dto = userInfoService.logInCheck(userInfo_dtoFromForm);
+	    
+	    if(userInfo_dto == null) {
+	    	
+	    	return "redirect:/logInFail";
+	    }
 	    
 	    String userCode = userInfo_dto.getUserCode();
 	    
@@ -180,15 +180,22 @@ public class UserInfoFormController {
 	    
 	    if(userCode.equals("PAR")) {
 	    	
-	    	return "redirect:/testMainPar";	    	
+	    	return "redirect:/mainPar";	    	
 	    }
 	    else if (userCode.equals("SNR")) {
-	    	return "redirect:/testMainSnr";	  
+	    	
+	    	return "redirect:/mainSnr";	  
 	    }else if (userCode.equals("ADM")) {
-	    	return "redirect:/testMainAdm";
-	    }else {
+	    	return "redirect:/mainAdm";
+	    }else{
 	    	return "redirect:/logInForm";
 	    }
+	   
+	}
+	
+	@GetMapping("/logInFail")
+	public String logInFail() {
+		return "logInFail";
 	}
 //----------------		----------------		----------------		----------------		----------------
 }

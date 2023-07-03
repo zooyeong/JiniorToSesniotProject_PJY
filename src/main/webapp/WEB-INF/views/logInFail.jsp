@@ -7,7 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>testMain</h1>
-	아 제발 
+	<script>
+	alert("아이디 혹은 비밀번호를 다시 확인해주세요.");
+	location.href="/logInForm";
+	
+	</script>
 </body>
 </html>

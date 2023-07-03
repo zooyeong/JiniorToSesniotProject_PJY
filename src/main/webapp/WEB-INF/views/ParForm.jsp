@@ -26,7 +26,7 @@ textarea{
 	남자<input type="radio" id="c_genderM" name="CGender" value="M" checked>여자<input type="radio" id="c_genderF" name="CGender" value="F">
 	<br>
 	자녀성격<br>
-	<textarea rows="20" cols="150" class="personality" id="personality" name="personality" 
+	<textarea rows="20" cols="150" class="personality" id="personality" name="personality" style="width: 500px; height: 200px;"
 	placeholder="어린이친구는 어떤 성격인가요? 자유롭게 적어주세요. 예시: '초반에 낯을 많이 가려서 말수가 적어요. 하지만 친해지면 활발하고 장난도 많이 친답니다 ^.^ ', '활달하고 호기심이 많아서 한 곳에 집중하지 못하고 주의가 산만합니다. 등하교 시간이 늦어지지 않도록 지도편달 바랍니다.' " ></textarea>
 	<br>
 	기타사항<br>

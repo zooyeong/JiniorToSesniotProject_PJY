@@ -7,6 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>부모 메인페이지</h1>
+	<h1>관리자 메인</h1>
+	<script>
+	alert("코코노아에 오신 걸 환영합니다!");
+	
+	</script>
 </body>
 </html>

@@ -270,7 +270,7 @@
 
 		//취소버튼 누르면 메인페이지로 이동
 		function goMainPage() {
-			location.href = "/testMain";
+			location.href = "/main";
 		}
 // --------------------------------------------------
 

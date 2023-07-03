@@ -53,9 +53,9 @@
 			<input type="date" id="regDate" name="regDate">
 			
 
-			<c:if test="${type == 'par'}">
+			
 				<%@ include file="ParForm.jsp"%>
-			</c:if>
+			
 			<br> 약관
 			<%@ include file="agreementBox.jsp"%>
 
@@ -89,14 +89,9 @@
 		var postCode = document.querySelector('#postcode').value;
 		var address = document.querySelector('#address').value;
 		
-// 		var c_name = document.querySelector('#CName').value;
-// 		var birthYear = document.querySelector('#birthYear').value;
-// 		var personality = document.querySelector('#personality').value;
-		
-		
 		var agree_code_01 =document.querySelector('#agree_code_01').checked;
 		var agree_code_02 = document.querySelector('#agree_code_02').checked;
-//		var agree_code_03 = document.querySelector('#agree_code_03');
+
 		
 
 		if(!id ){
@@ -208,18 +203,11 @@
 				return false;
 			}
 			else {
-// 		        document.userInfo.action = "/insertUserInfo";
 				alert(postCode);
 				alert("회원가입이 완료되었습니다. 로그인 페이지로 이동합니다.");
 		        document.userInfo.submit();
 		    }
-		
-		
-		
-// 			location.href = "/logInForm";
-// 			return true;
-			
-			
+				
 	}
 
 
@@ -240,7 +228,7 @@
 
 		//취소버튼 누르면 메인페이지로 이동
 		function goMainPage() {
-			location.href = "/testMain";
+			location.href = "/main";
 		}
 
 
