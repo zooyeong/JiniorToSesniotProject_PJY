@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <!DOCTYPE html>
 <html>
@@ -152,7 +153,7 @@ response.sendRedirect("main");
 							<c:when test="${mDetail.scheduleCode eq '5A'}">금요일 오전</c:when>
 							<c:when test="${mDetail.scheduleCode eq '5B'}">금요일 오후</c:when>
 						</c:choose></td>
-					<td>${mDetail.day}</td>
+					<td><c:out value="${fn:substring(mDetail.day, 0, 10)}"/></td>
 					<td>${mDetail.status}</td>
 				</tr>
 			</c:forEach>

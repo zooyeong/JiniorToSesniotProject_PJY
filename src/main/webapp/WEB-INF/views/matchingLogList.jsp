@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <!DOCTYPE html>
 <html>
@@ -83,14 +84,14 @@ th:nth-child(2),
 th:nth-child(3),
 th:nth-child(6),
 th:nth-child(9){
-	padding-left: 20px;
-	padding-right: 20px;
+	padding-left: 30px;
+	padding-right: 30px;
 }
 
 th:nth-child(4),
 th:nth-child(5){
-	padding-left: 40px;
-	padding-right: 40px;
+	padding-left: 20px;
+	padding-right: 20px;
 }
 
 th:nth-child(7),
@@ -159,8 +160,8 @@ response.sendRedirect("main");
 					<td><a id="dtBtn" href="matchingDetailLog?matchingNumber=${mList.matchingNumber}">${mList.matchingNumber}</a></td>
 					<td><a id="snrIdBtn" href="matchingLogList?snrId=${mList.snrId}">${mList.snrId}</a></td>
 					<td><a id="parIdBtn" href="matchingLogList?parId=${mList.parId}">${mList.parId}</a></td>
-					<td>${mList.startDate}</td>
-					<td>${mList.endDate}</td>
+					<td><c:out value="${fn:substring(mList.startDate, 0, 10)}"/></td>
+					<td><c:out value="${fn:substring(mList.endDate, 0, 10)}"/></td>
 					<td><c:choose>
 							<c:when test="${mList.scheduleCode eq '1A'}">월요일 오전</c:when>
 							<c:when test="${mList.scheduleCode eq '1B'}">월요일 오후</c:when>
