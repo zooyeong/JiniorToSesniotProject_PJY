@@ -70,7 +70,7 @@
 <div class="container">
 	<p class="maintext">${parentsDetail.name}님 상세페이지</p>
 	
-	<img class="profileimage1" src="${pageContext.request.contextPath}/image/profile/${parentsImg.fileName}"/>
+	<img class="profileimage1" src="${pageContext.request.contextPath}/image/profile/${parentsImg.fileName}" onerror="this.onerror=null;this.src='/resources/image/no_profile.png';"/>
 	
 	<div class="profile1">
 		<p>${parentsDetail.name}

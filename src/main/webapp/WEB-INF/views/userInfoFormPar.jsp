@@ -53,9 +53,8 @@
 			<input type="date" id="regDate" name="regDate">
 			
 
-			<c:if test="${type == 'par'}">
-				<%@ include file="ParForm.jsp"%>
-			</c:if>
+			<%@ include file="ParForm.jsp"%>
+
 			<br> 약관
 			<%@ include file="agreementBox.jsp"%>
 
