@@ -52,6 +52,7 @@ public class MypageController {
 	}
 	@GetMapping("/parMypage")
 	public String parMypage(Model model) {
+		
 		String id = (String)session.getAttribute("userId");
 		
 		ParentsDetailDto parentsDetail = parentsService.getParentsDetailById(id);
@@ -64,6 +65,7 @@ public class MypageController {
 	}
 	@GetMapping("/snrMypage")
 	public String snrMypage(Model model) {
+		
 		String id = (String)session.getAttribute("userId");
 		
 		ImageFileDTO seniorImg = seniorService.getImgById(id);

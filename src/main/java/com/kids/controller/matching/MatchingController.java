@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -130,7 +131,7 @@ public class MatchingController {
 		System.out.println(result);
 		System.out.println(resultMailSave);
 		
-		return "redirect:/seniorDetail?id="+id; //신청 후 메인페이지로 이동?
+		return "redirect:/seniorDetail?id="+id;
 	}
 	
 	@GetMapping("/mailboxSenior")
@@ -144,7 +145,7 @@ public class MatchingController {
 	}
 	
 	@PostMapping("/acceptMail")
-	public String acceptMail(MailDto mailDto) {
+	public String acceptMail(MailDto mailDto, HttpServletRequest request) {
 		
 		mailDto.setStatus("수락");
 		matchingService.updateMailStatus(mailDto);
@@ -234,11 +235,20 @@ public class MatchingController {
 			int resultMatchingDetail = matchingService.saveMathingDetail(matchingDetailDto);
 		}
 		
-		return "redirect:/countMail";
+		/* 변화된 countMail 상태 session에 다시 저장 */
+		String userId = (String)session.getAttribute("userId");
+
+		int cnt = matchingService.countSeniorMailById((String)session.getAttribute("userId"));
+		List<MailDto> mail = matchingService.getSeniorMailById(userId);
+		session.setAttribute("count", cnt);
+		session.setAttribute("mail", mail);
+		
+		String referer = request.getHeader("Referer");
+	    return "redirect:"+ referer;
 	}
 	
 	@PostMapping("/refuseMail")
-	public String refuseMail(MailDto mailDto) {
+	public String refuseMail(MailDto mailDto, HttpServletRequest request) {
 		
 		mailDto.setStatus("거절");
 		matchingService.updateMailStatus(mailDto);
@@ -255,7 +265,16 @@ public class MatchingController {
 		matchingDto.setMatchingNumber(mailDto.getMatchingNumber());
 		int resultMatchingMStatus = matchingService.updateMatchingMStatus(matchingDto);
 		
-		return "redirect:/countMail";
+		/* 변화된 countMail 상태 session에 다시 저장 */
+		String userId = (String)session.getAttribute("userId");
+
+		int cnt = matchingService.countSeniorMailById((String)session.getAttribute("userId"));
+		List<MailDto> mail = matchingService.getSeniorMailById(userId);
+		session.setAttribute("count", cnt);
+		session.setAttribute("mail", mail);
+		
+		String referer = request.getHeader("Referer");
+	    return "redirect:"+ referer;
 	}
 	
 	@GetMapping("/mailboxParents")
@@ -268,31 +287,32 @@ public class MatchingController {
 		return "mailboxParents";
 	}
 	
-	@GetMapping("/countMail")
-	public String countMail(Model model){
-		
-		String userCode = (String)session.getAttribute("userCode");
-		String userId = (String)session.getAttribute("userId");
-		System.out.println(userCode);
-		System.out.println(userId);
-		if(userCode.equals("PAR")) {
-			
-			int cnt = matchingService.countParentsMailById(userId);
-			List<MailDto> mail = matchingService.getParentsMailById(userId);
-			model.addAttribute("count", cnt);
-			model.addAttribute("mail", mail);
-			
-		}else if(userCode.equals("SNR")) {
-			
-			int cnt = matchingService.countSeniorMailById((String)session.getAttribute("userId"));
-			List<MailDto> mail = matchingService.getSeniorMailById(userId);
-			model.addAttribute("count", cnt);
-			model.addAttribute("mail", mail);
-			
-		}
-		model.addAttribute("userCode", userCode);
-		return "countMail";
-	}
+//	@GetMapping("/countMail")
+//	public String countMail(Model model){
+//		
+//		String userCode = (String)session.getAttribute("userCode");
+//		String userId = (String)session.getAttribute("userId");
+//		System.out.println(userCode);
+//		System.out.println(userId);
+//		if(userCode.equals("PAR")) {
+//			
+//			int cnt = matchingService.countParentsMailById(userId);
+//			List<MailDto> mail = matchingService.getParentsMailById(userId);
+//			model.addAttribute("count", cnt);
+//			model.addAttribute("mail", mail);
+//			
+//		}else if(userCode.equals("SNR")) {
+//			
+//			int cnt = matchingService.countSeniorMailById((String)session.getAttribute("userId"));
+//			List<MailDto> mail = matchingService.getSeniorMailById(userId);
+//			model.addAttribute("count", cnt);
+//			model.addAttribute("mail", mail);
+//			System.out.println("이거 count"+cnt);
+//			
+//		}
+//		model.addAttribute("userCode", userCode);
+//		return "countMail";
+//	}
 	
 	@GetMapping("/scheduleList")
 	public String scheduleList(Model model) {

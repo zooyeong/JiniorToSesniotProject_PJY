@@ -154,9 +154,16 @@ left: 7%;
         </div>
         <% } %>
     </div>
-
+	
     <div class="black-box" id="blackBox">
-            <a href="/edit-profile"><div class="white-box"><br>마이페이지</div></a>
+    		<% if(userCode != null) {%>
+	    		<% if (userCode.equals("SNR")) { %>
+	            <a href="/snrMypage"><div class="white-box"><br>마이페이지</div></a>
+	            <% } %>
+	            <% if (userCode.equals("PAR")) { %>
+	            <a href="/parMypage"><div class="white-box"><br>마이페이지</div></a>
+	            <% } %>
+            <% } %>
         <a href="#" onclick="logout()"><div class="white-box"><br>로그아웃</div> </a>
 
     </div>
