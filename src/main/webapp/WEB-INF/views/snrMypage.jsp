@@ -26,7 +26,7 @@
 		
 		<div class="smallContainer">
 		<p id="pw_p">비밀번호 <button type="button" onclick="location.href='/changePassword'">수정</button></p><br>
-		
+		<p id="pw_p">시니어 추가인증 <button type="button" onclick="location.href='/certification'" style=" width: 130px;">인증하러가기</button></p><br>
 		<label>전화번호</label><br>
 		<input type="text" name="phoneNumber" value="${seniorDetail.phoneNumber}" disabled><br>
 		

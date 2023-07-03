@@ -36,14 +36,14 @@ public class CertificationController {
         String userId = (String) session.getAttribute("userId");
         if (userId == null) {
             // Redirect to login page or handle the case when user is not logged in
-            return "redirect:/sampleSession";
+            return "redirect:/logInForm";
         }
         return "certification";
     }
 
-    @GetMapping("/sampleSession")
+    @GetMapping("/logInForm")
     public String sampleSession() {
-        return "sampleSession";
+        return "logInForm";
     }
 
     @PostMapping("/upload")
@@ -55,7 +55,7 @@ public class CertificationController {
             String userId = (String) session.getAttribute("userId");
             if (userId == null) {
                 // Redirect to login page or handle the case when user is not logged in
-                return "redirect:/sampleSession";
+                return "redirect:/logInForm";
             }
 
             String idcFileName = idcFile.getOriginalFilename();

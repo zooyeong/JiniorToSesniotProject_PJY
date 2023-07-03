@@ -1,0 +1,32 @@
+@charset "UTF-8";
+    @font-face {
+    font-family: 'omyu_pretty';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/omyu_pretty.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+*{
+font-family: 'omyu_pretty';}
+       footer {
+
+    width: 80%;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    z-index: 10;
+    left: 50%;
+    top: 550%;
+    transform: translateX(-50%);
+    min-height: 70px;
+    background: #faf3e6;
+    max-width: 96%;
+    border-radius: 20px 20px 0 0; /* 수정된 부분 */
+    transition: all 0.5s;
+    justify-content: space-between;
+    padding: 0 50px;
+    border: 3px solid rgba(21, 71, 38, 0.15);
+    border-bottom: none;
+}
+	.fontsize{
+	font-size: 18px;
+	}
