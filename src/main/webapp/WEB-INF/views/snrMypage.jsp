@@ -7,74 +7,53 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style>
-input[type="checkbox"]{
-	width: 1px;
-	height: 1px;
-	overflow: hidden;
-/*  	visibility: hidden; */
-}
-/*체크를 안 했을 때*/
-
-.label::before{
-	display: inline-block;
-    content:"";
-    width: 100px;
-    height: 100px;
-    margin: 5px;
-    background-color: lightgray;
-}
-
-/*체크했을 때*/
-input:checked + .label::before{
-	background-color: yellow;
-} 
-#preview {
-		position:relative;
-		width: 450px;
-		height: 450px;
-		border: 2px solid black;
-		border-radius: 12px;
-		margin-top: 20px;
-		cursor: pointer;
-	}
-	* {
-		text-align: center;
-		}
-</style>
+<link rel="stylesheet" href="/resources/css/mypage_css.css">
 </head>
 <body>
-	<h1>updateMypage</h1>
-	<h1>시니어 마이페이지 진입</h1>
+<%@ include file="header.jsp"%>
+<div class="container">
+	<h1>Mypage</h1>
 	
 	<form action="" method="post" enctype="multipart/form-data">	
-		<p>${seniorDetail.name}님 만${2023 - fn:substring(seniorDetail.birthday, 0, 4)}세</p>
-		<label>프로필사진</label><br>
+		<h1>${seniorDetail.name}님 만${2023 - fn:substring(seniorDetail.birthday, 0, 4)}세</h1>
+
 		<label for="image">     
-                <img class="profileimage" id="preview" src="${pageContext.request.contextPath}/image/profile/${seniorImg.fileName}" onerror="this.onerror=null;this.src='${pageContext.request.contextPath}/image/profile/noprofile1.png?v=1';">
+            <img class="profileimage" id="preview" src="${pageContext.request.contextPath}/image/profile/${seniorImg.fileName}" onerror="this.onerror=null;this.src='${pageContext.request.contextPath}/image/profile/noprofile1.png?v=1';">
         </label>
         <input type="file" name="file" id="image" style="display: none;" onchange="readURL(this)">
         <br>
         <input type="hidden" value="<%= session.getAttribute("userId") %>" name="id"><br>
 		
-		<p>비밀번호 <button type="button" onclick="location.href='/changePassword'">수정</button></p><br>
+		<div class="smallContainer">
+		<p id="pw_p">비밀번호 <button type="button" onclick="location.href='/changePassword'">수정</button></p><br>
 		
 		<label>전화번호</label><br>
 		<input type="text" name="phoneNumber" value="${seniorDetail.phoneNumber}" disabled><br>
 		
 		<label>주소</label><br>
-		<input type="text" name="adress" value="${seniorDetail.adress}"><br>
+		<input type="text" class="postcode input_h" name="postCode" placeholder="우편번호">
+		<input type="button" id="pc_btn" onclick="sample6_execDaumPostcode(event)" value="우편번호 찾기"><br>
+		<input type="text" id="address" class="input_h" name="address" placeholder="주소"><br>
+		<input type="text" class="input_h" name="detailAddress" placeholder="상세주소"><br>
+		<input type="text" class="input_h" name="extraAddress" placeholder="참고항목"><br>
 		
 		<label>이메일주소</label><br>
-		<input type="email" name="email" value="${seniorDetail.email}"><br>
-
-		<label>자기소개</label><br>
-		<textarea cols="50" rows="10" name="info">${seniorDetail.info}</textarea><br>
+		<input type="email" class="input_h" name="email" value="${seniorDetail.email}"><br>
 
 		<label>희망지역</label><br>
-		<input type="text" name="area" value="${seniorDetail.area}"><br>
+		<input type="text" class="input_h" name="area" value="${seniorDetail.area}"><br>
+
+		<label>자기소개</label><br>
+		<textarea cols="55" rows="10" name="info">${seniorDetail.info}</textarea><br>
+
 		
-		<p>스케줄 : </p>
+		<p>희망스케줄</p>
+		<div class="timeContainer">
+			<span id="am">오전(09:00~12:00)</span>
+			<span id="pm">오후(14:00~18:00)</span>
+			<span id="mon">월요일</span><span id="tue">화요일</span><span id="wed">수요일</span>
+			<span id="thur">목요일</span><span id="fri">금요일</span>
+				
 		<c:forEach var="item" items="${seniorEnableSchedule}">
 	
 			<c:set var="code" value="${item.scheduleCode}"/>
@@ -85,30 +64,20 @@ input:checked + .label::before{
 			<input type="hidden" name="status" value="${item.status}">
 			<input type="hidden" name="workStatus" value="N"
 			<c:if test="${fn:contains(workStatus, 'Y')}">disabled</c:if>>
-			<input type="checkbox" onclick="toggle()" id="${item.scheduleCode}" name="workStatus" value="Y" 
+			<input type="checkbox" onclick="toggle()" id="${item.scheduleCode}" class="workStatus" name="workStatus" value="Y" 
 			<c:if test="${fn:contains(workStatus, 'Y')}">checked</c:if>
 			<c:if test="${fn:contains(status, 'Y') && fn:contains(workStatus, 'N')}">disabled</c:if>>
-			<label for="${item.scheduleCode}" class="label"></label>
-	
-			<c:if test="${fn:contains(code, '1')}"><span>월요일</span></c:if>
-			<c:if test="${fn:contains(code, '2')}"><span>화요일</span></c:if>
-			<c:if test="${fn:contains(code, '3')}"><span>수요일</span></c:if>
-			<c:if test="${fn:contains(code, '4')}"><span>목요일</span></c:if>
-			<c:if test="${fn:contains(code, '5')}"><span>금요일</span></c:if>
-			<c:if test="${fn:contains(code, 'A')}"><span>오전</span></c:if>
-			<c:if test="${fn:contains(code, 'B')}"><span>오후</span></c:if>
-<%-- 			<c:if test="${fn:contains(workStatus, 'Y')}"><span>가능</span></c:if> --%>
-<%-- 			<c:if test="${fn:contains(workStatus, 'N')}"><span>불가능</span></c:if> --%>
-
+			<label for="${item.scheduleCode}" class="sc_label"></label>
 		</c:forEach>
-		
-		<button type="reset">되돌리기</button>
-		<button type="submit">수정하기</button>
-		
+		</div>
+		<button type="reset" class="update_btn">되돌리기</button>
+		<button type="submit" class="update_btn">수정하기</button>
+		</div>
 	</form>
-
+</div>
 	
-	
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script src="/resources/js/postcode_js.js"></script>
 	<script>
 		function toggle(){
 			let checkboxes = document.querySelectorAll('input[type=checkbox]');

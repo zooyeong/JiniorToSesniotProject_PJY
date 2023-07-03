@@ -28,23 +28,24 @@
 	margin-top:100px;
 	border: 2px solid black;
 	border-radius: 12px;
-	width: 600px;
-	height: 1000px;
+	width: 900px;
+	
+	display: inline-block;
 	}
   	</style>
 </head>
-<body>
+<body> 
     <h1>추가 인증</h1>
     <div class="formdiv">
     <form id="uploadForm" action="/certification/upload" method="post" enctype="multipart/form-data">
         <h3>신분증사진</h3>
         
         <input class="certification" type="file" name="idcFile" class="picture" onchange="previewImage(this, 'idcPreview')" title="사진 선택" /><br>
-        <img id="idcPreview" src="#" alt="IDC Preview" style="max-width: 300px; display: none;" /><br><br>
+        <img id="idcPreview" src="#" alt="IDC Preview" style="max-width: 300px; max-height: 200px; display: none;" /><br><br>
         
         <h3>범죄이력조회사진</h3>
         <input class="certification bottom" type="file" name="cmnFile" class="picture" onchange="previewImage(this, 'cmnPreview')" title="사진 선택" /><br>
-        <img id="cmnPreview" src="#" alt="CMN Preview" style="max-width: 300px; display: none;" /><br><br>
+        <img id="cmnPreview" src="#" alt="CMN Preview" style="max-width: 300px; max-height: 200px; display: none;" /><br><br>
    
         <input type="submit" value="인증하기" id="uploadButton" disabled style="margin-bottom: 10px;"/>
     </form>

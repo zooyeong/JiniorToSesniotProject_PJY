@@ -4,12 +4,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class ScrollController {
+public class LogoutController {
 
-
-	@RequestMapping("/scroll")
+	@RequestMapping("/logoutproc")
 	public String main() {
-		return "scroll";
+		return "logoutproc";
 	}
 }
-

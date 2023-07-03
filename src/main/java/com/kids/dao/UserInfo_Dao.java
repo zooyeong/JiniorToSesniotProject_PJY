@@ -1,6 +1,7 @@
 package com.kids.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.kids.dto.*;
 
@@ -12,6 +13,7 @@ public interface UserInfo_Dao {
 	
 	public int insertUserPar(UserInfo_Dto userInfo_dto);
 	public int insertUserSnr(UserInfo_Dto userInfo_dto);
+	public int insertSnrSchedule(Map<String, String> map);
 	public int inserAgreement(UserInfo_Dto userInfo_dto);
 	
 	public int idChk(String id);

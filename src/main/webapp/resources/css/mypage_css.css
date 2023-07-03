@@ -1,0 +1,139 @@
+@charset "UTF-8";
+@font-face {
+    font-family: 'omyu_pretty';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/omyu_pretty.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+* {
+	text-align: center;
+	font-family: 'omyu_pretty';
+	margin:0; 
+	padding:0;
+	box-sizing: border-box;
+}
+input[type="checkbox"]{
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+}
+/*체크를 안 했을 때*/
+.sc_label::before{
+	display: inline-block;
+    content:"";
+    width: 150px;
+    height: 100px;
+    margin: 5px;
+    background-color: lightgray;
+    border-radius: 5px;
+}
+/*체크했을 때*/
+input:checked + .sc_label::before{
+	background-color: #01b399;
+} 
+#preview {
+	position:relative;
+	width: 450px;
+	height: 450px;
+	border: 2px solid black;
+	border-radius: 12px;
+	margin-top: 20px;
+	cursor: pointer;
+}
+.container{
+	margin-top: 110px;
+}
+.smallContainer{
+	width: 500px;
+	height: 100%;
+	background-color:#F1F1F1;
+	margin: 0 auto;
+	border-radius: 12px;
+	padding: 24px;
+}
+.postcode{
+    margin-left: 110px;
+    margin-right: 8px
+}
+p, label{
+	font-size: 1.2rem;
+}
+input, textarea{
+    margin-bottom: 10px;
+}
+.timeContainer{
+	background-color: white;
+	border-radius: 10px;
+	position: relative;
+	padding: 30px;
+}
+#am, #pm {
+	position: absolute;
+	top: 10px;
+}
+#mon, #tue, #wed, #thur, #fri{
+	position: absolute;
+	left: 20px;
+}
+#am{
+    left: 100px;
+}
+#pm{
+    left: 270px;
+}
+#mon{
+    top: 80px;
+}
+#tue{
+	top: 195px;
+}
+#wed{
+	top: 310px;
+}
+#thur{
+	top: 425px;
+}
+#fri{
+	top: 540px;
+}
+.smallContainer button, textarea::placeholder, #pc_btn{
+	font-family: 'omyu_pretty';
+}
+#pw_p{
+	margin-left: 50px;
+}
+#pw_p > button{
+    width: 50px;
+    height: 30px;
+    background-color: white;
+    border-radius: 5px;
+}
+#pc_btn{
+    background-color: white;
+    width: 100px;
+    height: 30px;
+    border-radius: 5px;
+}
+.input_h{
+	height: 30px;
+	font-family: 'omyu_pretty';
+}
+textarea{
+    border-radius: 10px;
+    padding: 10px;
+}
+.update_btn{
+	width: 100px;
+    background-color: white;
+    font-size: 1.5rem;
+    height: 50px;
+    margin-top: 30px;
+    border-radius: 10px;
+}
+.change_btn{
+	background-color: white;
+    width: 50px;
+    height: 30px;
+    font-size: 1.2rem;
+    margin-top: 15px;
+}

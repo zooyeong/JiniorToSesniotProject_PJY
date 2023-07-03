@@ -1,6 +1,7 @@
 package com.kids.dao.userInfo.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -95,6 +96,22 @@ public class UserInfoDao_impl implements UserInfo_Dao{
 		UserInfo_Dto result = sqlSessionTemplate.selectOne("userInfo_mapper.logInChk", userInfo_Dto);
 		return result;
 	}
+
+	@Override
+	public int insertSnrSchedule(Map<String, String> map) {
+		// TODO Auto-generated method stub
+		
+		int result = sqlSessionTemplate.insert("userInfo_mapper.insert_senior_schedule", map);
+		
+		return result ;
+		
+	}
+
+//	@Override
+//	public int insertSnrSchedule(Map<String, String> map) {
+//		// TODO Auto-generated method stub
+//		return 0;
+//	}
 
 
 

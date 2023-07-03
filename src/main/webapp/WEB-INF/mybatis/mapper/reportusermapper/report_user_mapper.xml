@@ -10,7 +10,7 @@
         INSERT INTO REPORT_USERS (REPORT_NUM, PARENT_ID, SENIOR_ID, NAME, REPORTED_REASON, REPORT_DATE,
         REPORT_CONFIRM_STATUS, REPORT_COUNT)
         VALUES (#{reportNum}, #{parentId}, #{seniorId}, #{name}, #{reportedReason}, #{reportDate},
-        #{reportConfirmStatus}, (select max(report_count) from report_users where senior_id = #{seniorId}))
+        'N', (select max(report_count) from report_users where senior_id = #{seniorId}))
     </insert>
    
 </mapper>

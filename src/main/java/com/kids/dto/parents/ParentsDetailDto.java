@@ -9,14 +9,16 @@ public class ParentsDetailDto {
 	String birthday;
 	String phoneNumber;
 	String password;
-	String adress;
+	String address;
+	String detailAddress;
+	String extraAddress;
 	String gender;
 	String email;
 	String userCode;
 	String personality;
 	String etc;
 	String CName;
-	String CAge;
+	String birthyear;
 	String CGender;
 	
 }

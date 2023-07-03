@@ -20,6 +20,9 @@
 	padding:0;
 	box-sizing: border-box;
 }
+.container{
+	margin-top: 110px;
+}
 .scheduleDiv{
 	width: 100px;
 	height: 150px;
@@ -42,6 +45,7 @@
 }
 .declaration1{
 	position: absolute;
+	top: 110px;
 	left: 66%;
 	bottom: 94%;
 	border:none;
@@ -97,6 +101,11 @@
 	width: 150px;
 	height: 40px;
 	font-size: 1.2rem;
+	background-color: #01b399;
+    color: white;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-family: 'omyu_pretty';
 }
 .weekday{
 	margin-left: 75px;
@@ -110,15 +119,16 @@
 </style>
 </head>
 <body>
+<%@ include file="header.jsp"%>
 <div class="container">
 	<span class="maintext">${seniorDetail.name}시니어 상세페이지</span>
 	<form id="declarationForm" action="/declaration" method="post" target="_blank">
-    <input type="hidden" name="reportedUserId" value="${seniorid}" />
-    <input type="hidden" name="reportedUserName" value="${seniorDetail.name}" />
-    <button class="declaration1" type="submit">
-        <img src="/resources/image/경고.png" width="30px" height="30px" style="margin-top: 10px border-radius: 12px; ">
-    </button>
-</form>
+	    <input type="hidden" name="reportedUserId" value="${seniorid}" />
+	    <input type="hidden" name="reportedUserName" value="${seniorDetail.name}" />
+	    <button class="declaration1" type="submit">
+	        <img src="/resources/image/경고.png" width="30px" height="30px" style="margin-top: 10px border-radius: 12px; ">
+	    </button>
+	</form>
 	
 	<img class="profileimage1" src="${pageContext.request.contextPath}/image/profile/${parentsImg.fileName}"/>
 	
@@ -132,8 +142,7 @@
 		</c:if>
 		<span class="profileinfo">${2023 - fn:substring(seniorDetail.birthday, 0, 4)}세</span><br>
 		<span class="profilestar">★★★★★</span>
-		
-</p>
+	</p>
 
 </div>
 <div class="smallcontainer">
@@ -141,10 +150,12 @@
 	<div class="infomation">
 		<p class="infomationtext">${seniorDetail.info}</p>
 	</div>
+	
 	<span class="infotext">활동지역</span>
 	<div class="infomation">
-	<p class="infomationtext">${seniorDetail.area}</p>
+		<p class="infomationtext">${seniorDetail.area}</p>
 	</div>
+	
 	<span class="infotext">도우미 가능 시간</span>
 	<div id="scheduleContainer">
 		<span class="weekday" style="margin-left: 150px;">월요일</span>
@@ -152,8 +163,6 @@
 		<span class="weekday">수요일</span>
 		<span class="weekday">목요일</span>
 		<span class="weekday">금요일</span><br>
-		
-
 		
 		<div class="timeContainer">
 			<p>오전(09:00~12:00)<p>
