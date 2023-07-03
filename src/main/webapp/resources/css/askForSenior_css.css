@@ -1,0 +1,62 @@
+@charset "UTF-8";
+
+@font-face {
+    font-family: 'omyu_pretty';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/omyu_pretty.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+*{
+	font-family: 'omyu_pretty';
+	margin: 0; 
+	padding: 0;
+	box-sizing: border-box;
+}
+h1{
+	text-align: center;
+}
+#ask_for_wrapper{
+	text-align: center;
+	background-color: #F1F1F1;
+	border-radius: 12px;
+    width: 500px;
+    margin: 0 auto;
+    padding-top: 1px;
+}
+span, label{
+	font-size: 1.2rem;
+}
+input[type="text"], input[type="date"]{
+	padding-left: 5px;
+	width: 150px;
+	height: 30px;
+	border-bottom: 1px solid lightgray;
+}
+input[type="button"]{
+    width: 100px;
+    height: 30px;
+    border-radius: 5px;
+}
+.data_wrapper{
+	background-color: white;
+	border-radius: 10px;
+	width: 450px;
+	margin: 25px;
+    padding: 10px;
+}
+.postcode{
+    margin-left: 110px;
+    margin-right: 8px
+}
+#submit_btn{
+    width: 150px;
+    height: 40px;
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+    border-radius: 5px;
+    background-color: #01b399;
+    color: white;
+}
+.container{
+	margin-top: 130px;
+}

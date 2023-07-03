@@ -130,7 +130,7 @@ public class MatchingController {
 		System.out.println(result);
 		System.out.println(resultMailSave);
 		
-		return "redirect:/seniorDetail"; //신청 후 메인페이지로 이동?
+		return "redirect:/seniorDetail?id="+id; //신청 후 메인페이지로 이동?
 	}
 	
 	@GetMapping("/mailboxSenior")
@@ -273,6 +273,8 @@ public class MatchingController {
 		
 		String userCode = (String)session.getAttribute("userCode");
 		String userId = (String)session.getAttribute("userId");
+		System.out.println(userCode);
+		System.out.println(userId);
 		if(userCode.equals("PAR")) {
 			
 			int cnt = matchingService.countParentsMailById(userId);

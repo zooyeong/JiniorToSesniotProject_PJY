@@ -119,8 +119,8 @@ function emptyMail(){
 	<c:if test="${userCode eq 'SNR'}">
 		<div id="mailContainer">
 			<h4>알림</h4>
-			<form action="" method="post">
 			<c:forEach var="item" items="${mail}">
+			<form action="" method="post">
 				<div class="middleContainer">
 					<img src="resources/image/minibell.png" class="minibell">
 					<div class="mailDiv">
@@ -138,8 +138,8 @@ function emptyMail(){
 					</div>
 					<img src="resources/image/downarrow.png" class="clickBtn" onclick="mailDivView(event)">
 				</div>
-			</c:forEach>
 			</form>
+			</c:forEach>
 			<p id="emptyMail" style="display:none;"></p>
 		</div>
 	</c:if>

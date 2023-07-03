@@ -5,24 +5,30 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="/resources/css/mypage_css.css">
 </head>
 <body>
+<%@ include file="header.jsp"%>
+<div class="container">
 	<h1>비밀번호 변경</h1>
 	<p>안전한 비밀번호로 내 정보를 보호하세요.</p>
 	
+	<div class="smallContainer">
 	<form action="" method="post" name="changePasswordForm">
 		<label>현재 비밀번호</label><br>
-		<input type="password" id="password" name="password"><br>
+		<input type="password" id="password" class="input_h" name="password"><br>
 		
 		<label>새 비밀번호</label><br>
-		<input type="password" id="newPassword" name="newPassword"><br>
+		<input type="password" id="newPassword" class="input_h"name="newPassword"><br>
 		
 		<label>새 비밀번호 재확인</label><br>
-		<input type="password" id="newPasswordChk"><br>
+		<input type="password" id="newPasswordChk" class="input_h"><br>
 		
-		<button type="button" onclick="changePassword()">변경</button>
-		<button type="button" onclick="location.href='/parMypage'">취소</button>
+		<button type="button" onclick="changePassword()" class="chanhe_btn">변경</button>
+		<button type="button" onclick="location.href='/parMypage'" class="chanhe_btn">취소</button>
 	</form>
+	</div>
+</div>
 	
 	<script>
 		function changePassword(){
