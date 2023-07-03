@@ -31,6 +31,10 @@ public class UserInfo_Dto {
     //시니어
     private String info;
     private String area;
+    //시니어 스케줄
+    private String scheduleCode;
+    private String status;
+    private String workStatus;
     
     //약관
     

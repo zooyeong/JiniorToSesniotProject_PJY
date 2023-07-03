@@ -1,5 +1,8 @@
 package com.kids.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -39,7 +42,7 @@ public class UserInfoFormController {
 	@GetMapping("/userInfoFormPar")
 	public String userInfoFormPar(Model model) {
 		//부모 폼을 보여줌
-		model.addAttribute("type", "par");
+		
 		model.addAttribute("userCode", "par");
 		
 		return "userInfoFormPar";
@@ -67,8 +70,8 @@ public class UserInfoFormController {
 	@GetMapping("/userInfoFormSnr")
 	public String userInfoFormSnr(Model model) {
 		//시니어 폼을 보여줌
-		model.addAttribute("type", "snr");
-		model.addAttribute("userCode", "snr");
+
+		
 		
 		return "userInfoFormSnr";
 	}
@@ -83,9 +86,25 @@ public class UserInfoFormController {
 	    userInfoService.insertUser(userInfo_dto);
 	    //시니어 정보
 	    userInfoService.insertUserSnr(userInfo_dto);
+	    //시니어 스케줄
+	    
+	    
+	    String[] scheduleCode = userInfo_dto.getScheduleCode().split(",");
+	    String[] real_scheduleCode = {"1A","1B","2A","2B","3A","3B","4A","4B","5A","5B"};
+	    Map<String, String> map = new HashMap<>();
+		for(int i=0; i<scheduleCode.length; i++) {
+			map.put("id", userInfo_dto.getId());
+			map.put("scheduleCode", scheduleCode[i]);
+			map.put("real_scheduleCode", real_scheduleCode[i]);
+			int resultWorkStatus = userInfoService.insertSnrSchedule(map);
+		}	    
+	    
+	    
+	    
+	    
+	    
 	    //약관동의
 	    userInfoService.insertAgreement(userInfo_dto);
-	    
 	    
 	    //가입완료 후 로그인 페이지로 리다이렉트
 	    return "redirect:/logInForm";
@@ -157,7 +176,7 @@ public class UserInfoFormController {
 	    HttpSession session = request.getSession();
 	    session.setAttribute("userId", userId);
 	    session.setAttribute("userCode", userCode);
-	    
+	    System.out.println(userCode);
 	    
 	    if(userCode.equals("PAR")) {
 	    	
