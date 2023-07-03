@@ -180,12 +180,12 @@ public class UserInfoFormController {
 	    
 	    if(userCode.equals("PAR")) {
 	    	
-	    	return "redirect:/testMainPar";	    	
+	    	return "redirect:/main";	    	
 	    }
 	    else if (userCode.equals("SNR")) {
-	    	return "redirect:/testMainSnr";	  
+	    	return "redirect:/main";	  
 	    }else if (userCode.equals("ADM")) {
-	    	return "redirect:/testMainAdm";
+	    	return "redirect:/admin";
 	    }else {
 	    	return "redirect:/logInForm";
 	    }

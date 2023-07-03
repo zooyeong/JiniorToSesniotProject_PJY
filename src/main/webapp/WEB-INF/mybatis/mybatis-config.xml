@@ -16,10 +16,10 @@
     	<typeAlias type="com.kids.dto.senior.SeniorDto" alias="SeniorDto"/>
     	<typeAlias type="com.kids.dto.matching.MatchingDto" alias="MatchingDto"/>
     	<typeAlias type="com.kids.dto.matching.MatchingDetailDto" alias="MatchingDetailDto"/>
-	<typeAlias type="com.kids.dto.UserInfo_Dto" alias="UserInfo_Dto"/>
+		<typeAlias type="com.kids.dto.UserInfo_Dto" alias="UserInfo_Dto"/>
  		<typeAlias type="com.kids.dto.senior.SeniorDetailDto" alias="SeniorDetailDto"/>
-         <typeAlias type="com.kids.dto.senior.SeniorScheduleDto" alias="SeniorScheduleDto"/>
-		 <typeAlias type="com.kids.dto.image.ImageFileDTO" alias="ImageFileDTO" />
+        <typeAlias type="com.kids.dto.senior.SeniorScheduleDto" alias="SeniorScheduleDto"/>
+		<typeAlias type="com.kids.dto.image.ImageFileDTO" alias="ImageFileDTO" />
 		<typeAlias type="com.kids.dto.certification.CertificationDTO" alias="CertificationDTO" />
 		<typeAlias type="com.kids.dto.report.ReportUserDTO" alias="ReportUserDTO" />
 		<typeAlias type="com.kids.dto.matching.MailDto" alias="MailDto" />
