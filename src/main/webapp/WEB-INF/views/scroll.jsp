@@ -18,6 +18,7 @@
             display: flex;
             align-items: center;
             position: relative;
+            
         }
 
         .main_4 ul {

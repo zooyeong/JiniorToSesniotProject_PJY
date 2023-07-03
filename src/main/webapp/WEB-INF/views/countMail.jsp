@@ -29,6 +29,7 @@
     text-align: center;
     color: white;
     border-radius: 50%;
+    z-index: 3;
 }
 #bell{
 	width: 50px;
@@ -40,6 +41,9 @@
 	height: 0;
 	overflow: hidden;
 	transition: all 1s ease;
+	background: white;
+	color: black;
+	z-index: -1;
 }
 .mailDiv{
 	width: 320px;
@@ -50,6 +54,7 @@
 }
 .middleContainer{
 	display: inline-flex;
+
 }
 .minibell, .mailDiv, .clickBtn{
 	display: inline-block;

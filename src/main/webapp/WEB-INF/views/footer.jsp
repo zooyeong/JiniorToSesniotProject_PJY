@@ -9,7 +9,7 @@
    <title>footer</title>
     <style>
        footer {
-    width: 120%;
+    width: 80%;
     display: flex;
     align-items: center;
     position: absolute;
