@@ -10,6 +10,16 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.7.12/sweetalert2.all.js" integrity="sha512-7TfWz/1TEVLE2pG8KLC/suq4qgXocI+/sNKfX0yifGXBbSKPoA9wcQ2GDublV7SSCu90vnW1q7+TUXOYaCIshA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdn.ckeditor.com/ckeditor5/38.1.0/classic/ckeditor.js"></script>
 <style>
+	@font-face {
+		    font-family: 'omyu_pretty';
+		    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/omyu_pretty.woff2') format('woff2');
+		    font-weight: normal;
+		    font-style: normal;
+		}
+	h1 {
+		font-family: 'omyu_pretty';
+		font-size: 60px;
+	}
 	#container {
 		width: 100%;
 		display: flex;
@@ -28,21 +38,29 @@
 	#id {
 		border: 0 solid black;
 	}
-	
+	.emphasis {
+		text-emphasis: sesame #198754;
+		-webkt-text-emphasis: sesame #198754; 
+	}
+	.label {
+		font-family: 'omyu_pretty';
+		font-size: 20px;
+		color: #198754;
+	}
 </style>
 </head>
 <body>
 	
-	<h1 style="text-align: center">게시글 수정하기</h1>
+	<h1 style="text-align: center"><span class="emphasis">문의글 수정</span>하기</h1>
 	<div id="container">
 		<form action="" method="post" id="modifyForm">
-			<label for="id">작성자</label><br>
+			<label for="id" class="label">작성자</label><br>
 			<input type="text" id="id" name="id" value="${sessionScope.userId}" readonly="readonly"><br><br>
 			
-			<label for="title">제목</label><br>
+			<label for="title" class="label">제목</label><br>
 			<input type="text" id="title" name="title" style="width: 100%" value="${article.title}"><br><br>
 			
-			<label for="content">내용</label><br>
+			<label for="content" class="label">내용</label><br>
 			<textarea id="content" name="content">${article.content}</textarea>
 			<div class="btnGroup">
 				<input type="button" class="btn btn-secondary" value="취소" onclick="location.href='/boardList'">
