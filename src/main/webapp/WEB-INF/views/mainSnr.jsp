@@ -7,6 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>아이디 조회 결과</h1>
+	<h1>시니어 메인페이지</h1>
+	<script>
+	alert("코코노아에 오신 걸 환영합니다!");
+	
+	</script>
 </body>
 </html>

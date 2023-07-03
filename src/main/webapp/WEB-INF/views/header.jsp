@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -134,9 +132,9 @@
 		</a>
 	</div>
 
-	<div class="header_btn">
+    <div class="header_btn">
 		<% if (userId == null) { %>
-		<a class="down_btn font-8" href="http://localhost:8080/logInForm">
+		<a class="down_btn font-8" href="/logInForm">
 			<div class="a_bg"></div>
 			<div class="label">
 				로그인<img src="" alt="">
@@ -144,13 +142,11 @@
 
         <% if (userId == null) { %>
         <div class="store_btn font-8">
-            <a class="store_btn font-8" href="" >
+            <a class="store_btn font-8" href="/signUpType" >
                 <div class="idbox1">
                 <div class="label" style="position: relative; top: 50%;">회원가입</div>
                 </div>
             </a>
-        </div>
-        <% } %>
     </div>
             
     <div class="black-box" id="blackBox">

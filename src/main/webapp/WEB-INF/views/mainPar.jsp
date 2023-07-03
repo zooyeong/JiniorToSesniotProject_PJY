@@ -7,11 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>아이디 찾기 페이지</h1>
-<!-- 	이름 + 전화번호 조회 하고 존재하면 ~~~> "inclue "search_result_id" -->
-<!-- 	alert로 알려주면 넘 성의없나.. -->
+	<h1>부모 메인페이지</h1>
+	<script>
+	alert("코코노아에 오신 걸 환영합니다!");
 	
-	
-	
+	</script>
 </body>
 </html>

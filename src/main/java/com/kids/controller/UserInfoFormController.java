@@ -32,19 +32,19 @@ public class UserInfoFormController {
 	@Autowired
 	UserInfoService userInfoService;
 	
-	@Autowired
+		@Autowired
 	MatchingService matchingService;
 
-
-	// ----[회원가입 하기 전 회원유형 선택하기]----
-	@RequestMapping("/typeBtn_test")
-	public String typeBtn_test() {
-
-		return "TypeBtn_test";
-	}
-
-
-	// ----[부모님 회원가입]----
+    
+//	----[회원가입 하기 전 회원유형 선택하기]----   
+    @RequestMapping("/signUpType")
+    public String typeBtn_test() {
+    	
+    	return "signUpType";
+    }
+    
+    
+//	----[부모님 회원가입]----	
 	@GetMapping("/userInfoFormPar")
 	public String userInfoFormPar(Model model) {
 		//부모 폼을 보여줌
@@ -141,13 +141,8 @@ public class UserInfoFormController {
 	}
 
 	//회원가입 중 취소하면 메인페이지로 이동
-	@RequestMapping("/testMain")
-	public String testMain() {
-
-		return "testMain";
-	}
-	//---------------- ---------------- ---------------- ---------------- ----------------
-
+//----------------		----------------		----------------		----------------		----------------
+	
 	//로그인 페이지
 	@RequestMapping("/logInForm")
 	public String logInForm() {
@@ -159,41 +154,46 @@ public class UserInfoFormController {
 
 
 	//부모 로그인성공 메인페이지
-	@RequestMapping("/testMainPar")
-	public String testMainPar() {
-		return "testMainPar";
-	}
+//	@RequestMapping("/mainpar")
+//	public String mainPar() {
+//		return "main";
+//	}
 
 	//시니어 로그인성공 메인페이지
-	@RequestMapping("/testMainSnr")
-	public String testMainSnr() {
-		return "testMainSnr";
-	}
+//	@RequestMapping("/mainSnr")
+//	public String mainSnr() {
+//		return "main";
+//	}
 
 
 	@RequestMapping("/login")
 	public String logInCheck(UserInfo_Dto userInfo_dtoFromForm, HttpServletRequest request ) {
-		UserInfo_Dto userInfo_dto = userInfoService.logInCheck(userInfo_dtoFromForm);
+	    UserInfo_Dto userInfo_dto = userInfoService.logInCheck(userInfo_dtoFromForm);
+	    
+	    if(userInfo_dto == null) {
+	    	
+	    	return "redirect:/logInFail";
+	    }
+	    
+	    String userCode = userInfo_dto.getUserCode();
+	    
+	    String userId = userInfo_dto.getId();
+	    
+	    HttpSession session = request.getSession();
+	    session.setAttribute("userId", userId);
+	    session.setAttribute("userCode", userCode);
+	    System.out.println(userCode);
+	    
+	    if(userCode.equals("PAR")) {
 
-		String userCode = userInfo_dto.getUserCode();
-
-		String userId = userInfo_dto.getId();
-
-		HttpSession session = request.getSession();
-		session.setAttribute("userId", userId);
-		session.setAttribute("userCode", userCode);
-		System.out.println(userCode);
-
-		if(userCode.equals("PAR")) {
-
-			int cnt = matchingService.countParentsMailById(userId);
+	    	int cnt = matchingService.countParentsMailById(userId);
 			List<MailDto> mail = matchingService.getParentsMailById(userId);
 			session.setAttribute("count", cnt);
 			session.setAttribute("mail", mail);
-			
-			return "redirect:/main";
-		}
-		else if (userCode.equals("SNR")) {
+
+	    	return "redirect:/main";	    	
+	    }
+	    else if (userCode.equals("SNR")) {
 			
 			int cnt = matchingService.countSeniorMailById((String)session.getAttribute("userId"));
 			List<MailDto> mail = matchingService.getSeniorMailById(userId);
@@ -206,6 +206,12 @@ public class UserInfoFormController {
 		}else {
 			return "redirect:/logInForm";
 		}
+	   
+	}
+	
+	@GetMapping("/logInFail")
+	public String logInFail() {
+		return "logInFail";
 	}
 	//---------------- ---------------- ---------------- ---------------- ----------------
 }
