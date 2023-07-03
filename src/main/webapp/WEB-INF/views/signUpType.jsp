@@ -32,9 +32,7 @@
 	
 	
 	grid-template-rows: 1fr 1fr
-    grid-template-area:
-    "cocoImg cocologoBox"
-    "cocoImg userType"
+
 }
 
 
