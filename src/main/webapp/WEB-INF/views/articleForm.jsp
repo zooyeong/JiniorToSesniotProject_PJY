@@ -7,8 +7,6 @@
 <head>
 <meta charset="UTF-8">
 <title>문의하기</title>
-<%-- <script type="text/javascript" src="${path}/ckeditor/config.js" ></script>
-<script type="text/javascript" src="${path}/ckeditor/ckeditor.js" ></script> --%>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.7.12/sweetalert2.all.js" integrity="sha512-7TfWz/1TEVLE2pG8KLC/suq4qgXocI+/sNKfX0yifGXBbSKPoA9wcQ2GDublV7SSCu90vnW1q7+TUXOYaCIshA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -77,7 +75,6 @@
 		doLogin();
 	</script>
 <%		
-		//response.sendRedirect("admin");		
 	}
 %>
 		<h1 style="text-align: center"><span class="emphasis">관리자</span>에게 <span class="emphasis">문의</span>하기</h1>
@@ -93,7 +90,6 @@
 				<textarea id="content" name="content" placeholder="내용을 입력하세요."></textarea>
 				<div class="btnGroup">
 					<input type="button" class="btn btn-secondary" value="취소" onclick="location.href='/boardList'">
-	<!-- 				<input type="submit" class="btn btn-success" value="완료"> -->
 					<input type="button" id="complete" class="btn btn-success" value="완료">
 				</div>
 			</form>
@@ -105,18 +101,6 @@
 		        console.error( error );
 		    } );
 		
-		/* $('#complete').click(function() {
-	        Swal.fire({
-	            title: '문의글 작성완료',
-	            text: '게시글 작성이 완료 되었습니다.',
-	            icon: 'success',
-	            confirmButtonText: '확인',
-	        }).then(result => {
-	            if (result.isConfirmed) {
-	                $('#writeForm').submit();
-	            }
-	        });
-	    }); */
 		$('#complete').click(function() {
 			let title = $('#title').val();
 	        let content = ' ';
@@ -147,33 +131,6 @@
 		        });
 	        }
 	    });
-	</script>
-	<script>
-		/* $('#complete').click(function() {
-			let title = $('#title').val();
-	        let content = ' ';
-	        if (title.trim() === '') {
-	        	Swal.fire({
-	   			 title: '제목을 작성해주세요.',
-	   			    text: '제목이 비어있습니다..',
-	   			    icon: 'warning',
-	   			    confirmButtonText: '확인',
-	   			    });
-	        } else {
-	        	Swal.fire({
-		   			 title: '문의글 작성완료',
-		   			    text: '게시글 작성이 완료 되었습니다..',
-		   			    icon: 'warning',
-		   			    confirmButtonText: '확인',
-		        	 }).then(result => {
-					    	if(result.isConfirmed) {
-					    		$('#writeForm').submit();
-					    	}
-					    });
-	        	}
-			});
-		
-		} */
 	</script>
 </body>
 </html>

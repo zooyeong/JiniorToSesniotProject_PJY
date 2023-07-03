@@ -7,7 +7,6 @@
 <head>
 <meta charset="UTF-8">
 <title>내용 보기</title>
-<%-- <link href="${path}/resources/css/table1.css" rel="stylesheet" type="text/css"> --%>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.7.12/sweetalert2.all.js" integrity="sha512-7TfWz/1TEVLE2pG8KLC/suq4qgXocI+/sNKfX0yifGXBbSKPoA9wcQ2GDublV7SSCu90vnW1q7+TUXOYaCIshA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <style>
@@ -71,7 +70,6 @@
 		<button type="button" class="btn btn-secondary" onclick="location.href='/boardList'">리스트</button>
 		<c:if test="${sessionScope.userId == article.id}">
 			<button type="button" class="btn btn-secondary" onclick="location.href='/modifyArticle?articleNo=${article.articleNo}'">수정</button>
-			<%-- <button type="button" class="btn btn-secondary" onclick="location.href='/deleteArticle?articleNo=${article.articleNo}'">삭제</button> --%>
 			<button type="button" class="btn btn-secondary" onclick="doDelete()">삭제</button>
 		</c:if>
 		<c:if test="${sessionScope.userId == 'admin' && article.parentNo == 0}">

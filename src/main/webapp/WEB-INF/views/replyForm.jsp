@@ -63,7 +63,6 @@
 			<textarea id="content" name="content"></textarea>
 			<div class="btnGroup">
 				<input type="button" class="btn btn-secondary" value="취소" onclick="location.href='/boardList'">
-<!-- 				<input type="submit" class="btn btn-success" value="완료"> -->
 				<input type="button" id="complete" class="btn btn-success" value="완료">
 			</div>
 		</form>
@@ -80,7 +79,6 @@
 			let title = $('#title').val();
 	        let content = ' ';
 	        if (title.trim() === '') {
-	        /* if (title.trim() === '' || content.trim() === '') { */
 	        	Swal.fire({
 	   			 title: '제목을 작성해주세요.',
 	   			    text: '제목이 비어있습니다..',
@@ -105,33 +103,5 @@
 	        }
 		});
 	</script>
-	<!-- 
-	<h1 style="text-align: center;">답변하기</h1>
-	<form action="/reply" method="post">
-	 	<label for="id">작성자:</label>
-        <input type="text" id="id" name="id">
-        <input type="hidden" id="parentNo" name="parentNo" value="${parentNo}">
-        
-        <br>
-        <label for="title">Title:</label>
-        <input type="text" id="title" name="title">
-        <br><br>
-        
-        <label for="content">Content:</label>
-        <textarea id="content" name="content" rows="5" cols="50" required></textarea>
-        <br><br>
-        
-        <button type="submit">완료</button>
-        <button type="button" onclick="cancel()">취소</button>
-        <input type="submit" value="Submit">
-        <input type="button" value="Cancel" onclick="location.href='/boardList'">
-    </form>
-    <script>
-    	function cancel(){
-    		location.href="/boardList";
-    	};
-    	
-    </script>
-     -->
 </body>
 </html>

@@ -63,9 +63,8 @@
 			<label for="content" class="label">내용</label><br>
 			<textarea id="content" name="content">${article.content}</textarea>
 			<div class="btnGroup">
-				<input type="button" class="btn btn-secondary" value="취소" onclick="location.href='/boardList'">
+				<input type="button" class="btn btn-secondary" value="취소" onclick="location.href='/viewArticle?articleNo=${article.articleNo}'">
 				<input type="button" id="modify" class="btn btn-success" value="완료">
-				<!-- <input type="submit" class="btn btn-success" value="완료"> -->
 			</div>
 		</form>
 	</div>
@@ -94,22 +93,5 @@
 	        });
 	    });
 	</script>
-	<%--  
-	 <form action="" method="post">
-	 	<label for="id">작성자:</label>
-        <input type="text" id="id" name="id" value="${article.id}">
-        <br>
-        <label for="title">Title:</label>
-        <input type="text" id="title" name="title" value="${article.title}">
-        <br><br>
-        
-        <label for="content">Content:</label>
-        <textarea id="content" name="content" rows="5" cols="50" required>${article.content}</textarea>
-        <br><br>
-        
-        <button type="submit">완료</button>
-        <input type="button" value="Cancel" onclick="location.href='/boardList'">
-    </form>
-     --%>
 </body>
 </html>
