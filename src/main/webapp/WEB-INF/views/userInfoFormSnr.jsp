@@ -58,35 +58,37 @@ background-color: white;
 	<div class="container">
 		<form method="post" action="" name="userInfo">
 
-			아이디<br>
-			<!-- 로그인 중복확인 하면 아이디값이 인풋에 들어가도록 보완필요 -->
-			<input type="text" class="id_input" id="id" name="id"  onkeydown="inputIdChk()" placeholder="8~20자 사이">
+			아이디 : <br>
+			<!-- 로그인 중복확인 하면 아이디값이 인풋에 들어감. 중복확인 후 새로운 아이디로 입력하지 못하게 readonly 처리. -->
+			<input type="text" readonly class="id_input" id="id" name="id" maxlength="50" placeholder="아이디">
 			<button type="button" id="IdChkBtn" onclick="openIdChk()">중복확인</button>
 			<input type="hidden" id="idDuplication" name="idDuplication" value="idUnCheck"> <br>
 
 			<!-- 비밀번호 8~20자 사이 -->
-			비밀번호<br> <input type="password" id="password" name="password"	placeholder="8~20자 사이" minlength="8" maxlength="20"><br>
-			비밀번호 확인<br> <input type="password" id="passwordCheck" name="passwordCheck" placeholder="비밀번호 확인" minlength="8" maxlength="20"><br>
+			비밀번호 : <br> <input type="password" id="password" name="password"	placeholder="8~20자 사이" minlength="8" maxlength="20"><br>
+			비밀번호 확인 : <br> <input type="password" id="passwordCheck" name="passwordCheck" placeholder="비밀번호 확인" minlength="8" maxlength="20"><br>
 
-			이름<br> <input type="text" id="name" name="name" placeholder="이름"><br>
-			생년월일<br> <input type="date" id="birthday" name="birthday"><br> 
-			성별<br>
+			이름 : <br> <input type="text" id="name" name="name" placeholder="이름"><br>
+			생년월일 : <br> <input type="date" id="birthday" name="birthday"><br> 
+			성별 : <br>
 			남자<input type="radio" id="genderM" name="gender" value="M" checked>
 			여자<input type="radio" id="genderF" name="gender" value="F"> <br>
 			
 			<%@ include file="sms_cf.jsp"%>
 			
-			주소<br><%@ include file="address.jsp"%>
-			<br> 이메일<br> <input type="text" id="email" name="email"><br>
+			주소 : <br><%@ include file="address.jsp"%>
+			<br> 이메일 : <br> <input type="text" id="email" name="email"><br>
 
-			<!-- 이전 페이지에서 부모 버튼 누르면 "PAR"입력, 시니어 누르면 "SNR" 입력됨. 확인 후 hidden할 것임. -->
+			<!-- 이전 페이지에서 부모 버튼 누르면 "PAR"입력, 시니어 누르면 "SNR" 입력된 form으로 넘어오는 것. -->
 				<input type="hidden" class="user_code" id="user_code" name="userCode"
 					value="SNR">
-				<input type="date" id="regDate" name="regDate"><br>
-	자기소개<br>
-	<textarea rows="20" cols="150" id="info" name="info" placeholder="선택사항입니다."></textarea><br>
-	희망지역<br>
-	<input type="text" id="area" name="area" placeholder="선택사항입니다."><br>
+					
+			<input type="date" id="regDate" name="regDate"><br>
+			
+			자기소개 : <br>
+			<textarea rows="20" cols="150" id="info" name="info" placeholder="선택사항입니다."></textarea><br>
+			희망지역 : <br>
+			<input type="text" id="area" name="area" placeholder="선택사항입니다."><br>
 	
 				<p>----------------------------------------------------------------------------------------</p>
 			<div id="snrTime" class="SnrTime" onsubmit="handleSubmit(event)">
@@ -97,38 +99,38 @@ background-color: white;
 								
 				<input type="checkbox" class="schedule" onclick="toggle()" value = "1A" >월요일 오전
 				<input type="hidden" name ="scheduleCode" value = "N" >
-<!-- 				<br> -->
+
 				<input type="checkbox" class="schedule" onclick="toggle()" value = "1B" >월요일 오후
 				<input type="hidden" name ="scheduleCode" value = "N" >
 				<br>
 				<input type="checkbox" class="schedule" onclick="toggle()" value = "2A" >화요일 오전 
 				<input type="hidden" name ="scheduleCode" value = "N" >
-<!-- 				<br>				 -->
+
 				<input type="checkbox" class="schedule" onclick="toggle()" value = "2B" >화요일 오후 
 				<input type="hidden" name ="scheduleCode" value = "N" >
 				<br>
 				<input type="checkbox" class="schedule" onclick="toggle()" value = "3A" >수요일 오전
 				<input type="hidden" name ="scheduleCode" value = "N" >
-<!-- 				<br> -->
+
 				<input type="checkbox" class="schedule" onclick="toggle()" value = "3B" >수요일 오후 
 				<input type="hidden" name ="scheduleCode" value = "N" >
 				<br>
 				<input type="checkbox" class="schedule" onclick="toggle()" value = "4A" >목요일 오전 
 				<input type="hidden" name ="scheduleCode" value = "N" >
-<!-- 				<br> -->
+
 				<input type="checkbox" class="schedule" onclick="toggle()" value = "4B" >목요일 오후 
 				<input type="hidden" name ="scheduleCode" value = "N" >
 				<br>
 				<input type="checkbox" class="schedule" onclick="toggle()" value = "5A" >금요일 오전 
 				<input type="hidden" name ="scheduleCode" value = "N" >
-<!-- 				<br> -->
+
 				<input type="checkbox" class="schedule" onclick="toggle()" value = "5B" >금요일 오후 
 				<input type="hidden" name ="scheduleCode" value = "N" ><br>
 	
 			</div>	
 			<p>----------------------------------------------------------------------------------------</p>
 
-			<br> 약관
+			<br> 약관 : 
 			<%@ include file="agreementBox.jsp"%>
 
 			<input type="button" onclick="checkValueAndSignUp()" value="가입">
@@ -302,9 +304,9 @@ background-color: white;
 		// 아이디 입력창에 값 입력시 hidden에 idUnCheck를 세팅한다.
 		// 이렇게 하는 이유는 중복체크 후 다시 아이디 창이 새로운 아이디를 입력했을 때
 		// 다시 중복체크를 하도록 한다.
-		function inputIdChk() {
-			document.userInfo.idDuplication.value = "idUnCheck";
-		}
+// 		function inputIdChk() {
+// 			document.userInfo.idDuplication.value = "idUnCheck";
+// 		}
 
 		//취소버튼 누르면 메인페이지로 이동
 		function goMainPage() {
