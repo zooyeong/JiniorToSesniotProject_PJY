@@ -53,15 +53,15 @@
 }
 
 body {
-	color: #666;
+	background: #D8E0A5;
 }
-
 #table {
 	border-collapse: separate;
 	border-spacing: 0;
 	text-align: center;
 	box-shadow: 0 2px 5px rgba(0, 0, 0, .25);
 	margin: 0 auto;
+	background: #FAF3E6;
 }
 
 th {
@@ -118,10 +118,10 @@ response.sendRedirect("main");
 }
 %> 
 
+<body>
 <div class="pd">
 <div class="regSnr">시니어 등록 페이지</div>
 
-<body>
 	<table id="table">
 		<thead>
 			<tr>
@@ -259,6 +259,6 @@ response.sendRedirect("main");
 		});
 	}
 </script>
-</body>
 </div>
+</body>
 </html>

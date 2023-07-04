@@ -48,15 +48,15 @@
 }
 
 body {
-	color: #666;
+	background: #D8E0A5;
 }
-
 #table {
 	border-collapse: separate;
 	border-spacing: 0;
 	text-align: center;
 	box-shadow: 0 2px 5px rgba(0, 0, 0, .25);
 	margin: 0 auto;
+	background: #FAF3E6;
 }
 
 th {
@@ -191,8 +191,6 @@ response.sendRedirect("main");
 	</c:if>
 	</div>
 	<!-- 페이징 처리 끝 부분 -->
-	<br>
-		<button type="button" class="btn btn-secondary" onclick="location.href='admin'">관리자 페이지로 돌아가기</button>
 
 </body>
 </div>

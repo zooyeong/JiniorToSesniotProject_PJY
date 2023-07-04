@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="/resources/css/main_css.css">
 
 </head>
-<%@include file = "header.jsp" %>
+<%@ include file = "header.jsp" %>
 <body class="container">
     <div class="main1">
         <div class="inner">

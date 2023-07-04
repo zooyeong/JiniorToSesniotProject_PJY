@@ -43,11 +43,19 @@
 .pd {
 	align-items: center;
 	padding: 110px 100px 10px 100px;
+	
 }
 
 .card-body {
 	font-size: 15px;
+	background: #FAF3E6;
 }
+
+body {
+	background:#D8E0A5;
+}
+
+#qna,
 #regSnr,
 #mngRpt,
 #lgLst {
@@ -68,7 +76,19 @@ response.sendRedirect("main");
 <div class="pd">
 <div class="admin">관리자 페이지</div>
 
-	<div class="row row-cols-1 row-cols-md-3 g-4">
+	<div class="row row-cols-1 row-cols-md-4 g-4">
+		<div class="col">
+			<div class="card">
+				<button id="qna" class="btn btn-success"
+					onclick="location.href ='boardList'">문의 답변</button>
+				<div class="card-body">
+					<p class="card-text">
+						<br>문의 게시판에 남겨진 질문 목록에 답변합니다.<br>
+						<br>
+					</p>
+				</div>
+			</div>
+		</div>
 		<div class="col">
 			<div class="card">
 				<button id="regSnr" class="btn btn-success"
