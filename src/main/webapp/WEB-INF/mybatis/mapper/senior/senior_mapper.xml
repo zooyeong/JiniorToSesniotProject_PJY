@@ -57,6 +57,7 @@
 		update user_info set
 			password = NVL(#{password}, password),
 			phone_number = NVL(#{phoneNumber}, phone_number),
+			post_code = NVL(#{postCode}, post_code),
 			address = NVL(#{address}, address),
 			detail_address = NVL(#{detailAddress}, detail_address),
 			extra_address = NVL(#{extraAddress}, extra_address),

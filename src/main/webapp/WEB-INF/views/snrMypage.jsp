@@ -18,7 +18,7 @@
 		<h1>${seniorDetail.name}님 만${2023 - fn:substring(seniorDetail.birthday, 0, 4)}세</h1>
 
 		<label for="image">     
-            <img class="profileimage" id="preview" src="${pageContext.request.contextPath}/image/profile/${seniorImg.fileName}" onerror="this.onerror=null;this.src='${pageContext.request.contextPath}/image/profile/noprofile1.png?v=1';">
+            <img class="profileimage" id="preview" src="${pageContext.request.contextPath}/image/profile/${seniorImg.fileName}" onerror="this.onerror=null;this.src='/resources/image/no_profile.png'">
         </label>
         <input type="file" name="file" id="image" style="display: none;" onchange="readURL(this)">
         <br>
@@ -33,11 +33,11 @@
 		<input type="text" class="input_h" name="phoneNumber" value="${seniorDetail.phoneNumber}" style="font-size:1.2rem;" disabled><br>
 		
 		<label>주소</label><br>
-		<input type="text" class="postcode input_h" name="postCode" placeholder="우편번호" style="font-size:1.2rem; border-bottom: 1px solid lightgray;">
+		<input type="text" value="${seniorDetail.postCode}" class="postcode input_h" name="postCode" placeholder="우편번호" style="font-size:1.2rem; border-bottom: 1px solid lightgray;">
 		<input type="button" id="pc_btn" onclick="sample6_execDaumPostcode(event)" value="우편번호 찾기" style="font-size:1.2rem;"><br>
-		<input type="text" id="address" class="input_h" name="address" placeholder="주소" style="font-size:1.2rem; border-bottom: 1px solid lightgray;"><br>
-		<input type="text" class="input_h" name="detailAddress" placeholder="상세주소" style="font-size:1.2rem; border-bottom: 1px solid lightgray;"><br>
-		<input type="text" class="input_h" name="extraAddress" placeholder="참고항목" style="font-size:1.2rem; border-bottom: 1px solid lightgray;"><br>
+		<input type="text" value="${seniorDetail.address}" id="address" class="input_h" name="address" placeholder="주소" style="font-size:1.2rem; border-bottom: 1px solid lightgray;"><br>
+		<input type="text" value="${seniorDetail.detailAddress}" class="input_h" name="detailAddress" placeholder="상세주소" style="font-size:1.2rem; border-bottom: 1px solid lightgray;"><br>
+		<input type="text" value="${seniorDetail.extraAddress}" class="input_h" name="extraAddress" placeholder="참고항목" style="font-size:1.2rem; border-bottom: 1px solid lightgray;"><br>
 		
 		<label>이메일주소</label><br>
 		<input type="email" class="input_h" name="email" value="${seniorDetail.email}" style="font-size:1.2rem; border-bottom: 1px solid lightgray;"><br>
