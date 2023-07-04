@@ -44,9 +44,10 @@
     </style>
     <script>
         function confirmReport() {
+        	let form = document.getElementsByName("d_form");
             if (confirm("정말로 신고하시겠습니까?")) {
                 alert("신고가 접수되었습니다.");
-                window.close();
+                form.submit();
                 return true;
             } else {
                 return false;
@@ -58,7 +59,7 @@
     <h1 style="text-align: center;">신고하기</h1>
     <img style="position: absolute; left: 58%; top:2%" alt="" src="/resources/image/경고.png" width="50px" height="50px">
     
-    <form action="/report/declaration" method="post" onsubmit="return confirmReport()">
+    <form action="/report/declaration" name="d_form" method="post" onsubmit="return confirmReport()">
         <div class="div1">
             <div class="div2">
                 <input type="hidden" name="parentId" value="${parentId}">

@@ -46,7 +46,8 @@ public class ReportUserController {
         
         reportUserService.saveReportUser(reportUserDTO);
         model.addAttribute("message", "신고가 완료되었습니다.");
-        return "declaration";
+        
+        return "declarationa";
     }
 
     // 다른 메소드 및 매핑 추가 가능...
