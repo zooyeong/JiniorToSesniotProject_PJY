@@ -74,8 +74,41 @@
 		    .catch( error => {
 		        console.error( error );
 		    } );
+		
+		$('#modify').click(function() {
+			let title = $('#title').val();
+	        let content = ' ';
+	        
+	        if (title.trim() === '') {
+	        	Swal.fire({
+	   			 title: '제목을 작성해주세요.',
+	   			    text: '제목이 비어있습니다..',
+	   			    icon: 'warning',
+	   			    confirmButtonText: '확인',
+	   			    });
+	        } else {
+	        
+		        Swal.fire({
+		            title: '게시글을 수정하시겠습니까?',
+		            text: '게시글 수정이 완료됩니다.',
+		            icon: 'question',
+		            
+		            showCancelButton: true,
+		            confirmButtonText: '확인',
+		            cancelButtonText: '취소',
+		            reverseButtons: true,
+		            
+		        }).then(result => {
+		            if (result.isConfirmed) {
+		                $('#modifyForm').submit();
+		            }
+		        });
+	        }
+	    });
 	</script>
-	<script>
+	
+	<!-- 수정하기 전 코드 -->
+	<!-- <script>
 		$('#modify').click(function() {
 	        Swal.fire({
 	            title: '수정하시겠습니까?',
@@ -92,6 +125,6 @@
 	            }
 	        });
 	    });
-	</script>
+	</script> -->
 </body>
 </html>
