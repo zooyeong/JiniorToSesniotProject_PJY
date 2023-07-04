@@ -113,6 +113,7 @@ tr:last-child td:first-child {
 tr:last-child td:last-child {
 	border-bottom-right-radius: 6px;
 }
+
 </style>
 
 <%@ include file="header.jsp"%>
@@ -148,7 +149,7 @@ response.sendRedirect("main");
 					<td>${list.parentId}</td>
 					<td><a id="idBtn" href="reportedList?seniorId=${list.seniorId}">${list.seniorId}</a></td>
 					<td>${list.name}</td>
-					<td>${list.reportedReason}</td>
+					<td style="max-width: 200px; word-break: break-all;">${list.reportedReason}</td>
 					<td>${list.reportDate}</td>
 					<td><c:choose>
 							<c:when test="${list.reportConfirmStatus eq 'N' && list.reportCount eq 3}">처리완료</c:when>
