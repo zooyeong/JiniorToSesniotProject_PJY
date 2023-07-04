@@ -31,7 +31,7 @@
                                     title="">
                             </a>
                             <figure class="logo"><img
-                                    src="/resources/image/mainlogo.PNG" alt="">
+                                    src="/resources/image/mainlogo.PNG" alt="" style="border-radius: 12px">
                             </figure>
                             <a class="font-8" href=""></a>
                         </li>

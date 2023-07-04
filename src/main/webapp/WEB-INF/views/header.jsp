@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,17 +12,8 @@
 	href="http://nenia.kr/theme/responsive_nenia/include/common.css?ver=191202">
 
 <style>
-@font-face {
-	font-family: 'omyu_pretty';
-	src:
-		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/omyu_pretty.woff2')
-		format('woff2');
-	font-weight: normal;
-	font-style: normal;
-}
-
-* {
-	font-family: 'omyu_pretty';
+header {
+	max-height: 130px;
 }
 
 .black-box {
@@ -82,7 +75,7 @@
 .idbox1 {
 	text-align: center;
 	position: absolute;
-	bottom: 8px;
+	top: -3px;
 	color: white;
 	width: 100px;
 	height: 33px;
@@ -98,7 +91,6 @@
 .header_logo {
 	position: relative;
 }
-
 </style>
 </head>
 
@@ -111,17 +103,28 @@
 	<div class="header_gnb">
 		<c:if test="${userId != 'admin' || userId == null}">
 			<ul class="main_menu">
-				<li class="menu menu1"><a href="" style="font-size: 1.5rem;">회사소개</a></li>
-				<li class="menu menu1"><a href="" style="font-size: 1.5rem;">이용방법</a></li>
+				<li class="menu menu1"><a href="" style="font-size: 1.3rem;">회사소개</a>
+				</li>
+				<li class="menu menu2"><a href="" style="font-size: 1.3rem;">이용방법</a>
+				</li>
 				<c:if test="${userCode == 'SNR'}">
-				<li class="menu menu1"><a href="/scheduleList" style="font-size: 1.5rem;">매칭현황</a></li>
+					<li class="menu menu3"><a href="/scheduleList"
+						style="font-size: 1.3rem;">매칭현황</a></li>
 				</c:if>
 				<c:if test="${userCode == 'PAR'}">
-					<li class="menu menu1"><a href="/seniorDetail" style="font-size: 1.5rem;">시니어찾기</a></li>
+					<li class="menu menu3"><a href="/seniorDetail"
+						style="font-size: 1.3rem;">시니어찾기</a></li>
 				</c:if>
-				<li class="menu menu1"><a href="/boardList" style="font-size: 1.5rem;">문의하기</a></li>
+				<li class="menu menu4"><a href="boardList"
+					style="font-size: 1.3rem;">문의하기</a></li>
 			</ul>
 		</c:if>
+		<ul class="main_menu">
+			<c:if test="${userCode == 'ADM'}">
+				<li class="menu menu3"><a href="/admin"
+					style="font-size: 1.3rem;">관리자 홈</a></li>
+			</c:if>
+		</ul>
 	</div>
 
 	<div class="header_logo">
@@ -132,53 +135,34 @@
 		</a>
 	</div>
 
-    <div class="header_btn">
+	<div class="header_btn">
 		<% if (userId == null) { %>
 		<a class="down_btn font-8" href="/logInForm">
 			<div class="a_bg"></div>
 			<div class="label">
 				로그인<img src="" alt="">
 			</div>
-
-        <% if (userId == null) { %>
-        <div class="store_btn font-8">
-            <a class="store_btn font-8" href="/signUpType" >
-                <div class="idbox1">
-                <div class="label" style="position: relative; top: 50%;">회원가입</div>
-                </div>
-            </a>
-    </div>
-            
-    <div class="black-box" id="blackBox">
-    		<% if(userCode != null) {%>
-	    		<% if (userCode.equals("SNR")) { %>
-	            <a href="/snrMypage"><div class="white-box"><br>마이페이지</div></a>
-	            <% } %>
-	            <% if (userCode.equals("PAR")) { %>
-	            <a href="/parMypage"><div class="white-box"><br>마이페이지</div></a>
-	            <% } %>
-            <% } %>
-        <a href="#" onclick="logout()"><div class="white-box"><br>로그아웃</div> </a>
-
 		</a>
-		<% } else { %>
 
+		<% } else { %>
+	<c:if test="${userId != 'admin'}">
+		<div class="abdabd" style="position: relative; right: 90%; top: 10px;">
+			<%@include file="countMail.jsp"%>
+		</div>
+		</c:if>
 		<div class="userIdhover">
+
 			<div class="idbox">
 				<p style="font-size: 1.4rem; position: relative; top: 5px;"
 					onclick="toggleMenu()"><%= userId %>&nbsp;님
 				</p>
-				<div
-					style="position: relative; left: -34%; bottom: 30px; width: 70px">
-					<%@include file="countMail.jsp"%>
-				</div>
-				<% } %>
 
+				<% } %>
 
 
 				<% if (userId == null) { %>
 				<div class="store_btn font-8">
-					<a class="store_btn font-8" href="">
+					<a class="store_btn font-8" href="/signUpType">
 						<div class="idbox1">
 							<div class="label" style="position: relative; top: 50%;">회원가입</div>
 						</div>
@@ -188,9 +172,19 @@
 			</div>
 
 			<div class="black-box" id="blackBox">
-				<a href="/edit-profile"><div class="white-box">
+				<% if(userCode != null) {%>
+				<% if (userCode.equals("SNR")) { %>
+				<a href="/snrMypage"><div class="white-box">
 						<br>마이페이지
-					</div></a> <a href="#" onclick="logout()"><div class="white-box">
+					</div></a>
+				<% } %>
+				<% if (userCode.equals("PAR")) { %>
+				<a href="/parMypage"><div class="white-box">
+						<br>마이페이지
+					</div></a>
+				<% } %>
+				<% } %>
+				<a href="#" onclick="logout()"><div class="white-box">
 						<br>로그아웃
 					</div> </a>
 

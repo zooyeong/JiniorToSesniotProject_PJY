@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Certification Upload</title>
+<title>인증 페이지</title>
 <style>
 * {
 	margin: 0 auto;

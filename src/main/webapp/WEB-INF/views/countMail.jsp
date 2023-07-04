@@ -44,6 +44,8 @@
 	background: white;
 	color: black;
 	z-index: -1;
+	position: absolute;
+	border-radius: 12px; 
 }
 .mailDiv{
 	width: 320px;
@@ -88,8 +90,10 @@ h4{
 </style>
 <script>
 function emptyMail(){
-	document.getElementById('emptyMail').style.display = 'block';
-	document.getElementById('emptyMail').innerHTML = "새로운 알림이 없습니다.";
+	document.getElementById('emptyMailP').style.display = 'block';
+	document.getElementById('emptyMailP').innerHTML = "새로운 알림이 없습니다.";
+	document.getElementById('emptyMailS').style.display = 'block';
+	document.getElementById('emptyMailS').innerHTML = "새로운 알림이 없습니다.";
 }
 </script>
 </head>
@@ -101,7 +105,7 @@ function emptyMail(){
 	
 	<c:if test="${userCode eq 'PAR'}">
 		<div id="mailContainer">
-			<h4>알림</h4>
+			<h4 style="text-align: center;">알림</h4>
 			<c:forEach var="item" items="${mail}">
 				<div class="middleContainer">
 					<img src="resources/image/minibell.png" class="minibell">
@@ -113,12 +117,13 @@ function emptyMail(){
 					<img src="resources/image/downarrow.png" class="clickBtn" onclick="mailDivView(event)">
 				</div>
 			</c:forEach>
+			<p id="emptyMailP" style="display:none;"></p>
 		</div>	
 	</c:if>
 	
 	<c:if test="${userCode eq 'SNR'}">
 		<div id="mailContainer">
-			<h4>알림</h4>
+			<h4 style="text-align: center;">알림</h4>
 			<c:forEach var="item" items="${mail}">
 			<form action="" method="post">
 				<div class="middleContainer">
@@ -140,7 +145,7 @@ function emptyMail(){
 				</div>
 			</form>
 			</c:forEach>
-			<p id="emptyMail" style="display:none;"></p>
+			<p id="emptyMailS" style="display:none;"></p>
 		</div>
 	</c:if>
 	<c:if test="${empty mail}">

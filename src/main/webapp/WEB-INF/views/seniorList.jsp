@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 
-<title>Insert title here</title>
+<title>시니어 리스트</title>
 </head>
 <body>
 	<h1>시니어 리스트</h1>
