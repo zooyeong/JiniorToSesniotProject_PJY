@@ -46,6 +46,7 @@
         function confirmReport() {
             if (confirm("정말로 신고하시겠습니까?")) {
                 alert("신고가 접수되었습니다.");
+                window.close();
                 return true;
             } else {
                 return false;

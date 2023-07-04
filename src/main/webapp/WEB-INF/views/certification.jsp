@@ -49,7 +49,7 @@ body {
 				class="picture" onchange="previewImage(this, 'idcPreview')"
 				title="사진 선택" /><br> <img id="idcPreview" src="#"
 				alt="IDC Preview"
-				style="max-width: 300px; max-height: 200px; display: none;" /><br>
+				style="max-width: 300px; max-height: 200px; display: none; position: relative; left: 33%; margin-top: 20px;" /><br>
 			<br>
 
 			<h3 style="font-size: 2rem">범죄경력조회사진</h3>
@@ -60,7 +60,7 @@ body {
 				class="picture" onchange="previewImage(this, 'cmnPreview')"
 				title="사진 선택" /><br> <img id="cmnPreview" src="#"
 				alt="CMN Preview"
-				style="max-width: 300px; max-height: 200px; display: none;" /><br>
+				style="max-width: 300px; max-height: 200px; display: none; position: relative; left: 33%; margin-top: 20px;" /><br>
 			<br> <input type="submit" value="인증하기" id="uploadButton"
 				disabled style="margin-bottom: 10px;" />
 		</form>
