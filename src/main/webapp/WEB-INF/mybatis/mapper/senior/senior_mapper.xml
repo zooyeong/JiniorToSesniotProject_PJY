@@ -41,7 +41,7 @@
 	<select id="select_senior_detail" resultType="SeniorDetailDto">
 		select * from user_info u
 			inner join snr s on u.id = s.id
-			where u.id in (select v.id from verification v where id=u.id and verification_status='Y')
+			where u.id in (select v.id from verification v where id=u.id and verification_status='Y' and u.user_code = 'SNR')
 	</select>
 	
 	<select id="select_senior_detail_by_id" resultType="SeniorDetailDto"

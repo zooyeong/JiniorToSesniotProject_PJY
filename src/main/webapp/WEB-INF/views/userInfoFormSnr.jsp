@@ -301,12 +301,6 @@ background-color: white;
 					"width=500, height=300, resizable = no, scrollbars = no");
 		}
 
-		// 아이디 입력창에 값 입력시 hidden에 idUnCheck를 세팅한다.
-		// 이렇게 하는 이유는 중복체크 후 다시 아이디 창이 새로운 아이디를 입력했을 때
-		// 다시 중복체크를 하도록 한다.
-// 		function inputIdChk() {
-// 			document.userInfo.idDuplication.value = "idUnCheck";
-// 		}
 
 		//취소버튼 누르면 메인페이지로 이동
 		function goMainPage() {
