@@ -9,6 +9,7 @@ public class ParentsDetailDto {
 	String birthday;
 	String phoneNumber;
 	String password;
+	String postCode;
 	String address;
 	String detailAddress;
 	String extraAddress;

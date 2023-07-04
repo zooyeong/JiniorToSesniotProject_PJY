@@ -19,7 +19,7 @@
 			<div class="scheduleContainer">
 				<label for="image">     
                 	<img class="profileimage" onclick=" window.open('/parentsDetailIn?id=${item.parId}', '_blank', 'toolbar=yes,scrollbars=yes,resizable=yes,top=250,left=250,width=1000,height=800')" id="preview" 
-                	src="${pageContext.request.contextPath}/image/profile/${imageFileDto[varStatus.index].fileName}" width="300px;" onerror="this.onerror=null;this.src='${pageContext.request.contextPath}/image/profile/noprofile1.png?v=1';" style="clip-path: circle(35% at 50% 50%);">
+                	src="${pageContext.request.contextPath}/image/profile/${imageFileDto[varStatus.index].fileName}" width="300px;" onerror="this.onerror=null;this.src='/resources/image/no_profile.png'" style="clip-path: circle(35% at 50% 50%);">
         		</label>
 				<h4 class="h4_date">일자 : ${fn:substring(item.day, 0, 10)}
 				<c:if test="${fn:contains(code, 'A')}"><span>오전</span></c:if>
@@ -53,6 +53,11 @@
 			if(date > today){
 				alert('해당 일정은 아직 예정일이 아닙니다.');
 			}else{
+				let result = confirm('진행하시겠습니까?');
+				if(!result){
+					return false;
+				}
+				alert('진행되었습니다.');
 				let btnValue = form.querySelector('input[name="btnValue"]');
 				btnValue.value = button.value;
 				form.submit();
