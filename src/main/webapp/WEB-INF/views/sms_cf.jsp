@@ -28,8 +28,8 @@ margin-bottom: 10px;
 			<input type="button" id="send" value="전송" /><br>
 			인증번호 : <input type="text" id="authNum">
 			<input type="button" id="enterBtn" value="확인">
-			<input type="text" id="checkAuth" name="checkAuth"  placeholder="인증번호 대조">
-			<input type="text" name="smsPass" id="smsPass" placeholder="인증상태">
+			<input type="hidden" id="checkAuth" name="checkAuth"  placeholder="인증번호 대조">
+			<input type="hidden" name="smsPass" id="smsPass" placeholder="인증상태">
 
 	</div>
 	<script>
