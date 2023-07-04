@@ -83,22 +83,6 @@ public class BoardController {
 
 		return "viewArticle";
 	}
-	/*
-		게시글 상세조회수 무한 증가 버전.
-	@GetMapping("/viewArticle")
-	public String viewArticle(Model model, @RequestParam int articleNo) {
-		
-		BoardDto boardDto = new BoardDto();
-		boardDto.setArticleNo(articleNo);
-		
-		int result = boardService.updateViews(articleNo); //조회수 증가시키기
-		
-		BoardDto article = boardService.getArticleByArticleNo(articleNo);
-		model.addAttribute("article", article);
-		
-		return "viewArticle";
-	}
-	*/
 	//게시글 수정하는 페이지 보기
 	@GetMapping("/modifyArticle")
 	public String modifyArticle(Model model, @RequestParam int articleNo) {
@@ -117,10 +101,10 @@ public class BoardController {
 	@PostMapping("/modifyArticle")
 	public String modifyArticle_process(@ModelAttribute BoardDto boardDto) {
 		String content = boardDto.getContent().replaceAll("<p>|</p>", "");
-		boardDto.setContent(content);
 		if(content == "") {
 			content = " ";
 		}
+		boardDto.setContent(content);
 		
 		int result = boardService.updateArticle(boardDto);
 		
