@@ -37,7 +37,8 @@
             <br>
             <div id="chk">
                 <form id="checkForm">
-                    <input type="text" name="idinput" id="userId">
+                <!-- 아이디 최소 8자~최대 16자 -->
+                    <input type="text" name="idinput" id="userId" minlength="8" maxlength="20">
                     <input type="button" value="중복확인" onclick="idCheck()">
                 </form>
                 <div id="msg"></div>
@@ -86,6 +87,10 @@
                     else if ((id < "0" || id > "9") && (id < "A" || id > "Z") && (id < "a" || id > "z")) {
                         alert("한글 및 특수문자는 아이디로 사용하실 수 없습니다.");
                         return false;
+                    }
+                    else if (id.length < 8 || id.length > 20) {
+                    	  alert("아이디는 최소 8자 이상, 최대 20자 이내로 입력해주세요.");
+                    	  return false;
                     }
                     else {
                         var param = "id=" + id

@@ -7,22 +7,30 @@
 <head>
 <meta charset="UTF-8">
 <title>sms_cf</title>
-<style type="text/css"></style>
+<style type="text/css">
+input{
+margin-bottom: 10px;
+
+}
+
+</style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 
 
 </head>
 <body>
+	<div class="container"></div>
+	
 	<div id="contents">
-<!-- 		<form action="/sendSms" method="post"> -->
+			<br>
 			휴대전화 : <input type="text" id="phoneNum" name="phoneNumber" placeholder="숫자만 입력해주세요" />
 			<input type="button" id="send" value="전송" /><br>
 			인증번호 : <input type="text" id="authNum">
 			<input type="button" id="enterBtn" value="확인">
 			<input type="text" id="checkAuth" name="checkAuth"  placeholder="인증번호 대조">
 			<input type="text" name="smsPass" id="smsPass" placeholder="인증상태">
-<!-- 		</form> -->
+
 	</div>
 	<script>
     $(document).ready(function() {

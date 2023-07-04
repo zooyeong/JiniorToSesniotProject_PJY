@@ -9,32 +9,60 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
 	integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="
-	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	crossorigin="anonymous" referrerpolicy="no-referrer">
+	</script>
 <style type="text/css">
+
+	@font-face {
+	font-family: 'omyu_pretty';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/omyu_pretty.woff2')
+		format('woff2');
+	font-weight: normal;
+	font-style: normal;
+}
+*{
+font-family: 'omyu_pretty';
+font-size: 25px;
+}
+p.signUp{
+font-size: 40px;
+text-align: center;
+}
 .container {
 	width: 100%;
 	height: 100%;
+margin: 0 auto;
 }
+
+form{
+width: 60%;
+margin: 0 auto;
+background-color: white;
+}
+
  #regDate{ 
  display: none; 
  } 
+
 </style>
 
 
 </head>
 <body>
-	<h1>회원가입</h1>
+	<p class="signUp">회원가입</p>
 	<div class="container">
 		<form method="post" action="" name="userInfo">
 
 			아이디<br>
 			<!-- 로그인 중복확인 하면 아이디값이 인풋에 들어가도록 보완필요 -->
-			<input type="text" class="id_input" id="id" name="id" maxlength="50" onkeydown="inputIdChk()">
+			<input type="text" class="id_input" id="id" name="id" maxlength="50" onkeydown="inputIdChk()" placeholder="8~20자 사이">
 			<button type="button" id="IdChkBtn" onclick="openIdChk()">중복확인</button>
-			<input type="text" id="idDuplication" name="idDuplication" value="idUnCheck"> <br>
-
-			비밀번호<br> <input type="password" id="password" name="password"	placeholder="비밀번호 입력"><br>
-			비밀번호 확인<br> <input type="password" id="passwordCheck" name="passwordCheck" placeholder="비밀번호 확인"><br>
+			<input type="hidden" id="idDuplication" name="idDuplication" value="idUnCheck"> <br>
+			
+			<!-- 비밀번호 8~20자 사이 -->
+			비밀번호<br> <input type="password" id="password" name="password"	placeholder="8~20자 사이" minlength="8" maxlength="20"><br>
+			비밀번호 확인<br> <input type="password" id="passwordCheck" name="passwordCheck" placeholder="비밀번호 확인" minlength="8" maxlength="20"><br>
 
 			이름<br> <input type="text" id="name" name="name" placeholder="이름"><br>
 			생년월일<br> <input type="date" id="birthday" name="birthday"><br> 
@@ -48,7 +76,7 @@
 
 			<!-- 이전 페이지에서 부모 버튼 누르면 "PAR"입력, 시니어 누르면 "SNR" 입력됨. 확인 후 hidden할 것임. -->
 			
-			<input type="text" class="user_code" id="user_code" name="userCode"
+			<input type="hidden" class="user_code" id="user_code" name="userCode"
 					value="PAR">
 			<input type="date" id="regDate" name="regDate">
 			
@@ -58,9 +86,10 @@
 		
 			<br> 약관
 			<%@ include file="agreementBox.jsp"%>
-
-			<input type="button" onclick="goMainPage()" value="취소"> <input
-				type="button" onclick="checkValueAndSignUp()" value="가입"><br>
+			
+			
+			<input type="button"  onclick="checkValueAndSignUp()" value="가입">
+			<input type="button"  onclick="goMainPage()" value="취소"> 
 
 		</form>
 	</div>
@@ -113,7 +142,13 @@
 				alert("비밀번호를 입력하세요.");
 				return false;
 			}
+		else if(password.length < 8 || password.length > 20){
 			
+        	  alert("비밀번호는 최소 8자 이상, 최대 20자 이내로 입력해주세요.");
+      	  return false;
+
+				
+			}
 			// 비밀번호와 비밀번호 확인에 입력된 값이 동일한지 확인
 			else if(password != passwordCheck || !passwordCheck){
 				console.log("비밀번호 : " + password + "/ 비밀번호 확인 : " + passwordCheck );
