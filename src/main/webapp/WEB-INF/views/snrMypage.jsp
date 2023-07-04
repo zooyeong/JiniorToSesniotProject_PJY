@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>마이페이지</title>
 <link rel="stylesheet" href="/resources/css/mypage_css.css">
 </head>
 <body>
@@ -22,29 +22,32 @@
         </label>
         <input type="file" name="file" id="image" style="display: none;" onchange="readURL(this)">
         <br>
-        <input type="hidden" value="<%= session.getAttribute("userId") %>" name="id"><br>
+        <input type="hidden" value="<%=session.getAttribute("userId") %>" name="id"><br>
 		
 		<div class="smallContainer">
 		<p id="pw_p">비밀번호 <button type="button" onclick="location.href='/changePassword'">수정</button></p><br>
-		<p id="pw_p">시니어 추가인증 <button type="button" onclick="location.href='/certification'" style=" width: 130px;">인증하러가기</button></p><br>
+		<p id="pw_p" style="margin-left: 130px;">시니어 추가인증 <button type="button" onclick="location.href='/certification'" style=" width: 130px;">인증하러가기</button></p><br>
+		
+		<div style="background-color: white; border-radius: 10px; margin-bottom: 10px;">
 		<label>전화번호</label><br>
-		<input type="text" name="phoneNumber" value="${seniorDetail.phoneNumber}" disabled><br>
+		<input type="text" class="input_h" name="phoneNumber" value="${seniorDetail.phoneNumber}" style="font-size:1.2rem;" disabled><br>
 		
 		<label>주소</label><br>
-		<input type="text" class="postcode input_h" name="postCode" placeholder="우편번호">
-		<input type="button" id="pc_btn" onclick="sample6_execDaumPostcode(event)" value="우편번호 찾기"><br>
-		<input type="text" id="address" class="input_h" name="address" placeholder="주소"><br>
-		<input type="text" class="input_h" name="detailAddress" placeholder="상세주소"><br>
-		<input type="text" class="input_h" name="extraAddress" placeholder="참고항목"><br>
+		<input type="text" class="postcode input_h" name="postCode" placeholder="우편번호" style="font-size:1.2rem; border-bottom: 1px solid lightgray;">
+		<input type="button" id="pc_btn" onclick="sample6_execDaumPostcode(event)" value="우편번호 찾기" style="font-size:1.2rem;"><br>
+		<input type="text" id="address" class="input_h" name="address" placeholder="주소" style="font-size:1.2rem; border-bottom: 1px solid lightgray;"><br>
+		<input type="text" class="input_h" name="detailAddress" placeholder="상세주소" style="font-size:1.2rem; border-bottom: 1px solid lightgray;"><br>
+		<input type="text" class="input_h" name="extraAddress" placeholder="참고항목" style="font-size:1.2rem; border-bottom: 1px solid lightgray;"><br>
 		
 		<label>이메일주소</label><br>
-		<input type="email" class="input_h" name="email" value="${seniorDetail.email}"><br>
+		<input type="email" class="input_h" name="email" value="${seniorDetail.email}" style="font-size:1.2rem; border-bottom: 1px solid lightgray;"><br>
 
 		<label>희망지역</label><br>
-		<input type="text" class="input_h" name="area" value="${seniorDetail.area}"><br>
-
+		<input type="text" class="input_h" name="area" value="${seniorDetail.area}" style="font-size:1.2rem; border-bottom: 1px solid lightgray; margin-bottom: 10px; "><br>
+		</div>
+		
 		<label>자기소개</label><br>
-		<textarea cols="55" rows="10" name="info">${seniorDetail.info}</textarea><br>
+		<textarea class="textarea_f" cols="46" rows="10" name="info" style="font-family: 'omyu_pretty'; font-size:1.2rem;">${seniorDetail.info}</textarea><br>
 
 		
 		<p>희망스케줄</p>

@@ -2,6 +2,9 @@ package com.kids.controller.board;
 
 import java.util.List;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +50,42 @@ public class BoardController {
 	
 	//게시글 상세 보기
 	@GetMapping("/viewArticle")
+	public String viewArticle(Model model, @RequestParam int articleNo,
+							  HttpServletRequest request, HttpServletResponse response) {
+		
+		Cookie oldCookie = null;
+	    Cookie[] cookies = request.getCookies();
+	    if (cookies != null) {
+	        for (Cookie cookie : cookies) {
+	            if (cookie.getName().equals("postView")) {
+	                oldCookie = cookie;
+	            }
+	        }
+	    }
+	    if (oldCookie != null) {
+	        if (!oldCookie.getValue().contains("[" + articleNo + "]")) {
+	        	boardService.updateViews(articleNo);
+	            oldCookie.setValue(oldCookie.getValue() + "_[" + articleNo + "]");
+	            oldCookie.setPath("/");
+	            oldCookie.setMaxAge(60 * 60 * 24);
+	            response.addCookie(oldCookie);
+	        }
+	    } else {
+	    	boardService.updateViews(articleNo);
+	        Cookie newCookie = new Cookie("postView","[" + articleNo + "]");
+	        newCookie.setPath("/");
+	        newCookie.setMaxAge(60 * 60 * 24);
+	        response.addCookie(newCookie);
+	    }
+		
+		BoardDto article = boardService.getArticleByArticleNo(articleNo);
+		model.addAttribute("article", article);
+
+		return "viewArticle";
+	}
+	/*
+		게시글 상세조회수 무한 증가 버전.
+	@GetMapping("/viewArticle")
 	public String viewArticle(Model model, @RequestParam int articleNo) {
 		
 		BoardDto boardDto = new BoardDto();
@@ -56,10 +95,10 @@ public class BoardController {
 		
 		BoardDto article = boardService.getArticleByArticleNo(articleNo);
 		model.addAttribute("article", article);
-
+		
 		return "viewArticle";
 	}
-	
+	*/
 	//게시글 수정하는 페이지 보기
 	@GetMapping("/modifyArticle")
 	public String modifyArticle(Model model, @RequestParam int articleNo) {

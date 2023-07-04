@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>시니어상세페이지</title>
 <style>
 @font-face {
     font-family: 'omyu_pretty';
@@ -21,7 +21,7 @@
 	box-sizing: border-box;
 }
 .container{
-	margin-top: 110px;
+	margin-top: 150px;
 }
 .scheduleDiv{
 	width: 100px;
@@ -45,7 +45,7 @@
 }
 .declaration1{
 	position: absolute;
-	top: 110px;
+	top: 160px;
 	left: 66%;
 	bottom: 94%;
 	border:none;
@@ -94,6 +94,9 @@
 .infotext{
 	font-size: 25px;
 }
+.infomationtext{
+    font-size: 1.2rem;
+}
 #btnContainer{
 	text-align: center;
 }
@@ -101,7 +104,7 @@
 	width: 150px;
 	height: 40px;
 	font-size: 1.2rem;
-	background-color: #01b399;
+	background-color: #154726;
     color: white;
     border-radius: 5px;
     margin-top: 10px;
@@ -133,7 +136,7 @@
 	<img class="profileimage1" src="${pageContext.request.contextPath}/image/profile/${parentsImg.fileName}" onerror="this.onerror=null;this.src='/resources/image/no_profile.png';"/>
 	
 	<div class="profile1">
-	<p>${seniorDetail.name}
+	<p class="infotext">${seniorDetail.name}
 		<c:if test="${seniorDetail.gender eq 'F'}">
 			<span class="profileinfo">여성</span>
 		</c:if>

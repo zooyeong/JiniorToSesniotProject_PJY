@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>코코노아</title>
 <script src="http://nenia.kr/js/jquery-1.12.4.min.js?ver=191202"></script>
 <link rel="stylesheet" href="/resources/css/main_css.css">
 
@@ -18,10 +19,23 @@
         </div>
     </div>
     <div class="mainup">
-        <img src="/resources/image/logo.jpg" alt="" width="500" height="500"
-            style="position: absolute; border-radius: 12px; top: 100px; left: 50%;">
-        <div style="position: relative; left:60%; top: 80%; width: 200px;"> <a href=""><button class="w-btn-neon2"
+        <img src="/resources/image/zzzz.jpg" alt="" width="500" height="500"
+            style="position: absolute; border-radius: 12px; top: 100px; left: 48%;">
+            <c:if test="${userId == null}">
+        <div style="position: relative; left:60%; top: 80%; width: 200px;"> 		
+        <a href="/logInForm"><button class="w-btn-neon2"
                 type="button">동행하러가기</button></a></div>
+            	</c:if>
+                <c:if test="${userCode == 'PAR'}">
+                <div style="position: relative; left:60%; top: 80%; width: 200px;">
+                <a href="/seniorDetail"><button class="w-btn-neon2"
+                type="button">신청하러가기</button></a></div>
+                </c:if>
+                <c:if test="${userCode == 'SNR'}">
+                <div style="position: relative; left:60%; top: 80%; width: 200px;">
+                <a href="/snrMypage"><button class="w-btn-neon2"
+                type="button">등록하기</button></a></div>
+                </c:if>
         <div class="inner2">
 
             <h2>About US</h2>

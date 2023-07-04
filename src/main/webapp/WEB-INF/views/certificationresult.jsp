@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Certification</title>
+    <title>인증 완료</title>
 </head>
 <style>
 *{
