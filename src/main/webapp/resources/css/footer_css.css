@@ -15,7 +15,7 @@ font-family: 'omyu_pretty';}
     position: absolute;
     z-index: 10;
     left: 50%;
-    top: 550%;
+    top: 543%;
     transform: translateX(-50%);
     min-height: 70px;
     background: #faf3e6;

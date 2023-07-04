@@ -27,34 +27,36 @@
 		<div class="smallContainer">
 		<p id="pw_p">비밀번호 <button type="button" onclick="location.href='/changePassword'">수정</button></p><br>
 		
+		<div style="background-color: white; border-radius: 10px; margin-bottom: 10px;">
 		<label>전화번호</label><br>
-		<input type="text" name="phoneNumber" value="${parentsDetail.phoneNumber}" disabled><br>
+		<input type="text" class="input_h" name="phoneNumber" value="${parentsDetail.phoneNumber}" style="font-size:1.2rem;" disabled><br>
 		
 		<label>주소</label><br>
-		<input type="text" class="postcode input_h" name="postCode" placeholder="우편번호">
-		<input type="button" id="pc_btn" onclick="sample6_execDaumPostcode(event)" value="우편번호 찾기"><br>
-		<input type="text" id="address" class="input_h" name="address" placeholder="주소"><br>
-		<input type="text" class="input_h" name="detailAddress" placeholder="상세주소"><br>
-		<input type="text" class="input_h" name="extraAddress" placeholder="참고항목"><br>
+		<input type="text" class="postcode input_h" name="postCode" placeholder="우편번호" style="font-size:1.2rem; border-bottom: 1px solid lightgray;">
+		<input type="button" id="pc_btn" onclick="sample6_execDaumPostcode(event)" value="우편번호 찾기" style="font-size:1.2rem;"><br>
+		<input type="text" id="address" class="input_h" name="address" placeholder="주소" style="font-size:1.2rem; border-bottom: 1px solid lightgray;"><br>
+		<input type="text" class="input_h" name="detailAddress" placeholder="상세주소" style="font-size:1.2rem; border-bottom: 1px solid lightgray;"><br>
+		<input type="text" class="input_h" name="extraAddress" placeholder="참고항목" style="font-size:1.2rem; border-bottom: 1px solid lightgray;"><br>
 		
 		<label>이메일주소</label><br>
-		<input type="email" class="input_h" name="email" value="${parentsDetail.email}"><br>
-
+		<input type="email" class="input_h" name="email" value="${parentsDetail.email}" style="font-size:1.2rem; border-bottom: 1px solid lightgray;"><br>
+		</div>
+		
 		<label>자녀소개</label><br>
-		<p>${parentsDetail.CName}님
+		<p style="background-color: white; border-radius: 10px; margin-bottom: 10px; line-height: 52px; height: 52px;">${parentsDetail.CName}
 		<c:if test="${parentsDetail.CGender eq 'F'}">
 			<span>여아</span>
 		</c:if>
 		<c:if test="${parentsDetail.CGender eq 'M'}">
-			<span>남여</span>
+			<span>남아</span>
 		</c:if>
 		<span>${2023 - fn:substring(parentsDetail.birthyear, 0, 4)}세</span><br>
 		<br>
 		</p>	
-		<textarea cols="55" rows="10" name="personality">${parentsDetail.personality}</textarea>
+		<textarea cols="46" rows="10" name="personality" style="font-family: 'omyu_pretty'; font-size:1.2rem;">${parentsDetail.personality}</textarea>
 		
 		<label>기타사항</label><br>
-		<textarea cols="55" rows="10" name="etc">${parentsDetail.etc}</textarea>
+		<textarea cols="46" rows="10" name="etc" style="font-family: 'omyu_pretty'; font-size:1.2rem;">${parentsDetail.etc}</textarea>
 	
 		<button type="reset" class="update_btn">되돌리기</button>
 		<button type="submit" class="update_btn">수정하기</button>
