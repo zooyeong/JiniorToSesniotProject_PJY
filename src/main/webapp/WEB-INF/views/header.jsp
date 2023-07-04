@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -99,39 +100,40 @@ header {
 %>
 
 <header class="header_t" id="header_t_id" style="top: 0px;">
-<div class="header_gnb">
-<c:if test="${userId != 'admin'|| userId == null}">
-<ul class="main_menu">
-<li class="menu menu1">
-<a href="" style="font-size: 1.3rem;">회사소개</a>
-</li>
-<li class="menu menu2">
-<a href="" style="font-size: 1.3rem;">이용방법</a>
-</li>
-<c:if test="${userCode == 'SNR'}">
-<li class="menu menu3">
-<a href="/scheduleList" style="font-size: 1.3rem;">매칭현황</a>
-</li>
-</c:if>
-<c:if test="${userCode == 'PAR'}">
-<li class="menu menu3">
-<a href="/seniorDetail" style="font-size: 1.3rem;">시니어찾기</a>
-</li>
-</c:if>
-<li class="menu menu4">
-<a href="boardList" style="font-size: 1.3rem;">문의하기</a>
-</li>
-</ul>
-</c:if>
-</div>
+	<div class="header_gnb">
+		<c:if test="${userId != 'admin' || userId == null}">
+			<ul class="main_menu">
+				<li class="menu menu1"><a href="" style="font-size: 1.3rem;">회사소개</a>
+				</li>
+				<li class="menu menu2"><a href="" style="font-size: 1.3rem;">이용방법</a>
+				</li>
+				<c:if test="${userCode == 'SNR'}">
+					<li class="menu menu3"><a href="/scheduleList"
+						style="font-size: 1.3rem;">매칭현황</a></li>
+				</c:if>
+				<c:if test="${userCode == 'PAR'}">
+					<li class="menu menu3"><a href="/seniorDetail"
+						style="font-size: 1.3rem;">시니어찾기</a></li>
+				</c:if>
+				<li class="menu menu4"><a href="boardList"
+					style="font-size: 1.3rem;">문의하기</a></li>
+			</ul>
+		</c:if>
+		<ul class="main_menu">
+			<c:if test="${userCode == 'ADM'}">
+				<li class="menu menu3"><a href="/admin"
+					style="font-size: 1.3rem;">관리자 홈</a></li>
+			</c:if>
+		</ul>
+	</div>
 
-<div class="header_logo">
-<a href="http://localhost:8080/main">
-<span style="font-size: 2rem; position: absolute; z-index: 2; right: 55%; top: 5px;">코코노아</span>
-<img src="/resources/image/rogo.png" alt="" title="" width="140" height="100"
-style="border-radius: 12px; z-index: 1;">
-</a>
-</div>
+	<div class="header_logo">
+		<a href="http://localhost:8080/main"> <span
+			style="font-size: 2rem; position: absolute; z-index: 2; right: 55%; top: 5px;">코코노아</span>
+			<img src="/resources/image/rogo.png" alt="" title="" width="140"
+			height="100" style="border-radius: 12px; z-index: 1;">
+		</a>
+	</div>
 
 	<div class="header_btn">
 		<% if (userId == null) { %>
@@ -158,16 +160,16 @@ style="border-radius: 12px; z-index: 1;">
 				<% } %>
 
 
-<% if (userId == null) { %>
-<div class="store_btn font-8" >
-<a class="store_btn font-8" href="/signUpType" >
-<div class="idbox1">
-<div class="label" style="position: relative; top: 50%;">회원가입</div>
-</div>
-</a>
-</div>
-<% } %>
-</div>
+				<% if (userId == null) { %>
+				<div class="store_btn font-8">
+					<a class="store_btn font-8" href="/signUpType">
+						<div class="idbox1">
+							<div class="label" style="position: relative; top: 50%;">회원가입</div>
+						</div>
+					</a>
+				</div>
+				<% } %>
+			</div>
 
 			<div class="black-box" id="blackBox">
 				<% if(userCode != null) {%>
@@ -186,24 +188,24 @@ style="border-radius: 12px; z-index: 1;">
 						<br>로그아웃
 					</div> </a>
 
-</div>
+			</div>
 
-<script>
-function toggleMenu() {
-var blackBox = document.getElementById('blackBox');
-blackBox.classList.toggle('show');
-}
+			<script>
+        function toggleMenu() {
+            var blackBox = document.getElementById('blackBox');
+            blackBox.classList.toggle('show');
+        }
 
-function logout() {
-// Server-side logout request and other necessary tasks
-// ...
+        function logout() {
+            // Server-side logout request and other necessary tasks
+            // ...
 
-// Invalidate the session and redirect
-location.href = "/logoutproc";
-}
-function toggleMenu() {
-var blackBox = document.getElementById('blackBox');
-blackBox.classList.toggle('show');
+            // Invalidate the session and redirect
+            location.href = "/logoutproc";
+        }
+        function toggleMenu() {
+            var blackBox = document.getElementById('blackBox');
+            blackBox.classList.toggle('show');
 
             // Toggle the visibility of the black box
             if (blackBox.classList.contains('show')) {
