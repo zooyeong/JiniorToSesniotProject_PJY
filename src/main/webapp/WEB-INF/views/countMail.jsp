@@ -121,7 +121,7 @@ h4 {
 
 	<c:if test="${userCode eq 'PAR'}">
 		<div id="mailContainer">
-			<h4>알림</h4>
+			<h4 style="text-align: center;">알림</h4>
 			<c:forEach var="item" items="${mail}">
 				<div class="middleContainer">
 					<img src="resources/image/minibell.png" class="minibell">
@@ -140,7 +140,7 @@ h4 {
 
 	<c:if test="${userCode eq 'SNR'}">
 		<div id="mailContainer">
-			<h4>알림</h4>
+			<h4 style="text-align: center;">알림</h4>
 			<c:forEach var="item" items="${mail}">
 				<form action="" method="post">
 					<div class="middleContainer">

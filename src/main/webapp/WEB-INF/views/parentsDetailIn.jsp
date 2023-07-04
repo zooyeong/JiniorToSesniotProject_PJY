@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>부모상세페이지</title>
 <style>
 @font-face {
     font-family: 'omyu_pretty';
