@@ -16,16 +16,16 @@
 	<div class="smallContainer">
 	<form action="" method="post" name="changePasswordForm">
 		<label>현재 비밀번호</label><br>
-		<input type="password" id="password" class="input_h" name="password"><br>
+		<input type="password" id="password" class="input_h pw_change_w" name="password" placeholder="password"><br>
 		
 		<label>새 비밀번호</label><br>
-		<input type="password" id="newPassword" class="input_h"name="newPassword"><br>
+		<input type="password" id="newPassword" class="input_h pw_change_w" name="newPassword" placeholder="new password"><br>
 		
 		<label>새 비밀번호 재확인</label><br>
-		<input type="password" id="newPasswordChk" class="input_h"><br>
+		<input type="password" id="newPasswordChk" class="input_h pw_change_w" placeholder="new password"><br>
 		
-		<button type="button" onclick="changePassword()" class="chanhe_btn">변경</button>
-		<button type="button" onclick="location.href='/parMypage'" class="chanhe_btn">취소</button>
+		<button type="button" onclick="changePassword()" class="change_btn">변경</button>
+		<button type="button" onclick="history.back()" class="change_btn">취소</button>
 	</form>
 	</div>
 </div>

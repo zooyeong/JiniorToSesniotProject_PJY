@@ -61,6 +61,9 @@
 	margin-bottom: 14px;
 	padding: 10px;
 }
+.infomationtext{
+	font-size: 1.2rem;
+}
 .infotext{
 	font-size: 25px;
 }
@@ -73,7 +76,7 @@
 	<img class="profileimage1" src="${pageContext.request.contextPath}/image/profile/${parentsImg.fileName}" onerror="this.onerror=null;this.src='/resources/image/no_profile.png';"/>
 	
 	<div class="profile1">
-		<p>${parentsDetail.name}
+		<p class="infotext">${parentsDetail.name}
 		<c:if test="${parentsDetail.gender eq 'F'}">
 			<span class="profileinfo">여성</span>
 		</c:if>

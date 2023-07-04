@@ -41,7 +41,7 @@ src="/resources/image/mainlogo.PNG" alt="" style="border-radius: 12px">
 title="">
 </a>
 <figure class="logo"><img
-src="/resources/image/등하교돕기.png" alt="">
+src="/resources/image/등하교돕기2.jpg" alt="" style="border-radius: 12px">
 </figure>
 </li>
 <li>
@@ -50,7 +50,7 @@ src="/resources/image/등하교돕기.png" alt="">
 title="">
 </a>
 <figure class="logo"><img
-src="/resources/image/책읽기1.png" alt="">
+src="/resources/image/책읽기2.jpg" alt="" style="border-radius: 12px">
 </figure>
 </li>
 <li>
@@ -59,7 +59,7 @@ src="/resources/image/책읽기1.png" alt="">
 title="">
 </a>
 <figure class="logo"><img
-src="/resources/image/밥.png" alt="">
+src="/resources/image/밥챙겨주기2.jpg" alt="" style="border-radius: 12px">
 </figure>
 </li>
 </ul>
