@@ -11,8 +11,9 @@
 	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <style>
-	textarea{
+	textarea#info{
 		resize: none;
+		width: 700px;
 	}
 	
 	
@@ -25,7 +26,7 @@
 <body>
 
 	<p>자기소개_선택사항입니다.</p>
-	<textarea rows="20" cols="150" id="info" name="info"></textarea><br>
+	<textarea rows="20" cols="150" id="info" name="info" ></textarea><br>
 	<p>희망지역_선택사항입니다.</p>
 	<input type="text" id="area" name="area" >
 	
