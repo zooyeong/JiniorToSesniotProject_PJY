@@ -159,7 +159,7 @@ response.sendRedirect("main");
 					<td>${list.parentId}</td>
 					<td>${list.seniorId}</td>
 					<td>${list.name}</td>
-					<td>${list.reportedReason}</td>
+					<td style="max-width: 200px; word-break: break-all;">${list.reportedReason}</td>
 					<td>${list.reportDate}</td>
 					<td><c:choose>
 							<c:when
