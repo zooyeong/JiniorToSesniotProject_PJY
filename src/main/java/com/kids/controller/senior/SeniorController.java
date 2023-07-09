@@ -27,6 +27,7 @@ public class SeniorController {
 	
 	@Autowired
 	private ParentsService parentsService;
+	
 	@GetMapping("/seniorDetail")
 	public String seniorDetail(@RequestParam(required=false) String id, Model model) {
 		

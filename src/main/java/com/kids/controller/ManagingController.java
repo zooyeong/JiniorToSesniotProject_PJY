@@ -2,6 +2,8 @@ package com.kids.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,9 +40,15 @@ public class ManagingController {
 	@Autowired
 	MatchingService matchingService;
 	
+	@Autowired
+	HttpSession session;
+	
 	@GetMapping("/admin")
 	public String admin(Model model) {
-		
+		String userCode = (String)session.getAttribute("userCode");
+		if ( userCode == null || !(userCode.equals("ADM")) ) {
+			return "redirect:/main";
+		}
 		return "admin";
 	}
 	

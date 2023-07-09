@@ -66,12 +66,6 @@ body {
 
 <%@ include file="header.jsp"%>
 
-<%
-if ( !(userId.equals("admin")) || userId == null) {
-response.sendRedirect("main");
-}
-%> 
-
 <body>
 <div class="pd">
 <div class="admin">관리자 페이지</div>

@@ -44,6 +44,7 @@ public class MatchingController {
 	@Autowired
 	MatchingService matchingService;
 	
+	/* 도우미 신청하는 페이지 */
 	@GetMapping("/askForSenior")
 	public String askForSenior(@RequestParam String id, Model model) {
 		
@@ -55,6 +56,7 @@ public class MatchingController {
 		return "askForSenior";
 	}
 	
+	/* 도우미 신청 시 process */
 	@PostMapping("/askForSenior")
 	public String askForSenior_action(@RequestParam String id
 										, MatchingDto matchingDto
@@ -62,14 +64,16 @@ public class MatchingController {
 		
 		String parId = (String)session.getAttribute("userId");
 		matchingDto.setSnrId(id);
-		matchingDto.setParId(parId); //부모 아이디 세션으로 가져와서 저장~ >>> 뷰단에서 아이디가 빈 상태로 넘어오지 못하게 해야함
+		matchingDto.setParId(parId);
 		
+		/* post로 넘어온 주소 하나의 String으로 저장 */
 		String pickUpPlace = matchingDto.getPickUpPlace().replace(",", " ");
 		String arrivePlace = matchingDto.getArrivePlace().replace(",", " ");
 		
 		matchingDto.setPickUpPlace(pickUpPlace);
 		matchingDto.setArrivePlace(arrivePlace);
 		
+		/* post로 넘어온 신청요일 하나의 String으로 저장 */
 		String askForWeekday = "";
 		String[] scheduleCodeArr = matchingDto.getScheduleCode().split(",");
 		for(String val : scheduleCodeArr) {
@@ -106,8 +110,11 @@ public class MatchingController {
 				break;
 			}
 		}
-				
+		
+		/* matching_m에 insert */
 		int result = matchingService.saveMatchingInfo(matchingDto);
+		
+		/* 아래에서 사용할 matchingNumber 변수화 */
 		int matchingNumber = matchingService.getMatchingNumber();
 		
 		/* 시니어에게 전송할 부모 데이터 가져오기 */
@@ -125,28 +132,16 @@ public class MatchingController {
 							+ "<br>*** 요청 기간 : " + matchingDto.getStartDate() + " ~ " + matchingDto.getEndDate() + " ***"
 							+ "<br>*** 연락처 : " + parentsDetailDto.getPhoneNumber() + " ***"
 							+ "<br>수락하시겠습니까?");
-		
 		int resultMailSave = matchingService.save_mail(mailDto);
-		
-		System.out.println(result);
-		System.out.println(resultMailSave);
 		
 		return "redirect:/seniorDetail?id="+id;
 	}
 	
-	@GetMapping("/mailboxSenior")
-	public String mailboxSenior(Model model) {
-		
-		List<MailDto> mail = matchingService.getSeniorMailById((String)session.getAttribute("userId"));
-		
-		model.addAttribute("mail", mail);
-		
-		return "mailboxSenior";
-	}
-	
+	/* 도우미 신청 수락 시 process */
 	@PostMapping("/acceptMail")
 	public String acceptMail(MailDto mailDto, HttpServletRequest request) {
 		
+		/* 메일 상태 수락으로 변경 */
 		mailDto.setStatus("수락");
 		matchingService.updateMailStatus(mailDto);
 		
@@ -158,7 +153,6 @@ public class MatchingController {
 		mailDto.setContent(mailDto.getSendId()+"님이 신청을 수락하였습니다!<br>"
 						+ "시니어 도우미가 빠른 시일 내에 연락을 드릴게요.<br>"
 						+ "시니어 비상 연락망 : " + seniorDetailDto.getPhoneNumber());
-		
 		int resultMailSave = matchingService.save_mail(mailDto);
 		
 		/* 시니어 work_status N로 update */
@@ -209,6 +203,7 @@ public class MatchingController {
 			}
 		}
 		
+		/* startDate와 endDate 사이 요일별 일자 추가 */
 		List<LocalDate> dates = new ArrayList<>();
 		List<String> codes = new ArrayList<>();
 		for(int i=0; i<weekday.size(); i++) {
@@ -247,6 +242,7 @@ public class MatchingController {
 	    return "redirect:"+ referer;
 	}
 	
+	/* 도우미 신청 거절 시 process */
 	@PostMapping("/refuseMail")
 	public String refuseMail(MailDto mailDto, HttpServletRequest request) {
 		
@@ -277,43 +273,7 @@ public class MatchingController {
 	    return "redirect:"+ referer;
 	}
 	
-	@GetMapping("/mailboxParents")
-	public String mailboxParents(Model model) {
-		
-		List<MailDto> mail = matchingService.getParentsMailById((String)session.getAttribute("userId"));
-		
-		model.addAttribute("mail", mail);
-		
-		return "mailboxParents";
-	}
-	
-//	@GetMapping("/countMail")
-//	public String countMail(Model model){
-//		
-//		String userCode = (String)session.getAttribute("userCode");
-//		String userId = (String)session.getAttribute("userId");
-//		System.out.println(userCode);
-//		System.out.println(userId);
-//		if(userCode.equals("PAR")) {
-//			
-//			int cnt = matchingService.countParentsMailById(userId);
-//			List<MailDto> mail = matchingService.getParentsMailById(userId);
-//			model.addAttribute("count", cnt);
-//			model.addAttribute("mail", mail);
-//			
-//		}else if(userCode.equals("SNR")) {
-//			
-//			int cnt = matchingService.countSeniorMailById((String)session.getAttribute("userId"));
-//			List<MailDto> mail = matchingService.getSeniorMailById(userId);
-//			model.addAttribute("count", cnt);
-//			model.addAttribute("mail", mail);
-//			System.out.println("이거 count"+cnt);
-//			
-//		}
-//		model.addAttribute("userCode", userCode);
-//		return "countMail";
-//	}
-	
+	/* 시니어 개인 스케줄 조회 페이지 */
 	@GetMapping("/scheduleList")
 	public String scheduleList(Model model) {
 		
@@ -339,11 +299,12 @@ public class MatchingController {
 		return "scheduleList";
 	}
 	
+	/* 시니어 스케줄 완료 or 취소 처리 시 process */
 	@PostMapping("/scheduleList")
 	public String scheduleList_action(MatchingDetailDto matchingDetailDto,
 									@RequestParam("btnValue") String btnValue) {
 		
-		
+		/* matching_d의 마지막건 처리 시 검증 */
 		MatchingDetailDto selectLastDayDto = matchingService.selectMatchingDLast(matchingDetailDto.getMatchingNumber());
 		if(matchingDetailDto.getDay().equals(selectLastDayDto.getDay()) 
 				&& matchingDetailDto.getScheduleCode().equals(selectLastDayDto.getScheduleCode())) {

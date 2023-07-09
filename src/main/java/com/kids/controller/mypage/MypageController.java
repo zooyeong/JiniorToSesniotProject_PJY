@@ -46,10 +46,6 @@ public class MypageController {
 
     private String uploadDir = "C:\\upload\\image\\profile\\";
 	
-	@GetMapping("/sampleSession")
-	public String sampleSession() {
-		return "sampleSession";
-	}
 	@GetMapping("/parMypage")
 	public String parMypage(Model model) {
 		
@@ -77,23 +73,6 @@ public class MypageController {
 		List<SeniorScheduleDto> seniorEnableSchedule = seniorService.getSeniorEnableSchedule(id);
 		model.addAttribute("seniorEnableSchedule", seniorEnableSchedule);
 		return "snrMypage";
-	}
-	@PostMapping("/sampleSession")
-	public String sampleSession_action(@RequestParam("id") String id,
-									   @RequestParam("userCode") String userCode,
-										HttpServletRequest request) {
-		
-		if(id.equals("")) {
-			return "sampleSession";
-		}else {
-			HttpSession session = request.getSession();
-			session.setAttribute("userId", id);
-			session.setAttribute("userCode", userCode);
-		
-			
-			return "redirect:/userMypage";
-		}
-		
 	}
 
 	@GetMapping("/userMypage")
@@ -162,7 +141,7 @@ public class MypageController {
 			map.put("workStatus", workStatusArr[i]);
 			
 			int scheduleUpdateResult = seniorService.updateSchedule(map);
-			//scheduleUpdateResult 수행 결과 점검해야함
+			
 		}
 		
 		/* 개인정보 업데이트 */
