@@ -9,7 +9,7 @@
 <title>시니어 리스트</title>
 <style>
 body{
-background-color: #F6F6F6}
+background-color: #D8E0A5}
 .seniorDiv{
 top:150px;
 background-color: white;

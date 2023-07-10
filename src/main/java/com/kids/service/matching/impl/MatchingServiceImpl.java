@@ -144,9 +144,9 @@ public class MatchingServiceImpl implements MatchingService{
 	}
 
 	@Override
-	public List<MatchingDetailDto> selectMatchingDetail(String id) {
+	public List<MatchingDetailDto> selectMatchingDetail(int matchingNumber) {
 		// TODO Auto-generated method stub
-		List<MatchingDetailDto> list = matchingDao.selectMatchingDetail(id);
+		List<MatchingDetailDto> list = matchingDao.selectMatchingDetail(matchingNumber);
 		return list;
 	}
 

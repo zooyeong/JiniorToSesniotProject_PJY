@@ -21,11 +21,13 @@
 	box-sizing: border-box;
 }
 .container{
-	margin-top: 150px;
+	margin: 150px auto;
+    min-width: 1200px;
+    max-width: 1200px;
 }
 .scheduleDiv{
-	width: 100px;
-	height: 150px;
+	width: 55px;
+	height: 100px;
 	background-color: lightgray;
 	margin: 5px;
 	display: inline-block;
@@ -33,20 +35,22 @@
 }
 #scheduleContainer{
 	width: 450px;
-	overflow: auto;
-	white-space: nowrap;
 	background-color: white;
     border-radius: 10px;	
+    padding: 10px 0;
 }
 .maintext{
 	font-size: 3rem;
 	position: relative;
 	left: 32%;
 }
+#declarationForm{
+	position: relative;
+}
 .declaration1{
 	position: absolute;
-	top: 160px;
-	left: 66%;
+	top: -50px;
+	right: 350px;
 	bottom: 94%;
 	border:none;
 	background: white;
@@ -111,11 +115,11 @@
     font-family: 'omyu_pretty';
 }
 .weekday{
-	margin-left: 75px;
+	margin-left: 34px;
 }
 .timeContainer{
-	height: 150px;
-	line-height: 150px;
+	height: 100px;
+	line-height: 100px;
 	margin: 5px;
 	float: left;
 }
@@ -161,7 +165,7 @@
 	
 	<span class="infotext">도우미 가능 시간</span>
 	<div id="scheduleContainer">
-		<span class="weekday" style="margin-left: 150px;">월요일</span>
+		<span class="weekday" style="margin-left: 120px;">월요일</span>
 		<span class="weekday">화요일</span>
 		<span class="weekday">수요일</span>
 		<span class="weekday">목요일</span>

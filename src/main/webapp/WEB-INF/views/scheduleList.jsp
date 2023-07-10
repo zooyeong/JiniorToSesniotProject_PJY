@@ -30,7 +30,7 @@
 				<p>도착장소 : ${item.arrivePlace}</p>
 				<input type="hidden" name="matchingNumber" value="${item.matchingNumber}">
 				<input type="hidden" name="scheduleCode" value="${item.scheduleCode}">
-				<input type="hidden" name="day" value="${item.day}">
+				<input type="hidden" name="day" value="${fn:substring(item.day, 0, 10)}">
 				<input type="hidden" name="btnValue">
 				<button type="button" class="sl_btn" onclick="completeCheck(this)" value="complete">완료</button>
 				<button type="button" class="sl_btn" onclick="completeCheck(this)" value="cancel">취소</button>
@@ -38,7 +38,7 @@
 		</form>
 	</c:forEach>
 	<c:if test="${empty matchingDetailDtoList}">
-		<p>새로운 스케줄이 없습니다.</p>
+		<p>완료된 스케줄입니다.</p>
 	</c:if>
 </div>
 	
@@ -57,7 +57,6 @@
 				if(!result){
 					return false;
 				}
-				alert('진행되었습니다.');
 				let btnValue = form.querySelector('input[name="btnValue"]');
 				btnValue.value = button.value;
 				form.submit();

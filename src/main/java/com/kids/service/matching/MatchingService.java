@@ -33,6 +33,6 @@ public interface MatchingService {
 	public int saveMathingDetail(MatchingDetailDto matchingDetailDto);
 	public int countSeniorMailById(String id);
 	public int countParentsMailById(String id);
-	public List<MatchingDetailDto> selectMatchingDetail(String id);
+	public List<MatchingDetailDto> selectMatchingDetail(int matchingNumber);
 	public MatchingDetailDto selectMatchingDLast(int num);
 }

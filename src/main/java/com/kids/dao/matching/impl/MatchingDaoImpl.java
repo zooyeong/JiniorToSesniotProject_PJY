@@ -157,9 +157,9 @@ public class MatchingDaoImpl implements MatchingDao {
 	}
 
 	@Override
-	public List<MatchingDetailDto> selectMatchingDetail(String id) {
+	public List<MatchingDetailDto> selectMatchingDetail(int matchingNumber) {
 		// TODO Auto-generated method stub
-		List<MatchingDetailDto> list = sqlSessionTemplate.selectList("matching_mapper.select_matching_detail", id);
+		List<MatchingDetailDto> list = sqlSessionTemplate.selectList("matching_mapper.select_matching_detail", matchingNumber);
 		return list;
 	}
 

@@ -1,5 +1,7 @@
 package com.kids.controller.matching;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
@@ -9,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +20,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kids.dto.image.ImageFileDTO;
 import com.kids.dto.matching.MailDto;
@@ -273,12 +277,23 @@ public class MatchingController {
 	    return "redirect:"+ referer;
 	}
 	
-	/* 시니어 개인 스케줄 조회 페이지 */
+	/* 시니어 개인 스케줄 페이지 */
+	@GetMapping("/schedule")
+	public String schedule(Model model) {
+		MatchingDto matchingDto = new MatchingDto();
+		matchingDto.setSnrId((String)session.getAttribute("userId"));
+		List<MatchingDto> matchingDtoList = matchingService.getMatchingLogListBySnrId(matchingDto);
+		
+		model.addAttribute("matchingDtoList" ,matchingDtoList);
+		
+		return "schedule";
+	}
+	/* 시니어 개인 스케줄 상세조회 페이지 */
 	@GetMapping("/scheduleList")
-	public String scheduleList(Model model) {
+	public String scheduleList(@RequestParam int matchingNumber, Model model) {
 		
 		List<MatchingDetailDto> matchingDetailDtoList 
-			= matchingService.selectMatchingDetail((String)session.getAttribute("userId"));
+			= matchingService.selectMatchingDetail(matchingNumber);
 		
 		model.addAttribute("matchingDetailDtoList", matchingDetailDtoList);
 		
@@ -301,29 +316,48 @@ public class MatchingController {
 	
 	/* 시니어 스케줄 완료 or 취소 처리 시 process */
 	@PostMapping("/scheduleList")
-	public String scheduleList_action(MatchingDetailDto matchingDetailDto,
-									@RequestParam("btnValue") String btnValue) {
-		
+	public String scheduleList_action(@RequestParam int matchingNumber,
+									MatchingDetailDto matchingDetailDto,
+									@RequestParam("btnValue") String btnValue,
+									HttpServletResponse response) throws IOException {
 		/* matching_d의 마지막건 처리 시 검증 */
 		MatchingDetailDto selectLastDayDto = matchingService.selectMatchingDLast(matchingDetailDto.getMatchingNumber());
-		if(matchingDetailDto.getDay().equals(selectLastDayDto.getDay()) 
+		if(matchingDetailDto.getDay().equals(selectLastDayDto.getDay().substring(0, 10)) 
 				&& matchingDetailDto.getScheduleCode().equals(selectLastDayDto.getScheduleCode())) {
-			/* matching_m status 최종완료로 update */
-			MatchingDto matchingDto = new MatchingDto();
-			matchingDto.setStatus("최종완료");
-			matchingDto.setMatchingNumber(matchingDetailDto.getMatchingNumber());
-			int resultStatusMUpdate = matchingService.updateMatchingMStatus(matchingDto);
 			
-			Map<String, String> map = new HashMap<>();
-			map.put("workStatus", "Y");
-			map.put("id", (String)session.getAttribute("userId"));
+			/* 매칭 건 중 진행예정인 건이 해당 건 외에 남아있는지 조회 */
+			List<MatchingDetailDto> statusCheck = matchingService.selectMatchingDetail(matchingNumber);
+			if(statusCheck.size() == 1) {
+				/* matching_m status 최종완료로 update */
+				MatchingDto matchingDto = new MatchingDto();
+				matchingDto.setStatus("최종완료");
+				matchingDto.setMatchingNumber(matchingNumber);
+				int resultStatusMUpdate = matchingService.updateMatchingMStatus(matchingDto);
+				
+				/* seniot workStatus 'Y'로 변경 작업 */
+				Map<String, String> map = new HashMap<>();
+				map.put("workStatus", "Y");
+				map.put("id", (String)session.getAttribute("userId"));
+				
+				matchingDto = matchingService.getMatchingInfo(matchingNumber);
+				String[] scArr = matchingDto.getScheduleCode().split(",");
+				
+				for(String val : scArr) {
+					map.put("scheduleCode", val);
+					int resultWorkStatus = seniorService.updateScheduleWorkStatus(map);
+				}
+			}else {
+				response.setContentType("text/html;charset=utf-8");
 
-			matchingDto = matchingService.getMatchingInfo(matchingDetailDto.getMatchingNumber());
-			String[] scArr = matchingDto.getScheduleCode().split(",");
-			
-			for(String val : scArr) {
-				map.put("scheduleCode", val);
-				int resultWorkStatus = seniorService.updateScheduleWorkStatus(map);
+				PrintWriter out = response.getWriter();
+
+				out.println("<script>");
+				out.println("alert('이전 스케줄 중 완료되지 않은 스케줄이 남아있습니다.');");
+				out.println("location.href='/scheduleList?matchingNumber="+matchingNumber+"';");
+				out.println("</script>");
+				out.close();
+
+				return null;
 			}
 		}
 		
@@ -331,14 +365,35 @@ public class MatchingController {
 			/* matching_d status 진행완료로 update */
 			matchingDetailDto.setStatus("진행완료");
 			int resultStatusDUpdate = matchingService.updateMatchingDStatus(matchingDetailDto);
+			
+			response.setContentType("text/html;charset=utf-8");
+
+			PrintWriter out = response.getWriter();
+
+			out.println("<script>");
+			out.println("alert('완료되었습니다.');");
+			out.println("location.href='/scheduleList?matchingNumber="+matchingNumber+"';");
+			out.println("</script>");
+			out.close();
+			
 		}else {
 			/* matching_d status 진행취소로 update */
 			matchingDetailDto.setStatus("진행취소");
 			int resultStatusDUpdate = matchingService.updateMatchingDStatus(matchingDetailDto);
+			
+			response.setContentType("text/html;charset=utf-8");
+
+			PrintWriter out = response.getWriter();
+
+			out.println("<script>");
+			out.println("alert('취소되었습니다.');");
+			out.println("location.href='/scheduleList?matchingNumber="+matchingNumber+"';");
+			out.println("</script>");
+			out.close();
+			
 		}
 		
-		
-		return "redirect:/scheduleList";
+		return null;
 	}
-	
+
 }

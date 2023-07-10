@@ -103,18 +103,19 @@
 	</insert>
 	
 	<select id="select_matching_detail" resultType="MatchingDetailDto"
-										parameterType="String">
+										parameterType="int">
 		select d.matching_number, d.schedule_code, d.day, d.status, 
 			m.pick_up_place, m.arrive_place, m.par_id
 		from matching_d d
 		inner join matching_m m on d.matching_number = m.matching_number
-		where m.snr_id = #{value} and d.status = '진행예정' order by day
+		where m.matching_number = #{value} and d.status = '진행예정' order by day
 	</select>
 	
 	<update id="update_matching_d_status" parameterType="MatchingDetailDto">
 		update matching_d d set d.status = #{status}
     	where d.schedule_code = #{scheduleCode}
     	and matching_number = #{matchingNumber}
+    	and day = #{day}
 	</update>
 	
 	<select id="select_matching_d_last" resultType="MatchingDetailDto"

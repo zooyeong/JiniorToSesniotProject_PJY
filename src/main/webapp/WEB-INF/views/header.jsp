@@ -108,7 +108,7 @@ header {
 				<li class="menu menu2"><a href="" style="font-size: 1.3rem;">이용방법</a>
 				</li>
 				<c:if test="${userCode == 'SNR'}">
-					<li class="menu menu3"><a href="/scheduleList"
+					<li class="menu menu3"><a href="/schedule"
 						style="font-size: 1.3rem;">매칭현황</a></li>
 				</c:if>
 				<c:if test="${userCode == 'PAR'}">
@@ -146,7 +146,7 @@ header {
 
 		<% } else { %>
 	<c:if test="${userId != 'admin'}">
-		<div class="abdabd" style="position: relative; right: 90%; top: 10px;">
+		<div class="abdabd" style="position: absolute; right: 350px; bottom: 20px;">
 			<%@include file="countMail.jsp"%>
 		</div>
 		</c:if>
